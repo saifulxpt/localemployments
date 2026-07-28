@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+class IsProvider
+{
+    public function handle(Request $request, Closure $next): Response
+    {
+        if (!auth()->check() || !auth()->user()->isProvider()) {
+            if ($request->expectsJson()) {
+                return response()->json(['message' => 'Unauthorized.'], 403);
+            }
+            abort(403, 'Access denied. Provider account required.');
+        }
+
+        if (!auth()->user()->isActive()) {
+            auth()->logout();
+            return redirect()->route('login')->withErrors(['phone' => 'Your account has been suspended.']);
+        }
+
+        return $next($request);
+    }
+}

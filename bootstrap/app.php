@@ -12,7 +12,13 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        $middleware->alias([
+            'is.admin'             => \App\Http\Middleware\IsAdmin::class,
+            'is.seeker'            => \App\Http\Middleware\IsSeeker::class,
+            'is.provider'          => \App\Http\Middleware\IsProvider::class,
+            'is.verified.provider' => \App\Http\Middleware\IsVerifiedProvider::class,
+            'phone.verified'       => \App\Http\Middleware\CheckPhoneVerified::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
