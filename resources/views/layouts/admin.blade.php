@@ -155,6 +155,10 @@
                 <div class="font-semibold text-gray-800 text-lg">@yield('title')</div>
                 
                 <div class="flex items-center gap-4">
+                    <a href="{{ route('system.deploy') }}" class="text-sm bg-blue-600 text-white px-3 py-1.5 rounded hover:bg-blue-700 font-medium flex items-center gap-1">
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
+                        Deploy / Fix DB
+                    </a>
                     <a href="{{ route('home') }}" target="_blank" class="text-sm text-gray-500 hover:text-blue-600 font-medium flex items-center gap-1">
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                         সাইট ভিজিট করুন

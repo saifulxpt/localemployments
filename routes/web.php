@@ -249,3 +249,23 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/reports/export', [Admin\ReportController::class, 'export'])->name('reports.export');
     });
 });
+
+// ─────────────────────────────────────────
+// SYSTEM DEPLOY (Temporary/Public for fixing DB on shared hosting)
+// ─────────────────────────────────────────
+Route::get('/system-deploy-force', function () {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+        $migrateOutput = \Illuminate\Support\Facades\Artisan::output();
+        
+        \Illuminate\Support\Facades\Artisan::call('db:seed', ['--force' => true]);
+        $seedOutput = \Illuminate\Support\Facades\Artisan::output();
+        
+        \Illuminate\Support\Facades\Artisan::call('optimize:clear');
+        $optimizeOutput = \Illuminate\Support\Facades\Artisan::output();
+        
+        return "Deployment successful!<br><br><b>Migration:</b><br>" . nl2br($migrateOutput) . "<br><br><b>Seeding:</b><br>" . nl2br($seedOutput) . "<br><br><b>Optimize:</b><br>" . nl2br($optimizeOutput) . "<br><br><a href='/'>Go to Home</a> | <a href='/admin/dashboard'>Go to Admin</a>";
+    } catch (\Exception $e) {
+        return "Error during deployment: " . $e->getMessage();
+    }
+})->name('system.deploy');
