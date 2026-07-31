@@ -10,6 +10,11 @@ if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php'))
     require $maintenance;
 }
 
+// Require Custom Helpers manually for shared hosting
+if (file_exists(__DIR__.'/../app/Helpers/helpers.php')) {
+    require_once __DIR__.'/../app/Helpers/helpers.php';
+}
+
 // Register the Composer autoloader...
 require __DIR__.'/../vendor/autoload.php';
 

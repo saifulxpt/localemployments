@@ -49,7 +49,7 @@
         <div class="p-6 md:p-8 border-b border-gray-100 bg-gray-50/50">
             <h2 class="text-xl font-bold text-gray-900 mb-6">লোকেশন</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4" x-data="locationSelect('{{ route('ajax.areas', '') }}')" x-init="if('{{ $user->district_id }}') loadAreas('{{ $user->district_id }}'); setTimeout(() => { $refs.areaSelect.value = '{{ $user->area_id }}' }, 500)">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4" x-data="locationSelect('{{ url('ajax/areas') }}')" x-init="if('{{ $user->district_id }}') loadAreas('{{ $user->district_id }}'); setTimeout(() => { $refs.areaSelect.value = '{{ $user->area_id }}' }, 500)">
                 <div class="form-group mb-0">
                     <label class="form-label">জেলা</label>
                     <select name="district_id" class="input" @change="loadAreas($event.target.value)">

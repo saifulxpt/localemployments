@@ -26,7 +26,7 @@
                     @endif
                 </div>
 
-                <form action="{{ route('search') }}" method="GET" x-data="locationSelect('{{ route('ajax.areas', '') }}')"
+                <form action="{{ route('search') }}" method="GET" x-data="locationSelect('{{ url('ajax/areas') }}')"
                       x-init="if('{{ request('district') }}') { loadAreas('{{ request('district') }}'); setTimeout(() => { $refs.areaSelect.value = '{{ request('area') }}' }, 500); }">
                     
                     {{-- Retain Search Query if any --}}

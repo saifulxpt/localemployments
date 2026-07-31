@@ -26,7 +26,7 @@
                 <div class="mb-8">
                     <h2 class="text-lg font-bold text-gray-900 mb-4 border-b pb-2">ঠিকানা</h2>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4" x-data="locationSelect('{{ route('ajax.areas', '') }}')">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4" x-data="locationSelect('{{ url('ajax/areas') }}')">
                         <div class="form-group mb-0">
                             <label class="form-label">জেলা</label>
                             <select name="district_id" class="input" required @change="loadAreas($event.target.value)">
