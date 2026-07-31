@@ -18,6 +18,16 @@ jobs:
     - name: Restore mtime
       uses: chetan/git-restore-mtime-action@v2
 
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Install Dependencies & Build Vite
+      run: |
+        npm install
+        npm run build
+
     - name: Install LFTP
       run: sudo apt-get install -y lftp
 
