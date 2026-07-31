@@ -1,14 +1,19 @@
-@extends('layouts.auth')
+@extends('layouts.app')
 
 @section('title', 'নিবন্ধন')
 
 @section('content')
-    <h1 class="text-2xl font-bold text-gray-900 mb-1">নতুন একাউন্ট তৈরি করুন</h1>
-    <p class="text-gray-500 text-sm mb-6">আপনার তথ্য দিয়ে শুরু করুন</p>
+<div class="min-h-[calc(100vh-80px)] bg-gradient-to-br from-primary-50 via-white to-emerald-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="w-full max-w-xl">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-extrabold text-gray-900 mb-2">নতুন একাউন্ট তৈরি করুন</h1>
+            <p class="text-gray-500">আপনার তথ্য দিয়ে শুরু করুন</p>
+        </div>
 
-    @if($errors->any())
-        <div class="alert alert-danger mb-4">{{ $errors->first() }}</div>
-    @endif
+        <div class="bg-white rounded-3xl shadow-xl border border-gray-100 p-8">
+            @if($errors->any())
+                <div class="alert alert-danger mb-6">{{ $errors->first() }}</div>
+            @endif
 
     <form method="POST" action="{{ route('register.store') }}"
           x-data="{
@@ -122,13 +127,16 @@
                    class="input" placeholder="আবার পাসওয়ার্ড দিন" required>
         </div>
 
-        <button type="submit" class="btn btn-primary w-full justify-center py-3 text-base mt-2">
+        <button type="submit" class="btn btn-primary w-full justify-center py-3 text-base mt-4 shadow-lg hover:shadow-xl transition-all">
             নিবন্ধন করুন
         </button>
 
-        <p class="text-center text-sm text-gray-500 mt-4">
-            ইতিমধ্যে একাউন্ট আছে?
-            <a href="{{ route('login') }}" class="text-primary-600 font-medium hover:underline">লগইন করুন</a>
+        <p class="text-center text-sm text-gray-500 mt-6 pt-6 border-t border-gray-100">
+            ইতিমধ্যে একাউন্ট আছে? 
+            <a href="{{ route('login') }}" class="text-primary-600 font-bold hover:underline">লগইন করুন</a>
         </p>
     </form>
+        </div>
+    </div>
+</div>
 @endsection
