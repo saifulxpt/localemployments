@@ -29,25 +29,33 @@
                 </div>
             </div>
 
-            {{-- Links --}}
-            <div>
-                <h4 class="font-semibold text-white mb-4 text-sm uppercase tracking-wider">সেবা</h4>
-                <ul class="space-y-2 text-sm">
-                    <li><a href="{{ route('services.index') }}" class="text-gray-400 hover:text-primary-400 transition-colors">সব সেবা</a></li>
-                    <li><a href="{{ route('search') }}" class="text-gray-400 hover:text-primary-400 transition-colors">কর্মী খুঁজুন</a></li>
-                    <li><a href="{{ route('register') }}" class="text-gray-400 hover:text-primary-400 transition-colors">কাজ খুঁজুন</a></li>
-                    <li><a href="{{ route('register') }}?role=provider" class="text-gray-400 hover:text-primary-400 transition-colors">প্রোভাইডার হোন</a></li>
-                </ul>
-            </div>
+            {{-- Links Wrapper for side-by-side on mobile --}}
+            <div class="grid grid-cols-2 gap-8 md:col-span-2">
+                {{-- Services --}}
+                <div>
+                    <h4 class="font-semibold text-white mb-4 text-sm uppercase tracking-wider">সেবা</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="{{ route('services.index') }}" class="text-gray-400 hover:text-primary-400 transition-colors">সব সেবা</a></li>
+                        <li><a href="{{ route('search') }}" class="text-gray-400 hover:text-primary-400 transition-colors">কর্মী খুঁজুন</a></li>
+                        <li><a href="{{ route('register') }}" class="text-gray-400 hover:text-primary-400 transition-colors">কাজ খুঁজুন</a></li>
+                        <li><a href="{{ route('register') }}?role=provider" class="text-gray-400 hover:text-primary-400 transition-colors">প্রোভাইডার হোন</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">ভেরিফাইড প্রোফাইল</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">জরুরি কাজ পোস্ট</a></li>
+                    </ul>
+                </div>
 
-            <div>
-                <h4 class="font-semibold text-white mb-4 text-sm uppercase tracking-wider">কোম্পানি</h4>
-                <ul class="space-y-2 text-sm">
-                    <li><a href="{{ route('about') }}" class="text-gray-400 hover:text-primary-400 transition-colors">আমাদের সম্পর্কে</a></li>
-                    <li><a href="{{ route('contact') }}" class="text-gray-400 hover:text-primary-400 transition-colors">যোগাযোগ</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">গোপনীয়তা নীতি</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">শর্তাবলী</a></li>
-                </ul>
+                {{-- Company --}}
+                <div>
+                    <h4 class="font-semibold text-white mb-4 text-sm uppercase tracking-wider">কোম্পানি</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="{{ route('about') }}" class="text-gray-400 hover:text-primary-400 transition-colors">আমাদের সম্পর্কে</a></li>
+                        <li><a href="{{ route('contact') }}" class="text-gray-400 hover:text-primary-400 transition-colors">যোগাযোগ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">গোপনীয়তা নীতি</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">শর্তাবলী</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">সাধারণ জিজ্ঞাসা (FAQ)</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">ব্লগ ও নিউজ</a></li>
+                    </ul>
+                </div>
             </div>
 
             <div>
