@@ -16,8 +16,8 @@
             @foreach($categories as $cat)
                 <a href="{{ route('services.show', $cat->slug) }}" class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 hover:shadow-lg hover:border-primary-200 hover:-translate-y-1 transition-all group">
                     <div class="flex items-center gap-4 mb-4">
-                        <div class="w-14 h-14 bg-primary-50 rounded-2xl flex items-center justify-center text-3xl group-hover:bg-primary-100 transition-colors">
-                            {{ $cat->icon ? '⚡' : '🏠' }}
+                        <div class="w-14 h-14 bg-primary-50 rounded-2xl flex items-center justify-center text-primary-600 group-hover:bg-primary-100 transition-colors">
+                            {!! category_icon($cat->icon, 'w-8 h-8') !!}
                         </div>
                         <div>
                             <h2 class="text-xl font-bold text-gray-900 group-hover:text-primary-700 transition-colors">{{ $cat->name }}</h2>
