@@ -8,10 +8,11 @@
     <title>@yield('title', setting('site_name', 'LocalEmployments')) — {{ setting('site_tagline', 'আপনার এলাকায়, আপনার মানুষ') }}</title>
     <meta name="description" content="@yield('meta_description', 'LocalEmployments — বাংলাদেশের সেরা লোকাল সার্ভিস মার্কেটপ্লেস। দক্ষ কর্মী খুঁজুন বা কাজ পান।')">
 
-    <!-- Google Fonts: Inter -->
+    <!-- Google Fonts: Hind Siliguri & Kalpurush -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.maateen.me/kalpurush/font.css" rel="stylesheet">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 

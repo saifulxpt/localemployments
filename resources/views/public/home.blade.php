@@ -116,8 +116,12 @@
             @foreach($categories as $cat)
                 <a href="{{ route('services.show', $cat->slug) }}"
                    class="group flex flex-col items-center gap-3 p-4 rounded-2xl border-2 border-transparent hover:border-primary-200 hover:bg-primary-50 transition-all text-center cursor-pointer">
-                    <div class="w-14 h-14 bg-primary-100 group-hover:bg-primary-200 rounded-2xl flex items-center justify-center transition-colors text-2xl">
-                        {{ $cat->icon ? '⚡' : '🏠' }}
+                    <div class="w-14 h-14 bg-primary-100 group-hover:bg-primary-200 rounded-2xl flex items-center justify-center transition-colors text-primary-700">
+                        @if($cat->icon)
+                            {!! $cat->icon !!}
+                        @else
+                            <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                        @endif
                     </div>
                     <span class="text-sm font-medium text-gray-700 group-hover:text-primary-700 transition-colors leading-tight">{{ $cat->name }}</span>
                 </a>
@@ -169,8 +173,9 @@
 <section class="py-16 bg-white">
     <div class="container mx-auto px-4">
         <div class="text-center mb-10">
-            <div class="inline-flex items-center gap-2 bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-semibold mb-3">
-                ⭐ ফিচার্ড
+            <div class="inline-flex items-center gap-1 bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-semibold mb-3">
+                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                ফিচার্ড
             </div>
             <h2 class="text-3xl font-bold text-gray-900">শীর্ষ কর্মী</h2>
             <p class="text-gray-500 mt-2">যাচাইকৃত ও রেটেড কর্মীদের সাথে কাজ করুন</p>
@@ -229,13 +234,13 @@
         </div>
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             @foreach([
-                ['icon' => '🔒', 'title' => 'যাচাইকৃত কর্মী', 'desc' => 'NID যাচাই করে প্রতিটি প্রোভাইডার অনুমোদন করা হয়।'],
-                ['icon' => '💳', 'title' => 'নিরাপদ পেমেন্ট', 'desc' => 'SSLCommerz এর মাধ্যমে এনক্রিপ্টেড পেমেন্ট।'],
-                ['icon' => '💬', 'title' => 'সরাসরি যোগাযোগ', 'desc' => 'বুকিংয়ের মধ্যে সরাসরি চ্যাট করুন।'],
-                ['icon' => '⭐', 'title' => 'রেটিং সিস্টেম', 'desc' => 'প্রতিটি সেবার পর রেটিং দিন এবং মানের নিশ্চয়তা পান।'],
+                ['icon' => '<svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>', 'title' => 'যাচাইকৃত কর্মী', 'desc' => 'NID যাচাই করে প্রতিটি প্রোভাইডার অনুমোদন করা হয়।'],
+                ['icon' => '<svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>', 'title' => 'নিরাপদ পেমেন্ট', 'desc' => 'SSLCommerz এর মাধ্যমে এনক্রিপ্টেড পেমেন্ট।'],
+                ['icon' => '<svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>', 'title' => 'সরাসরি যোগাযোগ', 'desc' => 'বুকিংয়ের মধ্যে সরাসরি চ্যাট করুন।'],
+                ['icon' => '<svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>', 'title' => 'রেটিং সিস্টেম', 'desc' => 'প্রতিটি সেবার পর রেটিং দিন এবং মানের নিশ্চয়তা পান।'],
             ] as $feature)
-                <div class="text-center p-6 bg-white/10 backdrop-blur rounded-2xl border border-white/20">
-                    <div class="text-4xl mb-4">{{ $feature['icon'] }}</div>
+                <div class="text-center p-6 bg-white/10 backdrop-blur rounded-2xl border border-white/20 hover:-translate-y-1 transition-transform">
+                    <div class="text-white/90 mb-4 flex justify-center">{!! $feature['icon'] !!}</div>
                     <h3 class="font-bold text-lg mb-2">{{ $feature['title'] }}</h3>
                     <p class="text-white/70 text-sm leading-relaxed">{{ $feature['desc'] }}</p>
                 </div>
@@ -251,8 +256,10 @@
     <div class="container mx-auto px-4">
         <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {{-- Seeker CTA --}}
-            <div class="bg-gradient-to-br from-primary-50 to-emerald-50 rounded-3xl p-8 border border-primary-100 text-center">
-                <div class="text-5xl mb-4">🔍</div>
+            <div class="bg-gradient-to-br from-primary-50 to-emerald-50 rounded-3xl p-8 border border-primary-100 text-center hover:shadow-lg transition-shadow">
+                <div class="w-16 h-16 bg-white text-primary-600 rounded-full flex items-center justify-center mx-auto mb-5 shadow-sm">
+                    <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                </div>
                 <h3 class="text-2xl font-bold text-gray-900 mb-3">সেবা খুঁজছেন?</h3>
                 <p class="text-gray-600 mb-6 text-sm leading-relaxed">আপনার কাজ পোস্ট করুন এবং বিডের অপেক্ষা করুন অথবা সরাসরি কর্মী বুক করুন।</p>
                 <a href="{{ route('register') }}" class="btn btn-primary w-full justify-center">
@@ -261,8 +268,10 @@
             </div>
 
             {{-- Provider CTA --}}
-            <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-8 text-center text-white">
-                <div class="text-5xl mb-4">💼</div>
+            <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-8 text-center text-white hover:shadow-xl transition-shadow">
+                <div class="w-16 h-16 bg-gray-800 border border-gray-700 text-white rounded-full flex items-center justify-center mx-auto mb-5 shadow-inner">
+                    <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                </div>
                 <h3 class="text-2xl font-bold mb-3">কাজ খুঁজছেন?</h3>
                 <p class="text-white/70 mb-6 text-sm leading-relaxed">আপনার দক্ষতা দিয়ে উপার্জন করুন। বিড করুন অথবা সরাসরি সেবা অফার করুন।</p>
                 <a href="{{ route('register') }}?role=provider" class="btn bg-white text-gray-900 hover:bg-gray-100 w-full justify-center">

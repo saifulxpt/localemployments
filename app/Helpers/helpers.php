@@ -104,9 +104,9 @@ if (!function_exists('active_class')) {
     /**
      * Return 'active' CSS class if current route matches
      */
-    function active_class(string $routeName, string $class = 'active'): string
+    function active_class(string|array $routeName, string $activeClass = 'active', string $inactiveClass = ''): string
     {
-        return request()->routeIs($routeName) ? $class : '';
+        return request()->routeIs($routeName) ? $activeClass : $inactiveClass;
     }
 }
 
