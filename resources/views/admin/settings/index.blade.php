@@ -66,6 +66,22 @@
                                 </div>
                             </div>
                             
+                            @if($loop->last && $group === 'general')
+                                <div class="border-t border-gray-100 pt-6 mt-6">
+                                    <h3 class="text-sm font-bold text-gray-900 mb-4">সোশ্যাল মিডিয়া</h3>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div class="form-group mb-0">
+                                            <label class="form-label block text-sm font-semibold text-gray-700 mb-1">Facebook URL</label>
+                                            <input type="url" name="social_facebook" value="{{ setting('social_facebook') }}" class="input w-full" placeholder="https://facebook.com/yourpage">
+                                        </div>
+                                        <div class="form-group mb-0">
+                                            <label class="form-label block text-sm font-semibold text-gray-700 mb-1">YouTube URL</label>
+                                            <input type="url" name="social_youtube" value="{{ setting('social_youtube') }}" class="input w-full" placeholder="https://youtube.com/@yourchannel">
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+
                             @if(!$loop->last)
                                 <hr class="border-gray-100">
                             @endif

@@ -20,10 +20,10 @@
                     বাংলাদেশের সেরা লোকাল সার্ভিস মার্কেটপ্লেস। আপনার এলাকায় দক্ষ কর্মী খুঁজুন বা কাজ পান।
                 </p>
                 <div class="flex gap-3 mt-5">
-                    <a href="#" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary-600 transition-colors" aria-label="Facebook">
+                    <a href="{{ setting('social_facebook', '#') }}" target="_blank" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary-600 transition-colors" aria-label="Facebook">
                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
                     </a>
-                    <a href="#" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary-600 transition-colors" aria-label="YouTube">
+                    <a href="{{ setting('social_youtube', '#') }}" target="_blank" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary-600 transition-colors" aria-label="YouTube">
                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>
                     </a>
                 </div>
@@ -50,10 +50,19 @@
                     <ul class="space-y-2 text-sm">
                         <li><a href="{{ route('about') }}" class="text-gray-400 hover:text-primary-400 transition-colors">আমাদের সম্পর্কে</a></li>
                         <li><a href="{{ route('contact') }}" class="text-gray-400 hover:text-primary-400 transition-colors">যোগাযোগ</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">গোপনীয়তা নীতি</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">শর্তাবলী</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">সাধারণ জিজ্ঞাসা (FAQ)</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">ব্লগ ও নিউজ</a></li>
+                        <li><a href="{{ route('privacy') }}" class="text-gray-400 hover:text-primary-400 transition-colors">গোপনীয়তা নীতি</a></li>
+                        <li><a href="{{ route('terms') }}" class="text-gray-400 hover:text-primary-400 transition-colors">শর্তাবলী</a></li>
+                    </ul>
+                </div>
+
+                {{-- Helpful Links --}}
+                <div>
+                    <h4 class="font-semibold text-white mb-4 text-sm uppercase tracking-wider">প্রয়োজনীয় লিংক</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="{{ route('faq') }}" class="text-gray-400 hover:text-primary-400 transition-colors">সাধারণ জিজ্ঞাসা (FAQ)</a></li>
+                        <li><a href="{{ route('search') }}" class="text-gray-400 hover:text-primary-400 transition-colors">সার্ভিস খুঁজুন</a></li>
+                        <li><a href="{{ route('services.index') }}" class="text-gray-400 hover:text-primary-400 transition-colors">সকল ক্যাটাগরি</a></li>
+                        <li><a href="{{ route('register') }}?role=provider" class="text-gray-400 hover:text-primary-400 transition-colors">প্রোভাইডার হোন</a></li>
                     </ul>
                 </div>
             </div>

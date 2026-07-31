@@ -25,6 +25,9 @@ Route::get('/services/{slug}', [ServiceCategoryController::class, 'show'])->name
 Route::get('/providers/{user}', [ProviderPublicController::class, 'show'])->name('providers.show');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+Route::get('/privacy-policy', [PageController::class, 'privacy'])->name('privacy');
+Route::get('/terms-and-conditions', [PageController::class, 'terms'])->name('terms');
+Route::get('/faq', [PageController::class, 'faq'])->name('faq');
 Route::post('/contact', [PageController::class, 'contactSubmit'])->name('contact.submit');
 
 // AJAX - Location
