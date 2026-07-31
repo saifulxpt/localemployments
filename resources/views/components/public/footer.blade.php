@@ -5,12 +5,16 @@
             {{-- Brand --}}
             <div class="md:col-span-1">
                 <div class="flex items-center gap-2 mb-4">
-                    <div class="w-8 h-8 bg-primary-500 rounded-lg flex items-center justify-center">
-                        <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                        </svg>
-                    </div>
-                    <span class="font-bold text-white text-lg">LocalEmployments</span>
+                    @if(setting('site_logo'))
+                        <img src="{{ asset(setting('site_logo')) }}" alt="Logo" class="h-8 object-contain">
+                    @else
+                        <div class="w-8 h-8 bg-primary-500 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                        </div>
+                    @endif
+                    <span class="font-bold text-white text-lg">{{ setting('site_name', 'LocalEmployments') }}</span>
                 </div>
                 <p class="text-sm text-gray-400 leading-relaxed">
                     বাংলাদেশের সেরা লোকাল সার্ভিস মার্কেটপ্লেস। আপনার এলাকায় দক্ষ কর্মী খুঁজুন বা কাজ পান।
@@ -62,7 +66,7 @@
                     @endif
                     <li class="flex items-start gap-2">
                         <svg class="w-4 h-4 text-primary-400 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                        <span>ঢাকা, বাংলাদেশ</span>
+                        <span>{{ setting('contact_address', 'ঢাকা, বাংলাদেশ') }}</span>
                     </li>
                 </ul>
             </div>

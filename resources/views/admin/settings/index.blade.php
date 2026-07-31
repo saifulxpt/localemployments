@@ -12,7 +12,7 @@
         </div>
     </div>
 
-    <form action="{{ route('admin.settings.update') }}" method="POST">
+    <form action="{{ route('admin.settings.update') }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -47,6 +47,15 @@
                                         </div>
                                     @elseif($setting->type === 'textarea')
                                         <textarea name="{{ $setting->key }}" rows="3" class="input w-full text-sm">{{ $setting->value }}</textarea>
+                                    @elseif($setting->type === 'file')
+                                        <div class="flex items-center gap-4">
+                                            @if($setting->value)
+                                                <div class="w-16 h-16 rounded overflow-hidden bg-gray-100 flex-shrink-0">
+                                                    <img src="{{ asset($setting->value) }}" class="w-full h-full object-cover">
+                                                </div>
+                                            @endif
+                                            <input type="file" name="{{ $setting->key }}" class="input w-full md:w-2/3 p-1.5" accept="image/*">
+                                        </div>
                                     @else
                                         <input type="{{ $setting->type === 'integer' || $setting->type === 'float' ? 'number' : 'text' }}" 
                                                step="{{ $setting->type === 'float' ? '0.01' : '1' }}"

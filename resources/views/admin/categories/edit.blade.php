@@ -13,7 +13,7 @@
     </div>
 
     <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 md:p-8">
-        <form action="{{ route('admin.categories.update', $category->id) }}" method="POST">
+        <form action="{{ route('admin.categories.update', $category) }}" method="POST">
             @csrf
             @method('PUT')
 

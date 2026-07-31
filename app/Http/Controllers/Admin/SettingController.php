@@ -20,7 +20,17 @@ class SettingController extends Controller
         $inputs = $request->except(['_token', '_method']);
 
         foreach ($inputs as $key => $value) {
-            Setting::where('key', $key)->update(['value' => $value]);
+            $setting = Setting::where('key', $key)->first();
+            if ($setting) {
+                if ($request->hasFile($key) && $request->file($key)->isValid()) {
+                    // Upload file and store path
+                    $path = $request->file($key)->store('settings', 'public');
+                    $setting->update(['value' => '/storage/' . $path]);
+                } elseif ($setting->type !== 'file') {
+                    // Update normal values, ignore empty file fields
+                    $setting->update(['value' => $value]);
+                }
+            }
         }
 
         AdminActivityLog::record('Updated platform settings');

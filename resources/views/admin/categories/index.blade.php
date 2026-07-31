@@ -45,7 +45,7 @@
                                 <div class="text-xs text-gray-500 line-clamp-1">{{ $category->description ?? 'কোনো বিবরণ নেই' }}</div>
                             </td>
                             <td class="px-6 py-4 text-center">
-                                <a href="{{ route('admin.categories.subcategories.index', $category->id) }}" class="inline-block bg-gray-100 hover:bg-blue-50 hover:text-blue-700 text-gray-700 px-3 py-1 rounded-full text-xs font-bold transition-colors">
+                                <a href="{{ route('admin.categories.subcategories.index', $category) }}" class="inline-block bg-gray-100 hover:bg-blue-50 hover:text-blue-700 text-gray-700 px-3 py-1 rounded-full text-xs font-bold transition-colors">
                                     {{ $category->active_subcategories_count }} টি
                                 </a>
                             </td>
@@ -65,10 +65,10 @@
                             </td>
                             <td class="px-6 py-4 text-right">
                                 <div class="flex items-center justify-end gap-2">
-                                    <a href="{{ route('admin.categories.edit', $category->id) }}" class="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded transition-colors" title="এডিট">
+                                    <a href="{{ route('admin.categories.edit', $category) }}" class="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded transition-colors" title="এডিট">
                                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
                                     </a>
-                                    <form action="{{ route('admin.categories.destroy', $category->id) }}" method="POST" class="inline-block" onsubmit="return confirm('আপনি কি নিশ্চিত? ক্যাটাগরি ডিলিট করলে এর সাব-ক্যাটাগরিগুলোতেও প্রভাব পড়তে পারে।')">
+                                    <form action="{{ route('admin.categories.destroy', $category) }}" method="POST" class="inline-block" onsubmit="return confirm('আপনি কি নিশ্চিত? ক্যাটাগরি ডিলিট করলে এর সাব-ক্যাটাগরিগুলোতেও প্রভাব পড়তে পারে।')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors" title="ডিলিট">

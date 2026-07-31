@@ -6,7 +6,7 @@
 <div class="max-w-3xl mx-auto space-y-6">
 
     <div class="flex items-center gap-4 mb-4">
-        <a href="{{ route('admin.categories.subcategories.index', $category->id) }}" class="text-gray-500 hover:text-blue-600 transition-colors">
+        <a href="{{ route('admin.categories.subcategories.index', $category) }}" class="text-gray-500 hover:text-blue-600 transition-colors">
             <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
         </a>
         <h1 class="text-2xl font-bold text-gray-900">সাব-ক্যাটাগরি এডিট</h1>
@@ -20,7 +20,7 @@
             </div>
         </div>
 
-        <form action="{{ route('admin.categories.subcategories.update', [$category->id, $subcategory->id]) }}" method="POST">
+        <form action="{{ route('admin.categories.subcategories.update', [$category, $subcategory]) }}" method="POST">
             @csrf
             @method('PUT')
 
@@ -64,7 +64,7 @@
             </div>
 
             <div class="mt-8 pt-6 border-t border-gray-100 flex gap-4 justify-end">
-                <a href="{{ route('admin.categories.subcategories.index', $category->id) }}" class="btn btn-outline border-gray-200">বাতিল</a>
+                <a href="{{ route('admin.categories.subcategories.index', $category) }}" class="btn btn-outline border-gray-200">বাতিল</a>
                 <button type="submit" class="btn btn-primary bg-blue-600 hover:bg-blue-700">আপডেট করুন</button>
             </div>
         </form>

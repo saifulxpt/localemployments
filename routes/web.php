@@ -239,6 +239,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Locations
         Route::get('/locations', [Admin\LocationController::class, 'index'])->name('locations.index');
         Route::resource('locations/districts', Admin\DistrictController::class)->names('districts');
+        Route::resource('locations.areas', Admin\AreaController::class)->shallow();
 
         // Settings
         Route::get('/settings', [Admin\SettingController::class, 'index'])->name('settings.index');
