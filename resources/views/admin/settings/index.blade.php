@@ -14,7 +14,6 @@
 
     <form action="{{ route('admin.settings.update') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        @method('PUT')
 
         <div class="space-y-6">
             @forelse($settings as $group => $groupSettings)

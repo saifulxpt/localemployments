@@ -20,16 +20,18 @@ class SettingController extends Controller
         $inputs = $request->except(['_token', '_method']);
 
         foreach ($inputs as $key => $value) {
-            $setting = Setting::where('key', $key)->first();
-            if ($setting) {
-                if ($request->hasFile($key) && $request->file($key)->isValid()) {
-                    // Upload file and store path
-                    $path = $request->file($key)->store('settings', 'public');
-                    $setting->update(['value' => '/storage/' . $path]);
-                } elseif ($setting->type !== 'file') {
-                    // Update normal values, ignore empty file fields
-                    $setting->update(['value' => $value]);
-                }
+            $setting = Setting::firstOrCreate(
+                ['key' => $key],
+                ['group' => 'general', 'type' => 'string', 'display_name' => ucwords(str_replace('_', ' ', $key))]
+            );
+            
+            if ($request->hasFile($key) && $request->file($key)->isValid()) {
+                // Upload file and store path
+                $path = $request->file($key)->store('settings', 'public');
+                $setting->update(['value' => '/storage/' . $path]);
+            } elseif ($setting->type !== 'file') {
+                // Update normal values, ignore empty file fields
+                $setting->update(['value' => $value]);
             }
         }
 
