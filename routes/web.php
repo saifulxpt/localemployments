@@ -259,13 +259,19 @@ Route::prefix('admin')->name('admin.')->group(function () {
 // ─────────────────────────────────────────
 Route::get('/system-deploy-force', function () {
     try {
-        \Illuminate\Support\Facades\Artisan::call('migrate:fresh', ['--force' => true, '--seed' => true]);
+        \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
         $migrateOutput = \Illuminate\Support\Facades\Artisan::output();
         
+        try {
+            \Illuminate\Support\Facades\Artisan::call('storage:link', ['--force' => true]);
+        } catch (\Exception $se) {
+            // storage link error fallback
+        }
+
         \Illuminate\Support\Facades\Artisan::call('optimize:clear');
         $optimizeOutput = \Illuminate\Support\Facades\Artisan::output();
         
-        return "Deployment successful!<br><br><b>Migration & Seeding:</b><br>" . nl2br($migrateOutput) . "<br><br><b>Optimize:</b><br>" . nl2br($optimizeOutput) . "<br><br><a href='/'>Go to Home</a> | <a href='/admin/dashboard'>Go to Admin</a>";
+        return "Deployment successful!<br><br><b>Migration:</b><br>" . nl2br($migrateOutput) . "<br><br><b>Optimize:</b><br>" . nl2br($optimizeOutput) . "<br><br><a href='/'>Go to Home</a> | <a href='/admin/dashboard'>Go to Admin Dashboard</a>";
     } catch (\Exception $e) {
         return "Error during deployment: " . $e->getMessage();
     }

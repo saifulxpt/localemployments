@@ -49,8 +49,8 @@
                                     @elseif($setting->type === 'file')
                                         <div class="flex items-center gap-4">
                                             @if($setting->value)
-                                                <div class="w-16 h-16 rounded overflow-hidden bg-gray-100 flex-shrink-0">
-                                                    <img src="{{ asset($setting->value) }}" class="w-full h-full object-cover">
+                                                <div class="w-16 h-16 rounded overflow-hidden bg-gray-50 flex-shrink-0 flex items-center justify-center p-1 border border-gray-200">
+                                                    <img src="{{ asset(ltrim($setting->value, '/')) }}" class="max-w-full max-h-full object-contain">
                                                 </div>
                                             @endif
                                             <input type="file" name="{{ $setting->key }}" class="input w-full md:w-2/3 p-1.5" accept="image/*">

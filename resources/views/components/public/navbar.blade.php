@@ -4,8 +4,8 @@
 
             {{-- Logo --}}
             <a href="{{ route('home') }}" class="flex items-center gap-2 font-bold text-xl text-primary-700">
-                @if(\App\Models\Setting::get('site_logo'))
-                    <img src="{{ asset(\App\Models\Setting::get('site_logo')) }}" alt="Logo" class="h-8 object-contain">
+                @if(setting('site_logo'))
+                    <img src="{{ asset(ltrim(setting('site_logo'), '/')) }}" alt="{{ setting('site_name', 'Logo') }}" class="h-10 max-w-[220px] object-contain">
                 @else
                     <div class="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center">
                         <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -13,8 +13,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                         </svg>
                     </div>
+                    <span class="hidden sm:block">{{ setting('site_name', 'LocalEmployments') }}</span>
                 @endif
-                <span class="hidden sm:block">{{ \App\Models\Setting::get('site_name', 'LocalEmployments') }}</span>
             </a>
 
             {{-- Desktop Nav --}}

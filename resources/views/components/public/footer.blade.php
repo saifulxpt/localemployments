@@ -6,15 +6,15 @@
             <div class="md:col-span-1">
                 <div class="flex items-center gap-2 mb-4">
                     @if(setting('site_logo'))
-                        <img src="{{ asset(setting('site_logo')) }}" alt="Logo" class="h-8 object-contain">
+                        <img src="{{ asset(ltrim(setting('site_logo'), '/')) }}" alt="{{ setting('site_name', 'Logo') }}" class="h-10 max-w-[220px] object-contain">
                     @else
                         <div class="w-8 h-8 bg-primary-500 rounded-lg flex items-center justify-center">
                             <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                             </svg>
                         </div>
+                        <span class="font-bold text-white text-lg">{{ setting('site_name', 'LocalEmployments') }}</span>
                     @endif
-                    <span class="font-bold text-white text-lg">{{ setting('site_name', 'LocalEmployments') }}</span>
                 </div>
                 <p class="text-sm text-gray-400 leading-relaxed">
                     বাংলাদেশের সেরা লোকাল সার্ভিস মার্কেটপ্লেস। আপনার এলাকায় দক্ষ কর্মী খুঁজুন বা কাজ পান।

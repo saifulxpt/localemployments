@@ -26,9 +26,11 @@ class SettingController extends Controller
             );
             
             if ($request->hasFile($key) && $request->file($key)->isValid()) {
-                // Upload file and store path
-                $path = $request->file($key)->store('settings', 'public');
-                $setting->update(['value' => '/storage/' . $path]);
+                // Upload file directly to public/uploads/settings for cPanel & shared hosting compatibility
+                $file = $request->file($key);
+                $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('uploads/settings'), $filename);
+                $setting->update(['value' => 'uploads/settings/' . $filename]);
             } elseif ($setting->type !== 'file') {
                 // Update normal values, ignore empty file fields
                 $setting->update(['value' => $value]);
