@@ -1,18 +1,18 @@
 @extends('layouts.admin')
 
-@section('title', 'টাকা উত্তোলন (Withdrawals)')
+@section('title', 'Withdrawals')
 
 @section('content')
 <div class="max-w-7xl mx-auto space-y-6">
 
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-2">
         <div>
-            <h1 class="text-2xl font-bold text-gray-900">টাকা উত্তোলন রিকোয়েস্ট</h1>
-            <p class="text-sm text-gray-500">প্রোভাইডারদের উইথড্র রিকোয়েস্ট এবং তার স্ট্যাটাস।</p>
+            <h1 class="text-2xl font-bold text-gray-900">Withdrawal Requests</h1>
+            <p class="text-sm text-gray-500">Provider withdrawal requests and status.</p>
         </div>
         
         <div class="bg-yellow-50 border border-yellow-200 px-4 py-2 rounded-xl">
-            <span class="text-sm text-yellow-700 font-semibold block">মোট পেন্ডিং উইথড্র</span>
+            <span class="text-sm text-yellow-700 font-semibold block">Total Pending Withdrawals</span>
             <span class="text-xl font-bold text-yellow-900">৳{{ number_format($pendingTotal) }}</span>
         </div>
     </div>
@@ -21,12 +21,12 @@
     <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-4">
         <form action="{{ route('admin.withdrawals.index') }}" method="GET" class="flex flex-wrap gap-4 items-end">
             <div class="w-full sm:w-48">
-                <label class="block text-xs font-semibold text-gray-700 mb-1">স্ট্যাটাস</label>
+                <label class="block text-xs font-semibold text-gray-700 mb-1">Status</label>
                 <select name="status" class="input" onchange="this.form.submit()">
-                    <option value="">সকল স্ট্যাটাস</option>
-                    <option value="pending" @selected(request('status') === 'pending')>Pending (বিচারাধীন)</option>
-                    <option value="approved" @selected(request('status') === 'approved')>Approved (অপ্রুভড)</option>
-                    <option value="rejected" @selected(request('status') === 'rejected')>Rejected (বাতিল)</option>
+                    <option value="">All Statuses</option>
+                    <option value="pending" @selected(request('status') === 'pending')>Pending</option>
+                    <option value="approved" @selected(request('status') === 'approved')>Approved</option>
+                    <option value="rejected" @selected(request('status') === 'rejected')>Rejected</option>
                 </select>
             </div>
             
@@ -44,12 +44,12 @@
             <table class="w-full text-left text-sm text-gray-600">
                 <thead class="bg-gray-50 text-gray-500 font-semibold border-b border-gray-200">
                     <tr>
-                        <th class="px-6 py-4">উইথড্র আইডি</th>
-                        <th class="px-6 py-4">প্রোভাইডার</th>
-                        <th class="px-6 py-4 text-center">মেথড</th>
-                        <th class="px-6 py-4 text-right">অ্যামাউন্ট</th>
-                        <th class="px-6 py-4 text-center">স্ট্যাটাস</th>
-                        <th class="px-6 py-4 text-right">তারিখ</th>
+                        <th class="px-6 py-4">Withdrawal ID</th>
+                        <th class="px-6 py-4">Provider</th>
+                        <th class="px-6 py-4 text-center">Method</th>
+                        <th class="px-6 py-4 text-right">Amount</th>
+                        <th class="px-6 py-4 text-center">Status</th>
+                        <th class="px-6 py-4 text-right">Date</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100">
@@ -85,7 +85,7 @@
                             </td>
                             <td class="px-6 py-4 text-right">
                                 <div class="text-gray-900">{{ $wd->created_at->format('d M, y') }}</div>
-                                <a href="{{ route('admin.withdrawals.show', $wd->id) }}" class="text-xs font-semibold text-blue-600 hover:underline mt-1 inline-block">বিস্তারিত &rarr;</a>
+                                <a href="{{ route('admin.withdrawals.show', $wd->id) }}" class="text-xs font-semibold text-blue-600 hover:underline mt-1 inline-block">Details &rarr;</a>
                             </td>
                         </tr>
                     @empty

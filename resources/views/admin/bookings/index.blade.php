@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
-@section('title', 'বুকিং ম্যানেজমেন্ট')
+@section('title', 'Bookings Management')
 
 @section('content')
 <div class="max-w-7xl mx-auto space-y-6">
 
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-2">
         <div>
-            <h1 class="text-2xl font-bold text-gray-900">বুকিং ম্যানেজমেন্ট</h1>
-            <p class="text-sm text-gray-500">প্লাটফর্মের সকল বুকিং ও কাজের লিস্ট।</p>
+            <h1 class="text-2xl font-bold text-gray-900">Bookings Management</h1>
+            <p class="text-sm text-gray-500">List of all bookings and job orders.</p>
         </div>
     </div>
 
@@ -16,9 +16,9 @@
     <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-4">
         <form action="{{ route('admin.bookings.index') }}" method="GET" class="flex flex-wrap gap-4 items-end">
             <div class="w-full sm:w-48">
-                <label class="block text-xs font-semibold text-gray-700 mb-1">স্ট্যাটাস</label>
+                <label class="block text-xs font-semibold text-gray-700 mb-1">Status</label>
                 <select name="status" class="input" onchange="this.form.submit()">
-                    <option value="">সকল স্ট্যাটাস</option>
+                    <option value="">All Statuses</option>
                     <option value="pending" @selected(request('status') === 'pending')>Pending</option>
                     <option value="confirmed" @selected(request('status') === 'confirmed')>Confirmed</option>
                     <option value="in_progress" @selected(request('status') === 'in_progress')>In Progress</option>
@@ -41,13 +41,13 @@
             <table class="w-full text-left text-sm text-gray-600">
                 <thead class="bg-gray-50 text-gray-500 font-semibold border-b border-gray-200">
                     <tr>
-                        <th class="px-6 py-4">বুকিং আইডি</th>
-                        <th class="px-6 py-4">সিকার (ক্লায়েন্ট)</th>
-                        <th class="px-6 py-4">প্রোভাইডার</th>
-                        <th class="px-6 py-4">অ্যামাউন্ট</th>
-                        <th class="px-6 py-4 text-center">স্ট্যাটাস</th>
-                        <th class="px-6 py-4">তারিখ</th>
-                        <th class="px-6 py-4 text-right">অ্যাকশন</th>
+                        <th class="px-6 py-4">Booking ID</th>
+                        <th class="px-6 py-4">Seeker (Client)</th>
+                        <th class="px-6 py-4">Provider</th>
+                        <th class="px-6 py-4">Amount</th>
+                        <th class="px-6 py-4 text-center">Status</th>
+                        <th class="px-6 py-4">Date</th>
+                        <th class="px-6 py-4 text-right">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100">
@@ -96,7 +96,7 @@
                                 <div class="text-gray-900">{{ $booking->created_at->format('d M, Y') }}</div>
                             </td>
                             <td class="px-6 py-4 text-right">
-                                <a href="{{ route('admin.bookings.show', $booking->id) }}" class="btn btn-outline border-gray-200 btn-sm hover:border-blue-300 hover:text-blue-600">বিস্তারিত</a>
+                                <a href="{{ route('admin.bookings.show', $booking->id) }}" class="btn btn-outline border-gray-200 btn-sm hover:border-blue-300 hover:text-blue-600">Details</a>
                             </td>
                         </tr>
                     @empty

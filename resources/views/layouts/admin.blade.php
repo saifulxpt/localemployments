@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title') — অ্যাডমিন প্যানেল</title>
+    <title>@yield('title') — Admin Panel</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -19,7 +19,7 @@
             <button @click="sidebarOpen = true" class="text-gray-300 hover:text-white">
                 <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
             </button>
-            <span class="font-bold text-lg">অ্যাডমিন প্যানেল</span>
+            <span class="font-bold text-lg">Admin Panel</span>
         </div>
     </div>
 
@@ -177,7 +177,7 @@
                     </a>
                     <a href="{{ route('home') }}" target="_blank" class="text-sm text-gray-500 hover:text-blue-600 font-medium flex items-center gap-1">
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                        সাইট ভিজিট করুন
+                        Visit Site
                     </a>
                 </div>
             </header>

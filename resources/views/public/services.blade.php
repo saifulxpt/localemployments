@@ -1,14 +1,14 @@
 @extends('layouts.public')
 
-@section('title', 'সব সেবাসমূহ')
-@section('meta_description', 'আমাদের সমস্ত সার্ভিস ক্যাটাগরি এবং সাবক্যাটাগরি গুলো এক্সপ্লোর করুন।')
+@section('title', 'All Services')
+@section('meta_description', 'Explore all service categories and subcategories.')
 
 @section('content')
 <div class="bg-gray-50 py-12">
     <div class="container mx-auto px-4">
         
         <div class="text-center max-w-2xl mx-auto mb-12">
-            <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">আমাদের সেবাসমূহ</h1>
+            <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">All Services & Categories</h1>
             <p class="text-gray-500 text-lg">আপনার যা প্রয়োজন, সবই পাবেন এখানে। ক্যাটাগরি বেছে নিন এবং সরাসরি দক্ষ কর্মীদের খুঁজে বের করুন।</p>
         </div>
 
@@ -21,14 +21,14 @@
                         </div>
                         <div>
                             <h2 class="text-xl font-bold text-gray-900 group-hover:text-primary-700 transition-colors">{{ $cat->name }}</h2>
-                            <p class="text-sm text-gray-400 mt-1">{{ $cat->active_subcategories_count }}টি সাব-ক্যাটাগরি</p>
+                            <p class="text-sm text-gray-400 mt-1">{{ $cat->active_subcategories_count }} Subcategories</p>
                         </div>
                     </div>
                     @if($cat->description)
                         <p class="text-gray-500 text-sm line-clamp-2 mb-4">{{ $cat->description }}</p>
                     @endif
                     <div class="text-primary-600 font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
-                        বিস্তারিত দেখুন <span>→</span>
+                        Explore Category <span>→</span>
                     </div>
                 </a>
             @endforeach

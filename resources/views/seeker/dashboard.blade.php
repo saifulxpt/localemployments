@@ -1,49 +1,49 @@
 @extends('layouts.seeker')
 
-@section('title', 'কাস্টমার ড্যাশবোর্ড')
+@section('title', 'Customer Dashboard')
 
 @section('content')
 
 {{-- Welcome Bar --}}
 <div class="bg-primary-900 rounded-3xl p-6 md:p-8 text-white mb-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-lg">
     <div>
-        <h1 class="text-2xl md:text-3xl font-bold mb-2">স্বাগতম, {{ $user->name }}!</h1>
-        <p class="text-primary-100">আপনার আজকের দিনের সংক্ষিপ্ত বিবরণ নিচে দেওয়া হলো।</p>
+        <h1 class="text-2xl md:text-3xl font-bold mb-2">Welcome, {{ $user->name }}!</h1>
+        <p class="text-primary-100">Here is your daily activity summary.</p>
     </div>
     <div class="flex flex-col sm:flex-row gap-3">
-        <a href="{{ route('public.search') }}" class="btn bg-primary-800 text-white hover:bg-primary-700 border-none shadow-sm px-6">সার্ভিস খুঁজুন</a>
-        <a href="{{ route('seeker.jobs.create') }}" class="btn bg-white text-primary-900 hover:bg-gray-50 border-none shadow-sm px-6">নতুন কাজ পোস্ট করুন</a>
+        <a href="{{ route('public.search') }}" class="btn bg-primary-800 text-white hover:bg-primary-700 border-none shadow-sm px-6">Search Services</a>
+        <a href="{{ route('seeker.jobs.create') }}" class="btn bg-white text-primary-900 hover:bg-gray-50 border-none shadow-sm px-6">Post New Job</a>
     </div>
 </div>
 
 {{-- Stats Grid --}}
 <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
     <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col">
-        <div class="text-gray-500 text-sm font-medium mb-1">সক্রিয় জব রিকোয়েস্ট</div>
+        <div class="text-gray-500 text-sm font-medium mb-1">Active Job Requests</div>
         <div class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2">{{ $stats['active_requests'] }}</div>
-        <a href="{{ route('seeker.jobs.index') }}" class="text-xs text-primary-600 font-semibold mt-auto hover:underline">সব জব দেখুন →</a>
+        <a href="{{ route('seeker.jobs.index') }}" class="text-xs text-primary-600 font-semibold mt-auto hover:underline">View All Jobs →</a>
     </div>
     
     <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col">
-        <div class="text-gray-500 text-sm font-medium mb-1">মোট বুকিং</div>
+        <div class="text-gray-500 text-sm font-medium mb-1">Total Bookings</div>
         <div class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2">{{ $stats['total_bookings'] }}</div>
-        <a href="{{ route('seeker.bookings.index') }}" class="text-xs text-primary-600 font-semibold mt-auto hover:underline">বুকিং হিস্ট্রি →</a>
+        <a href="{{ route('seeker.bookings.index') }}" class="text-xs text-primary-600 font-semibold mt-auto hover:underline">Booking History →</a>
     </div>
 
     <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col">
-        <div class="text-gray-500 text-sm font-medium mb-1">সম্পন্ন কাজ</div>
+        <div class="text-gray-500 text-sm font-medium mb-1">Completed Jobs</div>
         <div class="text-2xl md:text-3xl font-extrabold text-green-600 mb-2">{{ $stats['completed'] }}</div>
     </div>
 
     <div class="bg-white rounded-2xl p-6 shadow-sm border border-orange-100 bg-orange-50/30 flex flex-col">
         <div class="text-orange-800 text-sm font-medium mb-1 flex items-center gap-1">
-            রিভিউ বাকি আছে
+            Pending Review
             @if($stats['pending_review'] > 0)
                 <span class="w-2 h-2 rounded-full bg-orange-500"></span>
             @endif
         </div>
         <div class="text-2xl md:text-3xl font-extrabold text-orange-600 mb-2">{{ $stats['pending_review'] }}</div>
-        <a href="{{ route('seeker.bookings.index', ['status' => 'completed']) }}" class="text-xs text-orange-700 font-semibold mt-auto hover:underline">রিভিউ দিন →</a>
+        <a href="{{ route('seeker.bookings.index', ['status' => 'completed']) }}" class="text-xs text-orange-700 font-semibold mt-auto hover:underline">Leave Review →</a>
     </div>
 </div>
 
@@ -52,8 +52,8 @@
     {{-- Recent Bookings --}}
     <div class="space-y-4">
         <div class="flex items-center justify-between mb-2">
-            <h2 class="text-lg font-bold text-gray-900">সাম্প্রতিক বুকিং</h2>
-            <a href="{{ route('seeker.bookings.index') }}" class="text-sm font-semibold text-primary-600 hover:underline">সব দেখুন</a>
+            <h2 class="text-lg font-bold text-gray-900">Recent Bookings</h2>
+            <a href="{{ route('seeker.bookings.index') }}" class="text-sm font-semibold text-primary-600 hover:underline">View All</a>
         </div>
 
         @forelse($recentBookings as $booking)
@@ -90,8 +90,8 @@
     {{-- Recent Job Requests --}}
     <div class="space-y-4">
         <div class="flex items-center justify-between mb-2">
-            <h2 class="text-lg font-bold text-gray-900">আপনার পোস্ট করা কাজ</h2>
-            <a href="{{ route('seeker.jobs.index') }}" class="text-sm font-semibold text-primary-600 hover:underline">সব দেখুন</a>
+            <h2 class="text-lg font-bold text-gray-900">Your Job Requests</h2>
+            <a href="{{ route('seeker.jobs.index') }}" class="text-sm font-semibold text-primary-600 hover:underline">View All</a>
         </div>
 
         @forelse($recentRequests as $job)

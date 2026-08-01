@@ -33,42 +33,39 @@
             <div class="grid grid-cols-2 gap-8 md:col-span-2">
                 {{-- Services --}}
                 <div>
-                    <h4 class="font-semibold text-white mb-4 text-sm uppercase tracking-wider">সেবা</h4>
+                    <h4 class="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Services</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="{{ route('services.index') }}" class="text-gray-400 hover:text-primary-400 transition-colors">সব সেবা</a></li>
-                        <li><a href="{{ route('search') }}" class="text-gray-400 hover:text-primary-400 transition-colors">কর্মী খুঁজুন</a></li>
-                        <li><a href="{{ route('register') }}" class="text-gray-400 hover:text-primary-400 transition-colors">কাজ খুঁজুন</a></li>
-                        <li><a href="{{ route('register') }}?role=provider" class="text-gray-400 hover:text-primary-400 transition-colors">প্রোভাইডার হোন</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">ভেরিফাইড প্রোফাইল</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">জরুরি কাজ পোস্ট</a></li>
+                        <li><a href="{{ route('services.index') }}" class="text-gray-400 hover:text-primary-400 transition-colors">All Services</a></li>
+                        <li><a href="{{ route('search') }}" class="text-gray-400 hover:text-primary-400 transition-colors">Find Workers</a></li>
+                        <li><a href="{{ route('register') }}" class="text-gray-400 hover:text-primary-400 transition-colors">Find Jobs</a></li>
+                        <li><a href="{{ route('register') }}?role=provider" class="text-gray-400 hover:text-primary-400 transition-colors">Become a Provider</a></li>
                     </ul>
                 </div>
 
                 {{-- Company --}}
                 <div>
-                    <h4 class="font-semibold text-white mb-4 text-sm uppercase tracking-wider">কোম্পানি</h4>
+                    <h4 class="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Company</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="{{ route('about') }}" class="text-gray-400 hover:text-primary-400 transition-colors">আমাদের সম্পর্কে</a></li>
-                        <li><a href="{{ route('contact') }}" class="text-gray-400 hover:text-primary-400 transition-colors">যোগাযোগ</a></li>
-                        <li><a href="{{ route('privacy') }}" class="text-gray-400 hover:text-primary-400 transition-colors">গোপনীয়তা নীতি</a></li>
-                        <li><a href="{{ route('terms') }}" class="text-gray-400 hover:text-primary-400 transition-colors">শর্তাবলী</a></li>
+                        <li><a href="{{ route('about') }}" class="text-gray-400 hover:text-primary-400 transition-colors">About Us</a></li>
+                        <li><a href="{{ route('contact') }}" class="text-gray-400 hover:text-primary-400 transition-colors">Contact Us</a></li>
+                        <li><a href="{{ route('privacy') }}" class="text-gray-400 hover:text-primary-400 transition-colors">Privacy Policy</a></li>
+                        <li><a href="{{ route('terms') }}" class="text-gray-400 hover:text-primary-400 transition-colors">Terms & Conditions</a></li>
                     </ul>
                 </div>
 
                 {{-- Helpful Links --}}
                 <div>
-                    <h4 class="font-semibold text-white mb-4 text-sm uppercase tracking-wider">প্রয়োজনীয় লিংক</h4>
+                    <h4 class="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Quick Links</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="{{ route('faq') }}" class="text-gray-400 hover:text-primary-400 transition-colors">সাধারণ জিজ্ঞাসা (FAQ)</a></li>
-                        <li><a href="{{ route('search') }}" class="text-gray-400 hover:text-primary-400 transition-colors">সার্ভিস খুঁজুন</a></li>
-                        <li><a href="{{ route('services.index') }}" class="text-gray-400 hover:text-primary-400 transition-colors">সকল ক্যাটাগরি</a></li>
-                        <li><a href="{{ route('register') }}?role=provider" class="text-gray-400 hover:text-primary-400 transition-colors">প্রোভাইডার হোন</a></li>
+                        <li><a href="{{ route('faq') }}" class="text-gray-400 hover:text-primary-400 transition-colors">FAQ</a></li>
+                        <li><a href="{{ route('search') }}" class="text-gray-400 hover:text-primary-400 transition-colors">Search Services</a></li>
+                        <li><a href="{{ route('services.index') }}" class="text-gray-400 hover:text-primary-400 transition-colors">All Categories</a></li>
                     </ul>
                 </div>
             </div>
 
             <div>
-                <h4 class="font-semibold text-white mb-4 text-sm uppercase tracking-wider">যোগাযোগ</h4>
+                <h4 class="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Contact</h4>
                 <ul class="space-y-3 text-sm text-gray-400">
                     @if(setting('contact_phone'))
                         <li class="flex items-center gap-2">

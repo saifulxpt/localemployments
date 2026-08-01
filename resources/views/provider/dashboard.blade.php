@@ -1,47 +1,47 @@
 @extends('layouts.provider')
 
-@section('title', 'ড্যাশবোর্ড')
+@section('title', 'Provider Dashboard')
 
 @section('content')
 
 {{-- Welcome Bar --}}
 <div class="bg-primary-900 rounded-3xl p-6 md:p-8 text-white mb-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-lg">
     <div>
-        <h1 class="text-2xl md:text-3xl font-bold mb-2">স্বাগতম, {{ $user->name }}!</h1>
-        <p class="text-primary-100">আপনার আজকের দিনের সংক্ষিপ্ত বিবরণ নিচে দেওয়া হলো।</p>
+        <h1 class="text-2xl md:text-3xl font-bold mb-2">Welcome, {{ $user->name }}!</h1>
+        <p class="text-primary-100">Here is your daily activity summary.</p>
     </div>
     <div class="flex gap-4">
-        <a href="{{ route('provider.jobs.index') }}" class="btn bg-white text-primary-900 hover:bg-gray-50 border-none shadow-sm px-6">কাজ খুঁজুন</a>
+        <a href="{{ route('provider.jobs.index') }}" class="btn bg-white text-primary-900 hover:bg-gray-50 border-none shadow-sm px-6">Search Jobs</a>
     </div>
 </div>
 
 {{-- Stats Grid --}}
 <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
     <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col">
-        <div class="text-gray-500 text-sm font-medium mb-1">মোট আয়</div>
+        <div class="text-gray-500 text-sm font-medium mb-1">Total Earned</div>
         <div class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2">৳{{ number_format($stats['total_earned']) }}</div>
-        <a href="{{ route('provider.earnings.index') }}" class="text-xs text-primary-600 font-semibold mt-auto hover:underline">বিস্তারিত দেখুন →</a>
+        <a href="{{ route('provider.earnings.index') }}" class="text-xs text-primary-600 font-semibold mt-auto hover:underline">View Earnings →</a>
     </div>
     
     <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col">
-        <div class="text-gray-500 text-sm font-medium mb-1">চলমান বুকিং</div>
+        <div class="text-gray-500 text-sm font-medium mb-1">Active Bookings</div>
         <div class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2">{{ $stats['active_bookings'] }}</div>
-        <a href="{{ route('provider.bookings.index') }}" class="text-xs text-primary-600 font-semibold mt-auto hover:underline">সব বুকিং দেখুন →</a>
+        <a href="{{ route('provider.bookings.index') }}" class="text-xs text-primary-600 font-semibold mt-auto hover:underline">View Bookings →</a>
     </div>
 
     <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col">
-        <div class="text-gray-500 text-sm font-medium mb-1">অপেক্ষমাণ বিড</div>
+        <div class="text-gray-500 text-sm font-medium mb-1">Pending Bids</div>
         <div class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2">{{ $stats['pending_bids'] }}</div>
-        <a href="{{ route('provider.bids.index') }}" class="text-xs text-primary-600 font-semibold mt-auto hover:underline">বিড সমূহ →</a>
+        <a href="{{ route('provider.bids.index') }}" class="text-xs text-primary-600 font-semibold mt-auto hover:underline">My Bids →</a>
     </div>
 
     <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col">
-        <div class="text-gray-500 text-sm font-medium mb-1">রেটিং</div>
+        <div class="text-gray-500 text-sm font-medium mb-1">Rating</div>
         <div class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2 flex items-baseline gap-2">
             <span class="text-yellow-500">★</span> 
             {{ number_format($stats['rating'], 1) }}
         </div>
-        <div class="text-xs text-gray-400 mt-auto">{{ $stats['total_reviews'] }} টি রিভিউ</div>
+        <div class="text-xs text-gray-400 mt-auto">{{ $stats['total_reviews'] }} Reviews</div>
     </div>
 </div>
 
@@ -50,8 +50,8 @@
     {{-- Left: New Job Requests --}}
     <div class="lg:col-span-2 space-y-6">
         <div class="flex items-center justify-between">
-            <h2 class="text-lg font-bold text-gray-900">আপনার এলাকার নতুন কাজ</h2>
-            <a href="{{ route('provider.jobs.index') }}" class="text-sm font-semibold text-primary-600 hover:underline">সব দেখুন</a>
+            <h2 class="text-lg font-bold text-gray-900">New Jobs in Your Area</h2>
+            <a href="{{ route('provider.jobs.index') }}" class="text-sm font-semibold text-primary-600 hover:underline">View All</a>
         </div>
 
         @forelse($newJobs as $job)
@@ -134,7 +134,7 @@
         {{-- Recent Bookings --}}
         <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
             <div class="flex items-center justify-between mb-4">
-                <h3 class="font-bold text-gray-900 text-sm uppercase tracking-wide">সাম্প্রতিক বুকিং</h3>
+                <h3 class="font-bold text-gray-900 text-sm uppercase tracking-wide">Recent Bookings</h3>
             </div>
             
             <div class="space-y-4">

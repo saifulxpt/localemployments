@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
-@section('title', 'ইউজার ম্যানেজমেন্ট')
+@section('title', 'Users Management')
 
 @section('content')
 <div class="max-w-7xl mx-auto space-y-6">
 
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-2">
         <div>
-            <h1 class="text-2xl font-bold text-gray-900">ইউজার ম্যানেজমেন্ট</h1>
-            <p class="text-sm text-gray-500">প্লাটফর্মের সকল ব্যবহারকারীদের তালিকা এবং বিস্তারিত।</p>
+            <h1 class="text-2xl font-bold text-gray-900">Users Management</h1>
+            <p class="text-sm text-gray-500">List of all platform users and details.</p>
         </div>
     </div>
 
@@ -17,9 +17,9 @@
         <form action="{{ route('admin.users.index') }}" method="GET" class="flex flex-wrap gap-4 items-end">
             
             <div class="flex-1 min-w-[200px]">
-                <label class="block text-xs font-semibold text-gray-700 mb-1">সার্চ (নাম বা ফোন)</label>
+                <label class="block text-xs font-semibold text-gray-700 mb-1">Search (Name or Phone)</label>
                 <div class="relative">
-                    <input type="text" name="q" value="{{ request('q') }}" class="input pl-9" placeholder="সার্চ করুন...">
+                    <input type="text" name="q" value="{{ request('q') }}" class="input pl-9" placeholder="Search...">
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                         <svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                     </div>
@@ -27,9 +27,9 @@
             </div>
 
             <div class="w-full sm:w-48">
-                <label class="block text-xs font-semibold text-gray-700 mb-1">ভূমিকা (Role)</label>
+                <label class="block text-xs font-semibold text-gray-700 mb-1">Role</label>
                 <select name="role" class="input">
-                    <option value="">সকল রোল</option>
+                    <option value="">All Roles</option>
                     <option value="seeker" @selected(request('role') === 'seeker')>Seeker</option>
                     <option value="provider" @selected(request('role') === 'provider')>Provider</option>
                     <option value="admin" @selected(request('role') === 'admin')>Admin</option>
@@ -37,18 +37,18 @@
             </div>
 
             <div class="w-full sm:w-48">
-                <label class="block text-xs font-semibold text-gray-700 mb-1">স্ট্যাটাস</label>
+                <label class="block text-xs font-semibold text-gray-700 mb-1">Status</label>
                 <select name="status" class="input">
-                    <option value="">সকল স্ট্যাটাস</option>
+                    <option value="">All Status</option>
                     <option value="active" @selected(request('status') === 'active')>Active</option>
                     <option value="suspended" @selected(request('status') === 'suspended')>Suspended</option>
                 </select>
             </div>
 
             <div class="flex gap-2 w-full sm:w-auto">
-                <button type="submit" class="btn bg-blue-600 text-white hover:bg-blue-700 w-full sm:w-auto px-6">ফিল্টার</button>
+                <button type="submit" class="btn bg-blue-600 text-white hover:bg-blue-700 w-full sm:w-auto px-6">Filter</button>
                 @if(request()->anyFilled(['q', 'role', 'status']))
-                    <a href="{{ route('admin.users.index') }}" class="btn btn-outline border-gray-200 hover:bg-gray-50 px-4" title="রিসেট">
+                    <a href="{{ route('admin.users.index') }}" class="btn btn-outline border-gray-200 hover:bg-gray-50 px-4" title="Reset">
                         <svg class="w-5 h-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                     </a>
                 @endif
@@ -63,12 +63,12 @@
             <table class="w-full text-left text-sm text-gray-600">
                 <thead class="bg-gray-50 text-gray-500 font-semibold border-b border-gray-200">
                     <tr>
-                        <th class="px-6 py-4">ইউজার</th>
-                        <th class="px-6 py-4">যোগাযোগ</th>
-                        <th class="px-6 py-4">ভূমিকা (Role)</th>
-                        <th class="px-6 py-4 text-center">স্ট্যাটাস</th>
-                        <th class="px-6 py-4">জয়েন ডেট</th>
-                        <th class="px-6 py-4 text-right">অ্যাকশন</th>
+                        <th class="px-6 py-4">User</th>
+                        <th class="px-6 py-4">Contact</th>
+                        <th class="px-6 py-4">Role</th>
+                        <th class="px-6 py-4 text-center">Status</th>
+                        <th class="px-6 py-4">Joined Date</th>
+                        <th class="px-6 py-4 text-right">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100">
@@ -111,7 +111,7 @@
                             </td>
                             <td class="px-6 py-4 text-right">
                                 <div class="flex items-center justify-end gap-2">
-                                    <a href="{{ route('admin.users.show', $user->id) }}" class="btn btn-outline border-gray-200 btn-sm hover:border-blue-300 hover:text-blue-600">বিস্তারিত</a>
+                                    <a href="{{ route('admin.users.show', $user->id) }}" class="btn btn-outline border-gray-200 btn-sm hover:border-blue-300 hover:text-blue-600">Details</a>
                                 </div>
                             </td>
                         </tr>

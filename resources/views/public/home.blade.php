@@ -39,21 +39,21 @@
             <form action="{{ route('search') }}" method="GET"
                   class="bg-white rounded-2xl p-2 flex flex-col sm:flex-row gap-2 shadow-2xl max-w-2xl mx-auto animate-fadeInUp">
                 <select name="category" class="flex-1 px-4 py-3 text-gray-700 bg-transparent outline-none text-sm rounded-xl">
-                    <option value="">সব ক্যাটাগরি</option>
+                    <option value="">All Categories</option>
                     @foreach($categories as $cat)
                         <option value="{{ $cat->id }}">{{ $cat->name }}</option>
                     @endforeach
                 </select>
                 <div class="w-px bg-gray-200 hidden sm:block self-stretch my-1"></div>
                 <select name="district" class="flex-1 px-4 py-3 text-gray-700 bg-transparent outline-none text-sm rounded-xl">
-                    <option value="">সব জেলা</option>
+                    <option value="">All Districts</option>
                     @foreach(\App\Models\District::active()->get() as $d)
                         <option value="{{ $d->id }}">{{ $d->bn_name }}</option>
                     @endforeach
                 </select>
                 <button type="submit" class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-xl font-semibold transition-colors flex items-center gap-2 whitespace-nowrap">
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                    খুঁজুন
+                    Search
                 </button>
             </form>
 

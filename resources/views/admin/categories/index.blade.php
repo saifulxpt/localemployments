@@ -1,20 +1,20 @@
 @extends('layouts.admin')
 
-@section('title', 'ক্যাটাগরি ম্যানেজমেন্ট')
+@section('title', 'Categories Management')
 
 @section('content')
 <div class="max-w-7xl mx-auto space-y-6">
 
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
         <div>
-            <h1 class="text-2xl font-bold text-gray-900">সার্ভিস ক্যাটাগরি</h1>
-            <p class="text-sm text-gray-500">সকল মূল ক্যাটাগরির তালিকা এবং সাব-ক্যাটাগরি ম্যানেজমেন্ট।</p>
+            <h1 class="text-2xl font-bold text-gray-900">Service Categories</h1>
+            <p class="text-sm text-gray-500">List of all main categories and subcategories management.</p>
         </div>
         
         <div class="flex gap-2">
             <a href="{{ route('admin.categories.create') }}" class="btn btn-primary bg-blue-600 hover:bg-blue-700">
                 <svg class="w-5 h-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
-                নতুন ক্যাটাগরি
+                Add Category
             </a>
         </div>
     </div>
@@ -24,12 +24,12 @@
             <table class="w-full text-left text-sm text-gray-600">
                 <thead class="bg-gray-50 text-gray-500 font-semibold border-b border-gray-200">
                     <tr>
-                        <th class="px-6 py-4 w-20 text-center">আইকন</th>
-                        <th class="px-6 py-4">ক্যাটাগরির নাম</th>
-                        <th class="px-6 py-4 text-center">সাব-ক্যাটাগরি</th>
-                        <th class="px-6 py-4 text-center">সর্ট অর্ডার</th>
-                        <th class="px-6 py-4 text-center">স্ট্যাটাস</th>
-                        <th class="px-6 py-4 text-right">অ্যাকশন</th>
+                        <th class="px-6 py-4 w-20 text-center">Icon</th>
+                        <th class="px-6 py-4">Category Name</th>
+                        <th class="px-6 py-4 text-center">Subcategories</th>
+                        <th class="px-6 py-4 text-center">Sort Order</th>
+                        <th class="px-6 py-4 text-center">Status</th>
+                        <th class="px-6 py-4 text-right">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100">
