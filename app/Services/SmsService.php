@@ -47,7 +47,7 @@ class SmsService
 
                 $body = $response->json();
                 $gatewayResponse = $body ?? [];
-                $success = isset($body['response_code']) && $body['response_code'] === '202';
+                $success = isset($body['response_code']) && $body['response_code'] == 202;
             }
         } catch (\Throwable $e) {
             Log::error("SMS failed to {$phone}: " . $e->getMessage());

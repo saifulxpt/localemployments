@@ -42,7 +42,7 @@ class OtpService
     public function canResend(User $user): bool
     {
         if (!$user->otp_expires_at) return true;
-        // Allow resend if current OTP has more than 4 minutes remaining (sent less than 1 min ago)
-        return now()->isAfter($user->otp_expires_at->subMinutes(4));
+        // Allow resend if current OTP was sent more than 1 minute ago (expires in less than 4 mins)
+        return now()->isAfter($user->otp_expires_at->copy()->subMinutes(4));
     }
 }
