@@ -9,14 +9,14 @@ use Illuminate\Support\Facades\Log;
 
 class SmsService
 {
-    private string $apiKey;
-    private string $senderId;
+    private ?string $apiKey;
+    private ?string $senderId;
     private string $apiUrl = 'http://bulksmsbd.net/api/smsapi';
 
     public function __construct()
     {
-        $this->apiKey   = Setting::get('bulksms_api_key', config('services.bulksms.api_key', ''));
-        $this->senderId = Setting::get('bulksms_sender_id', config('services.bulksms.sender_id', '8809617611169'));
+        $this->apiKey   = (string) Setting::get('bulksms_api_key', config('services.bulksms.api_key', ''));
+        $this->senderId = (string) Setting::get('bulksms_sender_id', config('services.bulksms.sender_id', '8809617611169'));
     }
 
     /**
