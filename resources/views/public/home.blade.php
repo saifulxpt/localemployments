@@ -8,97 +8,143 @@
 {{-- ─────────────────────────────────────────── --}}
 {{-- HERO SECTION --}}
 {{-- ─────────────────────────────────────────── --}}
-<section class="relative overflow-hidden bg-gradient-to-br from-primary-700 via-primary-600 to-emerald-600 text-white">
-    {{-- Background Pattern --}}
-    <div class="absolute inset-0 opacity-10">
-        <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
-                <circle cx="1" cy="1" r="1" fill="white"/>
-            </pattern>
-            <rect width="100%" height="100%" fill="url(#grid)"/>
-        </svg>
-    </div>
+<section class="relative overflow-hidden bg-gradient-to-br from-primary-50 via-white to-primary-100 pt-20 pb-32 md:pt-28 md:pb-40">
+    {{-- Decorative Background Elements --}}
+    <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-primary-300/30 rounded-full blur-3xl animate-blob"></div>
+    <div class="absolute bottom-0 left-10 w-72 h-72 bg-accent-400/20 rounded-full blur-3xl animate-blob" style="animation-delay: 2s;"></div>
+    
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+            
+            {{-- Left Content --}}
+            <div class="max-w-2xl mx-auto lg:mx-0 text-center lg:text-left animate-slide-in-left">
+                <div class="inline-flex items-center gap-2 bg-white/60 backdrop-blur-sm border border-primary-100 rounded-full px-4 py-1.5 text-sm mb-6 text-primary-800 font-semibold shadow-sm">
+                    <span class="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"></span>
+                    {{ $stats['providers'] ?? 0 }}+ বিশ্বস্ত কর্মী আপনার সেবায় প্রস্তুত
+                </div>
 
-    <div class="container mx-auto px-4 py-20 md:py-28 relative z-10">
-        <div class="max-w-3xl mx-auto text-center">
-            <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur border border-white/20 rounded-full px-4 py-1.5 text-sm mb-6 animate-fadeInDown">
-                <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                {{ $stats['providers'] }}+ দক্ষ কর্মী অপেক্ষায় আছেন
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-[1.15] text-gray-900 tracking-tight">
+                    ঘরের যেকোনো কাজে, <br class="hidden md:block">
+                    আপনার ঠিকানায় <br class="hidden md:block">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-emerald-500">বিশ্বস্ত পেশাদার!</span>
+                </h1>
+
+                <p class="text-lg md:text-xl text-gray-600 mb-10 leading-relaxed max-w-lg mx-auto lg:mx-0">
+                    প্লাম্বিং থেকে ক্লিনিং—সব সেবাই এখন এক ক্লিকে। যাচাইকৃত কর্মীদের দিয়ে নিশ্চিন্তে কাজ করিয়ে নিন।
+                </p>
+
+                {{-- Search Box --}}
+                <form action="{{ route('search') }}" method="GET" class="glass rounded-2xl p-2.5 flex flex-col sm:flex-row gap-3 shadow-xl max-w-2xl mx-auto lg:mx-0 transition-transform hover:-translate-y-1 duration-300">
+                    <div class="flex-1 relative">
+                        <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+                            <svg class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                        </div>
+                        <select name="category" class="w-full pl-11 pr-4 py-3.5 text-gray-700 bg-transparent outline-none text-sm rounded-xl border-none focus:ring-0 appearance-none font-medium cursor-pointer" style="background-image: none;">
+                            <option value="">কী সেবা খুঁজছেন?</option>
+                            @foreach($categories as $cat)
+                                <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="w-px bg-gray-200 hidden sm:block self-stretch my-2"></div>
+                    <div class="flex-1 relative">
+                        <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+                            <svg class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        </div>
+                        <select name="district" class="w-full pl-11 pr-4 py-3.5 text-gray-700 bg-transparent outline-none text-sm rounded-xl border-none focus:ring-0 appearance-none font-medium cursor-pointer" style="background-image: none;">
+                            <option value="">আপনার জেলা নির্বাচন করুন</option>
+                            @foreach(\App\Models\District::active()->get() as $d)
+                                <option value="{{ $d->id }}">{{ $d->bn_name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <button type="submit" class="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3.5 rounded-xl font-semibold transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 whitespace-nowrap">
+                        সার্চ করুন
+                    </button>
+                </form>
+
+                {{-- Quick Tags --}}
+                <div class="flex flex-wrap gap-2 justify-center lg:justify-start mt-6 text-sm font-medium">
+                    <span class="text-gray-500 py-1">জনপ্রিয়:</span>
+                    @foreach(['এসি সার্ভিসিং', 'হাউস ক্লিনিং', 'ইলেকট্রিশিয়ান', 'প্লাম্বার'] as $quick)
+                        <a href="{{ route('search') }}?q={{ urlencode($quick) }}" class="px-3 py-1 bg-white border border-gray-200 text-gray-700 hover:border-primary-300 hover:text-primary-700 rounded-full transition-colors shadow-sm">
+                            {{ $quick }}
+                        </a>
+                    @endforeach
+                </div>
             </div>
 
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight animate-fadeInUp">
-                আপনার এলাকায়<br>
-                <span class="text-yellow-300">বিশ্বস্ত সেবা</span> খুঁজুন
-            </h1>
+            {{-- Right Composition (Floating Cards) --}}
+            <div class="hidden lg:block relative h-[500px] w-full animate-fade-in">
+                <div class="absolute inset-0 bg-gradient-to-tr from-primary-200/40 to-transparent rounded-[3rem] transform rotate-3 scale-95"></div>
+                
+                {{-- Floating Card 1 --}}
+                <div class="absolute top-10 right-10 bg-white p-4 rounded-2xl shadow-xl w-64 animate-float" style="animation-delay: 0s;">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
+                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        </div>
+                        <div>
+                            <div class="font-bold text-gray-900 text-sm">প্রফেশনাল প্লাম্বার</div>
+                            <div class="flex items-center text-xs text-yellow-500 mt-1">
+                                ★★★★★ <span class="text-gray-500 ml-1">(4.9)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-            <p class="text-xl text-white/80 mb-10 animate-fadeInUp">
-                গৃহস্থালি কাজ থেকে শুরু করে যেকোনো সেবার জন্য দক্ষ ও যাচাইকৃত কর্মী পান<br class="hidden md:block"> মাত্র কয়েক মিনিটে।
-            </p>
+                {{-- Floating Card 2 --}}
+                <div class="absolute bottom-20 left-4 glass p-5 rounded-3xl w-72 animate-float" style="animation-delay: 2s;">
+                    <div class="flex items-start gap-4">
+                        <img src="https://ui-avatars.com/api/?name=Kamrul+Hasan&color=ffffff&background=0f766e" alt="Avatar" class="w-14 h-14 rounded-xl shadow-md">
+                        <div>
+                            <div class="font-bold text-gray-900">কামরুল হাসান</div>
+                            <div class="text-xs text-primary-700 font-medium mb-1">এসি সার্ভিসিং এক্সপার্ট</div>
+                            <div class="inline-flex items-center gap-1 bg-green-100 text-green-700 px-2 py-0.5 rounded-full text-[10px] font-bold">
+                                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                ভেরিফাইড
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-            {{-- Search Box --}}
-            <form action="{{ route('search') }}" method="GET"
-                  class="bg-white rounded-2xl p-2 flex flex-col sm:flex-row gap-2 shadow-2xl max-w-2xl mx-auto animate-fadeInUp">
-                <select name="category" class="flex-1 px-4 py-3 text-gray-700 bg-transparent outline-none text-sm rounded-xl">
-                    <option value="">All Categories</option>
-                    @foreach($categories as $cat)
-                        <option value="{{ $cat->id }}">{{ $cat->name }}</option>
-                    @endforeach
-                </select>
-                <div class="w-px bg-gray-200 hidden sm:block self-stretch my-1"></div>
-                <select name="district" class="flex-1 px-4 py-3 text-gray-700 bg-transparent outline-none text-sm rounded-xl">
-                    <option value="">All Districts</option>
-                    @foreach(\App\Models\District::active()->get() as $d)
-                        <option value="{{ $d->id }}">{{ $d->bn_name }}</option>
-                    @endforeach
-                </select>
-                <button type="submit" class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-xl font-semibold transition-colors flex items-center gap-2 whitespace-nowrap">
-                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                    Search
-                </button>
-            </form>
-
-            {{-- Quick Tags --}}
-            <div class="flex flex-wrap gap-2 justify-center mt-5 animate-fadeInUp">
-                @foreach(['Home Cleaning', 'Plumbing', 'Electrical Work', 'AC Servicing', 'Home Cooking'] as $quick)
-                    <a href="{{ route('search') }}?q={{ urlencode($quick) }}"
-                       class="px-3 py-1 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full text-xs transition-colors">
-                        {{ $quick }}
-                    </a>
-                @endforeach
+                {{-- Floating Card 3 --}}
+                <div class="absolute top-1/3 left-1/4 bg-white p-3 rounded-2xl shadow-lg flex items-center gap-3 animate-float" style="animation-delay: 1s;">
+                    <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-500">নিরাপদ পেমেন্ট</div>
+                        <div class="font-bold text-gray-900 text-sm">১০০% গ্যারান্টি</div>
+                    </div>
+                </div>
             </div>
+
         </div>
-    </div>
-
-    {{-- Wave --}}
-    <div class="absolute bottom-0 left-0 right-0">
-        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" class="w-full h-12 md:h-16 fill-gray-50">
-            <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z"/>
-        </svg>
     </div>
 </section>
 
 {{-- ─────────────────────────────────────────── --}}
-{{-- STATS SECTION --}}
+{{-- STATS SECTION (Overlapping) --}}
 {{-- ─────────────────────────────────────────── --}}
-<section class="py-12 bg-gray-50">
+<section class="relative z-20 -mt-16 md:-mt-20">
     <div class="container mx-auto px-4">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            @foreach([
-                ['value' => $stats['providers'], 'suffix' => '+', 'label' => 'দক্ষ কর্মী', 'icon' => 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z', 'color' => 'text-primary-600', 'bg' => 'bg-primary-100'],
-                ['value' => $stats['districts'], 'suffix' => '', 'label' => 'জেলায় সেবা', 'icon' => 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z', 'color' => 'text-blue-600', 'bg' => 'bg-blue-100'],
-                ['value' => $stats['jobs'], 'suffix' => '+', 'label' => 'কাজ সম্পন্ন', 'icon' => 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', 'color' => 'text-green-600', 'bg' => 'bg-green-100'],
-                ['value' => $stats['rating'], 'suffix' => '/5', 'label' => 'গড় রেটিং', 'icon' => 'M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z', 'color' => 'text-yellow-600', 'bg' => 'bg-yellow-100'],
-            ] as $stat)
-                <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 text-center hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 {{ $stat['bg'] }} rounded-xl flex items-center justify-center mx-auto mb-3">
-                        <svg class="w-6 h-6 {{ $stat['color'] }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $stat['icon'] }}"/>
-                        </svg>
+        <div class="glass rounded-3xl p-6 md:p-8 shadow-2xl bg-white/90">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-x divide-gray-100">
+                @foreach([
+                    ['value' => $stats['providers'] ?? 0, 'suffix' => '+', 'label' => 'যাচাইকৃত কর্মী', 'color' => 'text-primary-600'],
+                    ['value' => $stats['districts'] ?? 0, 'suffix' => '', 'label' => 'জেলায় সেবা', 'color' => 'text-emerald-600'],
+                    ['value' => $stats['jobs'] ?? 0, 'suffix' => '+', 'label' => 'কাজ সম্পন্ন', 'color' => 'text-blue-600'],
+                    ['value' => $stats['rating'] ?? '0.0', 'suffix' => '/5', 'label' => 'গড় রেটিং', 'color' => 'text-accent-500'],
+                ] as $stat)
+                    <div class="px-2">
+                        <div class="text-3xl md:text-4xl font-extrabold {{ $stat['color'] }} tracking-tight animate-counter-up">
+                            {{ $stat['value'] }}<span class="text-lg md:text-xl">{{ $stat['suffix'] }}</span>
+                        </div>
+                        <div class="text-sm font-semibold text-gray-500 mt-2 uppercase tracking-wide">{{ $stat['label'] }}</div>
                     </div>
-                    <div class="text-3xl font-extrabold text-gray-900">{{ $stat['value'] }}<span class="text-lg text-gray-400">{{ $stat['suffix'] }}</span></div>
-                    <div class="text-sm text-gray-500 mt-1">{{ $stat['label'] }}</div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
     </div>
 </section>
@@ -106,29 +152,29 @@
 {{-- ─────────────────────────────────────────── --}}
 {{-- CATEGORIES SECTION --}}
 {{-- ─────────────────────────────────────────── --}}
-<section class="py-16 bg-white">
+<section class="py-24 bg-gray-50/50">
     <div class="container mx-auto px-4">
-        <div class="text-center mb-10">
-            <h2 class="text-3xl font-bold text-gray-900">সেবার ধরন</h2>
-            <p class="text-gray-500 mt-2">আপনার প্রয়োজনীয় সেবাটি বেছে নিন</p>
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+            <div>
+                <h2 class="section-title text-4xl">জনপ্রিয় সেবাসমূহ</h2>
+                <p class="section-subtitle">আপনার দৈনন্দিন জীবনের যেকোনো প্রয়োজনে আমরা আছি</p>
+            </div>
+            <a href="{{ route('services.index') }}" class="btn btn-outline whitespace-nowrap">সব সেবা দেখুন →</a>
         </div>
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
             @foreach($categories as $cat)
-                <a href="{{ route('services.show', $cat->slug) }}"
-                   class="group flex flex-col items-center gap-3 p-4 rounded-2xl border-2 border-transparent hover:border-primary-200 hover:bg-primary-50 transition-all text-center cursor-pointer">
-                    <div class="w-14 h-14 bg-primary-100 group-hover:bg-primary-200 rounded-2xl flex items-center justify-center transition-colors text-primary-700">
+                <a href="{{ route('services.show', $cat->slug) }}" class="card group p-6 flex flex-col items-center text-center border border-gray-100">
+                    <div class="w-16 h-16 bg-primary-50 group-hover:bg-primary-600 group-hover:text-white rounded-2xl flex items-center justify-center transition-all duration-300 text-primary-600 mb-4 shadow-sm group-hover:shadow-md transform group-hover:-translate-y-2">
                         @if($cat->icon)
-                            {!! category_icon($cat->icon, 'w-7 h-7') !!}
+                            {!! category_icon($cat->icon, 'w-8 h-8') !!}
                         @else
-                            <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                            <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
                         @endif
                     </div>
-                    <span class="text-sm font-medium text-gray-700 group-hover:text-primary-700 transition-colors leading-tight">{{ $cat->name }}</span>
+                    <span class="font-bold text-gray-800 group-hover:text-primary-700 transition-colors">{{ $cat->name }}</span>
                 </a>
             @endforeach
-        </div>
-        <div class="text-center mt-8">
-            <a href="{{ route('services.index') }}" class="btn btn-outline">সব সেবা দেখুন →</a>
         </div>
     </div>
 </section>
@@ -136,30 +182,40 @@
 {{-- ─────────────────────────────────────────── --}}
 {{-- HOW IT WORKS --}}
 {{-- ─────────────────────────────────────────── --}}
-<section class="py-16 bg-gray-50">
-    <div class="container mx-auto px-4">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold text-gray-900">কীভাবে কাজ করে</h2>
-            <p class="text-gray-500 mt-2">মাত্র ৩টি ধাপে সেবা পান</p>
+<section class="py-24 bg-white relative overflow-hidden">
+    {{-- Background blobs --}}
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-30 pointer-events-none">
+        <div class="absolute -top-40 -right-40 w-96 h-96 bg-primary-100 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-emerald-100 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="text-center mb-16">
+            <span class="text-primary-600 font-bold uppercase tracking-wider text-sm">প্রসেস</span>
+            <h2 class="section-title text-4xl mt-2">কীভাবে কাজ করে?</h2>
+            <p class="section-subtitle">মাত্র ৩টি সহজ ধাপে আপনার কাঙ্ক্ষিত সেবাটি বুঝে নিন</p>
         </div>
-        <div class="grid md:grid-cols-3 gap-8">
+
+        <div class="grid md:grid-cols-3 gap-12 relative">
+            {{-- Connecting Line for Desktop --}}
+            <div class="hidden md:block absolute top-12 left-[15%] right-[15%] border-t-2 border-dashed border-primary-200"></div>
+
             @foreach([
-                ['step' => '১', 'title' => 'কাজ পোস্ট করুন', 'desc' => 'আপনার প্রয়োজনীয় কাজের বিবরণ দিন এবং বাজেট উল্লেখ করুন।', 'color' => 'bg-primary-600', 'icon' => 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'],
-                ['step' => '২', 'title' => 'বিড পান', 'desc' => 'কাছাকাছি দক্ষ কর্মীরা বিড করবেন। সেরা প্রস্তাবটি বেছে নিন।', 'color' => 'bg-blue-600', 'icon' => 'M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z'],
-                ['step' => '৩', 'title' => 'সেবা উপভোগ করুন', 'desc' => 'কর্মী কাজ করবেন এবং সম্পন্ন হলে রেটিং দিন।', 'color' => 'bg-green-600', 'icon' => 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'],
+                ['step' => '০১', 'title' => 'কাজ পোস্ট করুন', 'desc' => 'খুব সহজেই আপনার প্রয়োজনীয় কাজের বিবরণ এবং বাজেট উল্লেখ করে একটি রিকোয়েস্ট পোস্ট করুন।', 'color' => 'bg-primary-600 text-white', 'icon' => 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'],
+                ['step' => '০২', 'title' => 'বিড পান ও যাচাই করুন', 'desc' => 'কাছাকাছি থাকা দক্ষ কর্মীরা বিড করবেন। তাদের প্রোফাইল ও আগের রেটিং দেখে সেরা জনকে বেছে নিন।', 'color' => 'bg-emerald-500 text-white', 'icon' => 'M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z'],
+                ['step' => '০৩', 'title' => 'সেবা নিন ও পেমেন্ট করুন', 'desc' => 'নির্ধারিত সময়ে কর্মী এসে কাজ সম্পন্ন করবেন। কাজ শেষে পেমেন্ট করুন এবং রেটিং দিন।', 'color' => 'bg-accent-500 text-white', 'icon' => 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'],
             ] as $i => $step)
-                <div class="text-center relative">
-                    @if($i < 2)
-                        <div class="hidden md:block absolute top-8 left-2/3 w-1/3 border-t-2 border-dashed border-gray-300"></div>
-                    @endif
-                    <div class="w-16 h-16 {{ $step['color'] }} rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                        <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div class="relative text-center group">
+                    <div class="w-24 h-24 mx-auto rounded-3xl {{ $step['color'] }} shadow-xl flex items-center justify-center transform group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 relative z-10 mb-6">
+                        <svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $step['icon'] }}"/>
                         </svg>
+                        <div class="absolute -top-3 -right-3 w-8 h-8 bg-white text-gray-900 font-bold rounded-full shadow-md flex items-center justify-center text-sm">
+                            {{ $step['step'] }}
+                        </div>
                     </div>
-                    <div class="text-4xl font-black text-gray-100 -mt-2 mb-2">{{ $step['step'] }}</div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">{{ $step['title'] }}</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">{{ $step['desc'] }}</p>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">{{ $step['title'] }}</h3>
+                    <p class="text-gray-500 leading-relaxed">{{ $step['desc'] }}</p>
                 </div>
             @endforeach
         </div>
@@ -169,46 +225,55 @@
 {{-- ─────────────────────────────────────────── --}}
 {{-- FEATURED PROVIDERS --}}
 {{-- ─────────────────────────────────────────── --}}
-@if($featuredProviders->count() > 0)
-<section class="py-16 bg-white">
+@if(isset($featuredProviders) && $featuredProviders->count() > 0)
+<section class="py-24 bg-gray-50">
     <div class="container mx-auto px-4">
-        <div class="text-center mb-10">
-            <div class="inline-flex items-center gap-1 bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-semibold mb-3">
-                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                ফিচার্ড
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+            <div>
+                <span class="inline-flex items-center gap-1.5 bg-accent-100 text-accent-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
+                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    সুপার হিরো
+                </span>
+                <h2 class="section-title text-4xl">শীর্ষ রেটেড কর্মী</h2>
+                <p class="section-subtitle">আমাদের সবচেয়ে বিশ্বস্ত ও দক্ষ প্রফেশনালগণ</p>
             </div>
-            <h2 class="text-3xl font-bold text-gray-900">শীর্ষ কর্মী</h2>
-            <p class="text-gray-500 mt-2">যাচাইকৃত ও রেটেড কর্মীদের সাথে কাজ করুন</p>
+            <a href="{{ route('search') }}" class="btn btn-outline whitespace-nowrap">সব কর্মী দেখুন →</a>
         </div>
-        <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             @foreach($featuredProviders as $provider)
-                <a href="{{ route('providers.show', $provider) }}"
-                   class="bg-white rounded-2xl border border-gray-100 hover:border-primary-200 hover:shadow-lg transition-all overflow-hidden group">
-                    <div class="bg-gradient-to-br from-primary-50 to-emerald-50 p-6 text-center">
-                        <img src="{{ $provider->avatar_url }}" alt="{{ $provider->name }}"
-                             class="w-16 h-16 rounded-2xl object-cover mx-auto ring-4 ring-white shadow-md">
-                        @if($provider->providerProfile?->is_verified)
-                            <div class="inline-flex items-center gap-1 bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-full mt-2">
-                                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                                যাচাইকৃত
-                            </div>
-                        @endif
-                    </div>
-                    <div class="p-4">
-                        <h3 class="font-semibold text-gray-900 group-hover:text-primary-600 transition-colors truncate">{{ $provider->name }}</h3>
-                        <p class="text-xs text-gray-500 mt-0.5">{{ $provider->district?->bn_name ?? '—' }}</p>
-                        <div class="flex items-center gap-1 mt-2">
-                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            <span class="text-sm font-bold text-gray-900">{{ number_format($provider->providerProfile?->rating_avg ?? 0, 1) }}</span>
-                            <span class="text-xs text-gray-400">({{ $provider->providerProfile?->total_reviews ?? 0 }})</span>
+                <a href="{{ route('providers.show', $provider) }}" class="card group overflow-hidden border border-gray-100 flex flex-col">
+                    <div class="card-accent-bar"></div>
+                    <div class="p-6 text-center flex-1">
+                        <div class="relative inline-block mb-4">
+                            <img src="{{ $provider->avatar_url }}" alt="{{ $provider->name }}" class="w-24 h-24 rounded-full object-cover shadow-sm ring-4 ring-gray-50 group-hover:ring-primary-50 transition-all">
+                            @if($provider->providerProfile?->is_verified)
+                                <div class="absolute bottom-0 right-0 bg-green-500 text-white p-1 rounded-full border-2 border-white" title="Verified">
+                                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                                </div>
+                            @endif
                         </div>
+                        <h3 class="font-bold text-lg text-gray-900 group-hover:text-primary-600 transition-colors truncate">{{ $provider->name }}</h3>
+                        <p class="text-sm text-gray-500 flex items-center justify-center gap-1 mt-1">
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            {{ $provider->district?->bn_name ?? 'অজানা জেলা' }}
+                        </p>
+                        
+                        <div class="bg-gray-50 rounded-xl p-3 mt-4 flex justify-between items-center">
+                            <div class="flex items-center gap-1">
+                                <span class="text-accent-500 font-bold">{{ number_format($provider->providerProfile?->rating_avg ?? 0, 1) }}</span>
+                                <svg class="w-4 h-4 text-accent-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                            <div class="text-xs text-gray-500 font-medium">{{ $provider->providerProfile?->total_reviews ?? 0 }} রিভিউ</div>
+                        </div>
+
                         @if($provider->providerSkills->isNotEmpty())
-                            <div class="flex flex-wrap gap-1 mt-3">
+                            <div class="flex flex-wrap justify-center gap-1.5 mt-4">
                                 @foreach($provider->providerSkills->take(2) as $skill)
-                                    <span class="text-xs bg-primary-50 text-primary-700 px-2 py-0.5 rounded-full">{{ $skill->subcategory?->name }}</span>
+                                    <span class="text-[11px] font-semibold bg-primary-50 text-primary-700 px-2.5 py-1 rounded-md">{{ $skill->subcategory?->name }}</span>
                                 @endforeach
                                 @if($provider->providerSkills->count() > 2)
-                                    <span class="text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full">+{{ $provider->providerSkills->count() - 2 }}</span>
+                                    <span class="text-[11px] font-semibold bg-gray-100 text-gray-600 px-2.5 py-1 rounded-md">+{{ $provider->providerSkills->count() - 2 }}</span>
                                 @endif
                             </div>
                         @endif
@@ -216,35 +281,75 @@
                 </a>
             @endforeach
         </div>
-        <div class="text-center mt-8">
-            <a href="{{ route('search') }}" class="btn btn-outline">সব কর্মী দেখুন →</a>
-        </div>
     </div>
 </section>
 @endif
 
 {{-- ─────────────────────────────────────────── --}}
-{{-- WHY US --}}
+{{-- TRUST & TESTIMONIALS (NEW) --}}
 {{-- ─────────────────────────────────────────── --}}
-<section class="py-16 bg-gradient-to-br from-primary-700 to-emerald-600 text-white">
-    <div class="container mx-auto px-4">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold">কেন LocalEmployments?</h2>
-            <p class="text-white/70 mt-2">আমরা যা নিশ্চিত করি</p>
+<section class="py-24 bg-primary-900 text-white relative overflow-hidden">
+    {{-- Grid background --}}
+    <div class="absolute inset-0 opacity-10">
+        <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <pattern id="grid-pattern" width="20" height="20" patternUnits="userSpaceOnUse">
+                <rect width="1" height="1" fill="white"/>
+            </pattern>
+            <rect width="100%" height="100%" fill="url(#grid-pattern)"/>
+        </svg>
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">হাজারো মানুষের আস্থার নাম</h2>
+            <p class="text-primary-200">LocalEmployments-এর মাধ্যমে প্রতিদিন সম্পন্ন হচ্ছে শত শত সফল কাজ</p>
         </div>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            @foreach([
-                ['icon' => '<svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>', 'title' => 'যাচাইকৃত কর্মী', 'desc' => 'NID যাচাই করে প্রতিটি প্রোভাইডার অনুমোদন করা হয়।'],
-                ['icon' => '<svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>', 'title' => 'নিরাপদ পেমেন্ট', 'desc' => 'SSLCommerz এর মাধ্যমে এনক্রিপ্টেড পেমেন্ট।'],
-                ['icon' => '<svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>', 'title' => 'সরাসরি যোগাযোগ', 'desc' => 'বুকিংয়ের মধ্যে সরাসরি চ্যাট করুন।'],
-                ['icon' => '<svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>', 'title' => 'রেটিং সিস্টেম', 'desc' => 'প্রতিটি সেবার পর রেটিং দিন এবং মানের নিশ্চয়তা পান।'],
-            ] as $feature)
-                <div class="text-center p-6 bg-white/10 backdrop-blur rounded-2xl border border-white/20 hover:-translate-y-1 transition-transform">
-                    <div class="text-white/90 mb-4 flex justify-center">{!! $feature['icon'] !!}</div>
-                    <h3 class="font-bold text-lg mb-2">{{ $feature['title'] }}</h3>
-                    <p class="text-white/70 text-sm leading-relaxed">{{ $feature['desc'] }}</p>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            {{-- Testimonial 1 --}}
+            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/10">
+                <div class="flex items-center gap-1 text-accent-400 mb-4">
+                    ★★★★★
                 </div>
-            @endforeach
+                <p class="text-primary-50 leading-relaxed mb-6">"বাসার এসি হঠাৎ নষ্ট হয়ে গিয়েছিল। LocalEmployments থেকে এক ঘণ্টার মধ্যে এক্সপার্ট পেয়েছি। কাজ খুব দারুণ ছিল!"</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-primary-700 flex items-center justify-center font-bold text-white">R</div>
+                    <div>
+                        <div class="font-bold">রাকিবুল হাসান</div>
+                        <div class="text-xs text-primary-300">মিরপুর, ঢাকা</div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Testimonial 2 --}}
+            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/10">
+                <div class="flex items-center gap-1 text-accent-400 mb-4">
+                    ★★★★★
+                </div>
+                <p class="text-primary-50 leading-relaxed mb-6">"ক্লিনিং সার্ভিসের জন্য অনেকক্ষণ ধরে খুঁজছিলাম। এখানকার সিস্টেম খুব সহজ এবং পেমেন্টও বেশ নিরাপদ।"</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-primary-700 flex items-center justify-center font-bold text-white">S</div>
+                    <div>
+                        <div class="font-bold">সাদিয়া আফরিন</div>
+                        <div class="text-xs text-primary-300">ধানমন্ডি, ঢাকা</div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Testimonial 3 --}}
+            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/10">
+                <div class="flex items-center gap-1 text-accent-400 mb-4">
+                    ★★★★★
+                </div>
+                <p class="text-primary-50 leading-relaxed mb-6">"আমি একজন প্লাম্বার। এই প্ল্যাটফর্মের মাধ্যমে আমি আমার এলাকার আশেপাশেই প্রচুর কাজ পাচ্ছি। আমার আয় অনেক বেড়েছে।"</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-primary-700 flex items-center justify-center font-bold text-white">J</div>
+                    <div>
+                        <div class="font-bold">জহিরুল ইসলাম</div>
+                        <div class="text-xs text-primary-300">সার্ভিস প্রোভাইডার</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -252,30 +357,30 @@
 {{-- ─────────────────────────────────────────── --}}
 {{-- CTA SECTION --}}
 {{-- ─────────────────────────────────────────── --}}
-<section class="py-20 bg-white">
+<section class="py-24 bg-white">
     <div class="container mx-auto px-4">
-        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {{-- Seeker CTA --}}
-            <div class="bg-gradient-to-br from-primary-50 to-emerald-50 rounded-3xl p-8 border border-primary-100 text-center hover:shadow-lg transition-shadow">
-                <div class="w-16 h-16 bg-white text-primary-600 rounded-full flex items-center justify-center mx-auto mb-5 shadow-sm">
-                    <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <div class="bg-primary-50 rounded-[2rem] p-10 text-center hover:shadow-xl transition-all duration-300 border border-primary-100 group">
+                <div class="w-20 h-20 bg-white text-primary-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-md transform group-hover:-translate-y-2 transition-transform">
+                    <svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                 </div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">সেবা খুঁজছেন?</h3>
-                <p class="text-gray-600 mb-6 text-sm leading-relaxed">আপনার কাজ পোস্ট করুন এবং বিডের অপেক্ষা করুন অথবা সরাসরি কর্মী বুক করুন।</p>
-                <a href="{{ route('register') }}" class="btn btn-primary w-full justify-center">
-                    কাজ পোস্ট করুন
+                <h3 class="text-3xl font-bold text-gray-900 mb-4">সেবা খুঁজছেন?</h3>
+                <p class="text-gray-600 mb-8 leading-relaxed">যেকোনো কাজের জন্য আপনার রিকোয়েস্ট পোস্ট করুন। প্রোফাইল যাচাই করে বিশ্বস্ত কর্মী বেছে নিন।</p>
+                <a href="{{ route('register') }}" class="btn btn-primary w-full sm:w-auto px-10">
+                    অ্যাকাউন্ট খুলুন
                 </a>
             </div>
 
             {{-- Provider CTA --}}
-            <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-8 text-center text-white hover:shadow-xl transition-shadow">
-                <div class="w-16 h-16 bg-gray-800 border border-gray-700 text-white rounded-full flex items-center justify-center mx-auto mb-5 shadow-inner">
-                    <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <div class="bg-gray-900 rounded-[2rem] p-10 text-center text-white hover:shadow-xl transition-all duration-300 border border-gray-800 group">
+                <div class="w-20 h-20 bg-gray-800 border border-gray-700 text-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-md transform group-hover:-translate-y-2 transition-transform">
+                    <svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                 </div>
-                <h3 class="text-2xl font-bold mb-3">কাজ খুঁজছেন?</h3>
-                <p class="text-white/70 mb-6 text-sm leading-relaxed">আপনার দক্ষতা দিয়ে উপার্জন করুন। বিড করুন অথবা সরাসরি সেবা অফার করুন।</p>
-                <a href="{{ route('register') }}?role=provider" class="btn bg-white text-gray-900 hover:bg-gray-100 w-full justify-center">
-                    কাজ শুরু করুন
+                <h3 class="text-3xl font-bold mb-4">কাজ খুঁজছেন?</h3>
+                <p class="text-gray-400 mb-8 leading-relaxed">আপনার দক্ষতা দিয়ে আয় শুরু করুন। এখনই প্রোফাইল তৈরি করে ক্লায়েন্টদের সাথে যুক্ত হোন।</p>
+                <a href="{{ route('register') }}?role=provider" class="btn bg-white text-gray-900 hover:bg-gray-100 w-full sm:w-auto px-10">
+                    কর্মী হিসেবে যুক্ত হোন
                 </a>
             </div>
         </div>

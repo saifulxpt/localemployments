@@ -1,11 +1,11 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 /* ─────────────────────────────────────────
    GOOGLE FONTS — Inter
 ───────────────────────────────────────── */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* ─────────────────────────────────────────
    BASE STYLES
@@ -148,6 +148,11 @@
     .card {
         @apply bg-white rounded-2xl shadow-card hover:shadow-card-hover
                transition-all duration-300;
+    }
+
+    /* Glassmorphism */
+    .glass {
+        @apply bg-white/70 backdrop-blur-md border border-white/40 shadow-glass;
     }
 
     /* Input */
@@ -315,7 +320,7 @@ select {
    HERO GRADIENT BACKGROUND
 ───────────────────────────────────────── */
 .hero-gradient {
-    background: linear-gradient(135deg, #0B4F3C 0%, #065F46 50%, #047857 100%);
+    background: linear-gradient(135deg, #0f766e 0%, #0d9488 50%, #14b8a6 100%);
 }
 
 /* ─────────────────────────────────────────
