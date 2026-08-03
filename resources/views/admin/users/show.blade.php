@@ -13,7 +13,7 @@
         </a>
         
         <div class="flex flex-wrap gap-2">
-            @if(!$user->phone_verified_at)
+            @if(!$user->phone_verified)
                 <form action="{{ route('admin.users.verify-otp', $user->id) }}" method="POST" onsubmit="return confirm('ম্যানুয়ালি ফোন নম্বর ভেরিফাই করতে চান?')">
                     @csrf
                     <button type="submit" class="btn btn-outline border-blue-200 text-blue-600 hover:bg-blue-50 btn-sm">OTP ভেরিফাই করুন</button>
@@ -86,7 +86,7 @@
                     
                     <h2 class="text-xl font-bold text-gray-900 mb-1">{{ $user->name }}</h2>
                     <div class="text-sm text-gray-500 mb-4">{{ $user->phone }} 
-                        @if($user->phone_verified_at)
+                        @if($user->phone_verified)
                             <span class="text-green-500 ml-1" title="Verified">✓</span>
                         @else
                             <span class="text-red-500 ml-1" title="Unverified">✗</span>

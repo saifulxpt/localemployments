@@ -36,7 +36,7 @@ class UserController extends Controller
 
     public function verifyOtp(User $user)
     {
-        $user->update(['phone_verified_at' => now()]);
+        $user->update(['phone_verified' => true]);
         AdminActivityLog::record("Manually verified phone number for user #{$user->id} ({$user->phone})", $user);
         return back()->with('success', 'ফোন নম্বর ম্যানুয়ালি ভেরিফাই করা হয়েছে।');
     }
