@@ -65,14 +65,12 @@ class DummyDataSeeder extends Seeder
             );
 
             // Clear old skills and attach 2-3 random skills
-            ProviderSkill::where('user_id', $user->id)->delete();
+            ProviderSkill::where('provider_id', $user->id)->delete();
             $randomSubcategories = $subcategories->random(rand(1, 3));
             foreach ($randomSubcategories as $sub) {
                 ProviderSkill::create([
-                    'user_id' => $user->id,
-                    'category_id' => $sub->category_id,
+                    'provider_id' => $user->id,
                     'subcategory_id' => $sub->id,
-                    'experience_years' => rand(1, 5),
                 ]);
             }
         }
