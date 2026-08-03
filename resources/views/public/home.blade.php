@@ -79,49 +79,8 @@
                 <div class="absolute inset-0 bg-gradient-to-tr from-primary-200/40 to-transparent rounded-[3rem] transform rotate-3 scale-95"></div>
                 
                 {{-- Premium Hero Image --}}
-                <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=800&auto=format&fit=crop" alt="Professional Worker" class="absolute inset-0 w-full h-full object-cover rounded-[3rem] shadow-2xl object-top">
-                <div class="absolute inset-0 bg-gradient-to-t from-primary-900/30 to-transparent rounded-[3rem]"></div>
-                
-                {{-- Floating Card 1 --}}
-                <div class="absolute top-10 right-10 bg-white p-4 rounded-2xl shadow-xl w-64 animate-float" style="animation-delay: 0s;">
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
-                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                        </div>
-                        <div>
-                            <div class="font-bold text-gray-900 text-sm">প্রফেশনাল প্লাম্বার</div>
-                            <div class="flex items-center text-xs text-yellow-500 mt-1">
-                                ★★★★★ <span class="text-gray-500 ml-1">(4.9)</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Floating Card 2 --}}
-                <div class="absolute bottom-20 left-4 glass p-5 rounded-3xl w-72 animate-float" style="animation-delay: 2s;">
-                    <div class="flex items-start gap-4">
-                        <img src="https://ui-avatars.com/api/?name=Kamrul+Hasan&color=ffffff&background=0f766e" alt="Avatar" class="w-14 h-14 rounded-xl shadow-md">
-                        <div>
-                            <div class="font-bold text-gray-900">কামরুল হাসান</div>
-                            <div class="text-xs text-primary-700 font-medium mb-1">এসি সার্ভিসিং এক্সপার্ট</div>
-                            <div class="inline-flex items-center gap-1 bg-green-100 text-green-700 px-2 py-0.5 rounded-full text-[10px] font-bold">
-                                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                ভেরিফাইড
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Floating Card 3 --}}
-                <div class="absolute top-1/3 left-1/4 bg-white p-3 rounded-2xl shadow-lg flex items-center gap-3 animate-float" style="animation-delay: 1s;">
-                    <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600">
-                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-                    </div>
-                    <div>
-                        <div class="text-xs text-gray-500">নিরাপদ পেমেন্ট</div>
-                        <div class="font-bold text-gray-900 text-sm">১০০% গ্যারান্টি</div>
-                    </div>
-                </div>
+                <img src="https://images.unsplash.com/photo-1600320844754-07ed9222eb61?q=80&w=800&auto=format&fit=crop" alt="Bangladesh Local Worker" class="absolute inset-0 w-full h-full object-cover rounded-[3rem] shadow-2xl object-center">
+                <div class="absolute inset-0 bg-gradient-to-t from-primary-900/40 to-transparent rounded-[3rem]"></div>
             </div>
 
         </div>
