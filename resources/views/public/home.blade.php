@@ -79,7 +79,11 @@
                 <div class="absolute inset-0 bg-gradient-to-tr from-primary-200/40 to-transparent rounded-[3rem] transform rotate-3 scale-95"></div>
                 
                 {{-- Premium Hero Image --}}
-                <img src="https://images.unsplash.com/photo-1600320844754-07ed9222eb61?q=80&w=800&auto=format&fit=crop" alt="Bangladesh Local Worker" class="absolute inset-0 w-full h-full object-cover rounded-[3rem] shadow-2xl object-center">
+                @php
+                    $heroImage = setting('hero_image', 'https://images.unsplash.com/photo-1600320844754-07ed9222eb61?q=80&w=800&auto=format&fit=crop');
+                    $isExternal = filter_var($heroImage, FILTER_VALIDATE_URL) !== false;
+                @endphp
+                <img src="{{ $isExternal ? $heroImage : asset($heroImage) }}" alt="Bangladesh Local Worker" class="absolute inset-0 w-full h-full object-cover rounded-[3rem] shadow-2xl object-center">
                 <div class="absolute inset-0 bg-gradient-to-t from-primary-900/40 to-transparent rounded-[3rem]"></div>
             </div>
 
