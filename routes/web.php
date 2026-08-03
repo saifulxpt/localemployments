@@ -250,6 +250,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/settings', [Admin\SettingController::class, 'index'])->name('settings.index');
         Route::post('/settings', [Admin\SettingController::class, 'update'])->name('settings.update');
 
+        // Contact Messages
+        Route::get('/contact-messages', [Admin\ContactMessageController::class, 'index'])->name('contact-messages.index');
+        Route::get('/contact-messages/{contactMessage}', [Admin\ContactMessageController::class, 'show'])->name('contact-messages.show');
+        Route::delete('/contact-messages/{contactMessage}', [Admin\ContactMessageController::class, 'destroy'])->name('contact-messages.destroy');
+
         // Reports
         Route::get('/reports', [Admin\ReportController::class, 'index'])->name('reports.index');
         Route::get('/reports/export', [Admin\ReportController::class, 'export'])->name('reports.export');

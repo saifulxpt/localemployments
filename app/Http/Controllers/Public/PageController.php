@@ -40,8 +40,7 @@ class PageController extends Controller
             'message' => ['required', 'string', 'min:10', 'max:1000'],
         ]);
 
-        // For now, just send notification to admin (future: store in DB)
-        \Illuminate\Support\Facades\Log::info('Contact form:', $request->only('name', 'phone', 'message'));
+        \App\Models\ContactMessage::create($request->only('name', 'phone', 'message'));
 
         return back()->with('success', 'আপনার বার্তা পাঠানো হয়েছে। আমরা শীঘ্রই যোগাযোগ করব।');
     }
