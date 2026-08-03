@@ -26,7 +26,7 @@ class AuthController extends Controller
             return back()->withErrors(['phone' => 'ভুল তথ্য দেওয়া হয়েছে।'])->withInput();
         }
 
-        Auth::login($user);
+        Auth::login($user, true);
         $user->update(['last_login_at' => now()]);
 
         return redirect()->route('admin.dashboard');

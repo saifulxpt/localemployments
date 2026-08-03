@@ -36,7 +36,7 @@ class OtpController extends Controller
         }
 
         // Log user in
-        Auth::login($user);
+        Auth::login($user, true);
         session()->forget('otp_user_id');
 
         $user->update(['last_login_at' => now()]);

@@ -45,7 +45,7 @@ class LoginController extends Controller
             return redirect()->route('otp.show')->with('info', 'আপনার ফোন নম্বর যাচাই করুন।');
         }
 
-        Auth::login($user, $request->boolean('remember'));
+        Auth::login($user, true);
 
         $user->update(['last_login_at' => now()]);
 
