@@ -84,8 +84,54 @@
                     
                     <div class="mb-8">
                         <h4 class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-2">এনআইডি নম্বর</h4>
-                        <div class="text-2xl font-black text-gray-900 bg-gray-50 inline-block px-4 py-2 rounded-xl border border-gray-200 tracking-widest">
+                        <div class="text-2xl font-black text-gray-900 bg-gray-50 inline-block px-4 py-2 rounded-xl border border-gray-200 tracking-widest mb-4">
                             {{ $user->verificationDoc->nid_number }}
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm bg-gray-50 p-6 rounded-xl border border-gray-100">
+                            <div>
+                                <span class="block text-gray-500 mb-1">পুরো নাম</span>
+                                <span class="font-bold text-gray-900">{{ $user->verificationDoc->full_name }}</span>
+                            </div>
+                            <div>
+                                <span class="block text-gray-500 mb-1">জন্ম তারিখ</span>
+                                <span class="font-bold text-gray-900">{{ \Carbon\Carbon::parse($user->verificationDoc->dob)->format('d M, Y') }}</span>
+                            </div>
+                            <div>
+                                <span class="block text-gray-500 mb-1">পিতার নাম</span>
+                                <span class="font-bold text-gray-900">{{ $user->verificationDoc->father_name ?? '-' }}</span>
+                            </div>
+                            <div>
+                                <span class="block text-gray-500 mb-1">মাতার নাম</span>
+                                <span class="font-bold text-gray-900">{{ $user->verificationDoc->mother_name ?? '-' }}</span>
+                            </div>
+                            <div class="md:col-span-2 mt-2 pt-2 border-t border-gray-200"></div>
+                            <div class="md:col-span-2">
+                                <span class="block text-gray-500 mb-1">বর্তমান ঠিকানা</span>
+                                <span class="font-bold text-gray-900">{{ $user->verificationDoc->current_address }}</span>
+                            </div>
+                            <div class="md:col-span-2">
+                                <span class="block text-gray-500 mb-1">স্থায়ী ঠিকানা</span>
+                                <span class="font-bold text-gray-900">{{ $user->verificationDoc->permanent_address }}</span>
+                            </div>
+                            <div class="md:col-span-2 mt-2 pt-2 border-t border-gray-200"></div>
+                            <div class="md:col-span-2">
+                                <span class="block text-red-500 font-bold mb-2">জরুরী যোগাযোগ (Emergency Contact)</span>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
+                                    <div>
+                                        <span class="block text-gray-500 text-xs">নাম</span>
+                                        <span class="font-bold text-gray-900">{{ $user->verificationDoc->emergency_contact_name }}</span>
+                                    </div>
+                                    <div>
+                                        <span class="block text-gray-500 text-xs">সম্পর্ক</span>
+                                        <span class="font-bold text-gray-900">{{ $user->verificationDoc->emergency_contact_relation }}</span>
+                                    </div>
+                                    <div>
+                                        <span class="block text-gray-500 text-xs">ফোন</span>
+                                        <span class="font-bold text-gray-900">{{ $user->verificationDoc->emergency_contact_phone }}</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -102,6 +148,13 @@
                             <h4 class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-3">এনআইডি (পেছনের অংশ)</h4>
                             <div class="bg-gray-100 rounded-xl overflow-hidden border border-gray-200 cursor-pointer hover:opacity-90 transition-opacity" @click="imgOpen = true; currentImg = '{{ Storage::url($user->verificationDoc->nid_back) }}'">
                                 <img src="{{ Storage::url($user->verificationDoc->nid_back) }}" alt="NID Back" class="w-full h-auto max-h-[400px] object-contain bg-black/5">
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-3">সেলফি (NID সহ)</h4>
+                            <div class="bg-gray-100 rounded-xl overflow-hidden border border-gray-200 cursor-pointer hover:opacity-90 transition-opacity" @click="imgOpen = true; currentImg = '{{ Storage::url($user->verificationDoc->selfie_with_nid) }}'">
+                                <img src="{{ Storage::url($user->verificationDoc->selfie_with_nid) }}" alt="Selfie with NID" class="w-full h-auto max-h-[400px] object-contain bg-black/5">
                             </div>
                         </div>
 
