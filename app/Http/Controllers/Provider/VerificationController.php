@@ -40,7 +40,20 @@ class VerificationController extends Controller
             'nid_front'    => ['required', 'image', 'mimes:jpg,jpeg,png', 'max:3072'],
             'nid_back'     => ['required', 'image', 'mimes:jpg,jpeg,png', 'max:3072'],
             'selfie_with_nid' => ['required', 'image', 'mimes:jpg,jpeg,png', 'max:3072'],
+            'certificates.*' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:5120'],
         ]);
+
+        $otherDocs = [];
+        if ($request->hasFile('certificates')) {
+            foreach ($request->file('certificates') as $file) {
+                // Since PDF might not be handled by ImageService optimally for resizing, we can just store it
+                // using Laravel Storage for PDFs, and ImageService for images. 
+                // But wait, ImageService->storeDocument() usually saves as webp for images.
+                // We'll just use raw Storage for certificates to keep pdfs intact.
+                $path = $file->store('provider-certificates', 'public');
+                $otherDocs[] = $path;
+            }
+        }
 
         $doc = $user->verificationDoc ?? new ProviderVerificationDoc(['provider_id' => $user->id]);
         $doc->fill([
@@ -57,6 +70,7 @@ class VerificationController extends Controller
             'nid_front'      => $this->image->storeDocument($request->file('nid_front'), 'nid-docs'),
             'nid_back'       => $this->image->storeDocument($request->file('nid_back'), 'nid-docs'),
             'selfie_with_nid'=> $this->image->storeDocument($request->file('selfie_with_nid'), 'nid-docs'),
+            'other_docs'     => count($otherDocs) > 0 ? $otherDocs : null,
         ])->save();
 
         $user->providerProfile()->update(['verification_status' => 'pending']);

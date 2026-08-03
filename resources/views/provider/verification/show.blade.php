@@ -158,6 +158,22 @@
                         </div>
                     </div>
                 </div>
+                
+                {{-- Additional Certificates Section --}}
+                <div class="border-t border-gray-100 pt-6">
+                    <h3 class="font-bold text-lg text-gray-900 mb-4">পেশাগত সনদ / স্কিল সার্টিফিকেট (ঐচ্ছিক)</h3>
+                    <div class="flex flex-col md:flex-row gap-6 items-start">
+                        <div class="w-full md:w-1/3">
+                            <h3 class="font-bold text-gray-800 text-sm mb-1">সার্টিফিকেট / ট্রেড লাইসেন্স</h3>
+                            <p class="text-xs text-gray-500">আপনার পেশার উপর কোনো প্রশিক্ষণ বা সনদ থাকলে তা আপলোড করতে পারেন। এটি আপনার প্রোফাইলের বিশ্বাসযোগ্যতা বাড়াবে। (একাধিক ফাইল আপলোড করতে পারবেন)</p>
+                        </div>
+                        <div class="w-full md:w-2/3">
+                            <input type="file" name="certificates[]" multiple class="w-full text-sm text-gray-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100" accept="image/*,.pdf">
+                            <p class="text-xs text-gray-400 mt-2">ফাইল ফরম্যাট: JPG, PNG, PDF. সর্বোচ্চ ৫MB প্রতি ফাইল।</p>
+                            @error('certificates.*') <span class="text-xs text-red-500 mt-1 block">{{ $message }}</span> @enderror
+                        </div>
+                    </div>
+                </div>
 
                 <div class="border-t border-gray-100 pt-6 flex justify-end">
                     <button type="submit" class="btn btn-primary px-8">যাচাইকরণের জন্য জমা দিন</button>

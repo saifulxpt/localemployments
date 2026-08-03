@@ -158,6 +158,41 @@
                             </div>
                         </div>
 
+                        {{-- Additional Certificates --}}
+                        @if($user->verificationDoc->other_docs && count($user->verificationDoc->other_docs) > 0)
+                            <div class="border-t border-gray-100 pt-8 mt-8">
+                                <h4 class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-4">অতিরিক্ত সনদ / স্কিল সার্টিফিকেট</h4>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    @foreach($user->verificationDoc->other_docs as $index => $docPath)
+                                        @php
+                                            $isPdf = Str::endsWith(strtolower($docPath), '.pdf');
+                                        @endphp
+                                        <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                                            @if($isPdf)
+                                                <div class="h-32 bg-gray-50 flex flex-col items-center justify-center border-b border-gray-100">
+                                                    <svg class="w-10 h-10 text-red-400 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                                                    <span class="text-xs font-semibold text-gray-500">PDF Document</span>
+                                                </div>
+                                                <div class="p-3 bg-white text-center">
+                                                    <a href="{{ Storage::url($docPath) }}" target="_blank" class="text-sm font-medium text-blue-600 hover:underline flex items-center justify-center gap-1">
+                                                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                                                        পিডিএফ দেখুন
+                                                    </a>
+                                                </div>
+                                            @else
+                                                <div class="h-40 bg-gray-100 overflow-hidden cursor-pointer" @click="imgOpen = true; currentImg = '{{ Storage::url($docPath) }}'">
+                                                    <img src="{{ Storage::url($docPath) }}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                                                </div>
+                                                <div class="p-2 bg-white text-center border-t border-gray-100">
+                                                    <span class="text-xs font-medium text-gray-500">সার্টিফিকেট {{ $index + 1 }}</span>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
+
                         {{-- Lightbox --}}
                         <div x-show="imgOpen" x-cloak class="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4">
                             <button @click="imgOpen = false" class="absolute top-4 right-4 text-white hover:text-gray-300 p-2">
