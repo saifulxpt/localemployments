@@ -36,31 +36,36 @@ class DummyDataSeeder extends Seeder
             $district = $districts->random();
             $area = Area::where('district_id', $district->id)->inRandomOrder()->first();
 
-            // Create User
-            $user = User::create([
-                'name' => $name,
-                'phone' => '017000000' . str_pad($index + 10, 2, '0', STR_PAD_LEFT),
-                'password' => Hash::make('12345678'),
-                'role' => 'provider',
-                'district_id' => $district->id,
-                'area_id' => $area ? $area->id : null,
-                'avatar' => null, // Let accessor fallback to ui-avatars
-            ]);
+            // Create or Update User
+            $user = User::updateOrCreate(
+                ['phone' => '017000000' . str_pad($index + 10, 2, '0', STR_PAD_LEFT)],
+                [
+                    'name' => $name,
+                    'password' => Hash::make('12345678'),
+                    'role' => 'provider',
+                    'district_id' => $district->id,
+                    'area_id' => $area ? $area->id : null,
+                    'avatar' => null, // Let accessor fallback to ui-avatars
+                ]
+            );
 
-            // Create Provider Profile
-            ProviderProfile::create([
-                'user_id' => $user->id,
-                'bio' => 'আমি দীর্ঘ ৫ বছর ধরে এই পেশায় কাজ করছি। গ্রাহকের সন্তুষ্টিই আমার মূল লক্ষ্য।',
-                'experience_years' => rand(2, 10),
-                'hourly_rate_min' => rand(300, 500),
-                'hourly_rate_max' => rand(600, 1000),
-                'rating_avg' => mt_rand(40, 50) / 10, // 4.0 to 5.0
-                'total_jobs' => rand(10, 150),
-                'total_reviews' => rand(5, 100),
-                'is_verified' => rand(0, 1) == 1,
-            ]);
+            // Create or Update Provider Profile
+            ProviderProfile::updateOrCreate(
+                ['user_id' => $user->id],
+                [
+                    'bio' => 'আমি দীর্ঘ ৫ বছর ধরে এই পেশায় কাজ করছি। গ্রাহকের সন্তুষ্টিই আমার মূল লক্ষ্য।',
+                    'experience_years' => rand(2, 10),
+                    'hourly_rate_min' => rand(300, 500),
+                    'hourly_rate_max' => rand(600, 1000),
+                    'rating_avg' => mt_rand(40, 50) / 10, // 4.0 to 5.0
+                    'total_jobs' => rand(10, 150),
+                    'total_reviews' => rand(5, 100),
+                    'is_verified' => rand(0, 1) == 1,
+                ]
+            );
 
-            // Attach 2-3 random skills
+            // Clear old skills and attach 2-3 random skills
+            ProviderSkill::where('user_id', $user->id)->delete();
             $randomSubcategories = $subcategories->random(rand(1, 3));
             foreach ($randomSubcategories as $sub) {
                 ProviderSkill::create([
