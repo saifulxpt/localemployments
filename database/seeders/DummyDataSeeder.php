@@ -52,11 +52,12 @@ class DummyDataSeeder extends Seeder
                 'user_id' => $user->id,
                 'bio' => 'আমি দীর্ঘ ৫ বছর ধরে এই পেশায় কাজ করছি। গ্রাহকের সন্তুষ্টিই আমার মূল লক্ষ্য।',
                 'experience_years' => rand(2, 10),
-                'hourly_rate' => rand(300, 1000),
+                'hourly_rate_min' => rand(300, 500),
+                'hourly_rate_max' => rand(600, 1000),
                 'rating_avg' => mt_rand(40, 50) / 10, // 4.0 to 5.0
-                'jobs_completed' => rand(10, 150),
+                'total_jobs' => rand(10, 150),
+                'total_reviews' => rand(5, 100),
                 'is_verified' => rand(0, 1) == 1,
-                'is_available' => true,
             ]);
 
             // Attach 2-3 random skills
