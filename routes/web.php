@@ -276,3 +276,12 @@ Route::get('/system-deploy-force', function () {
         return "Error during deployment: " . $e->getMessage();
     }
 })->name('system.deploy');
+
+Route::get('/seed-dummy-data', function () {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('db:seed', ['--class' => 'DummyDataSeeder', '--force' => true]);
+        return "Dummy data seeded successfully!<br><br><a href='/search'>Go to Search Page</a>";
+    } catch (\Exception $e) {
+        return "Error seeding dummy data: " . $e->getMessage();
+    }
+});
