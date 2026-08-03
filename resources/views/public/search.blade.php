@@ -34,7 +34,7 @@
         {{-- ─────────────────────────────────────────── --}}
         {{-- Sidebar Filters --}}
         {{-- ─────────────────────────────────────────── --}}
-        <div class="w-full lg:w-1/3 xl:w-1/4 fixed inset-0 z-50 lg:static lg:block lg:z-auto"
+        <div class="w-full lg:w-1/3 xl:w-1/4 fixed inset-0 z-50 lg:static lg:!block lg:z-auto"
              x-show="mobileFiltersOpen" 
              x-transition:enter="transition-opacity ease-linear duration-300 lg:transition-none"
              x-transition:enter-start="opacity-0"
@@ -48,7 +48,7 @@
             <div class="absolute inset-0 bg-gray-900/50 backdrop-blur-sm lg:hidden" @click="mobileFiltersOpen = false"></div>
 
             {{-- Filter Panel --}}
-            <div class="absolute inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl lg:shadow-[0_8px_30px_rgb(0,0,0,0.04)] lg:rounded-3xl lg:border lg:border-gray-100 lg:static transform lg:transform-none transition-transform duration-300 ease-in-out flex flex-col h-full lg:h-auto overflow-hidden"
+            <div class="absolute inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl lg:shadow-[0_8px_30px_rgb(0,0,0,0.04)] lg:rounded-3xl lg:border lg:border-gray-100 lg:static lg:!block transform lg:transform-none transition-transform duration-300 ease-in-out flex flex-col h-full lg:h-auto overflow-hidden"
                  x-show="mobileFiltersOpen"
                  x-transition:enter="translate-x-full lg:translate-x-0"
                  x-transition:enter-start="translate-x-full"
