@@ -78,6 +78,10 @@
             <div class="hidden lg:block relative h-[500px] w-full animate-fade-in">
                 <div class="absolute inset-0 bg-gradient-to-tr from-primary-200/40 to-transparent rounded-[3rem] transform rotate-3 scale-95"></div>
                 
+                {{-- Premium Hero Image --}}
+                <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=800&auto=format&fit=crop" alt="Professional Worker" class="absolute inset-0 w-full h-full object-cover rounded-[3rem] shadow-2xl object-top">
+                <div class="absolute inset-0 bg-gradient-to-t from-primary-900/30 to-transparent rounded-[3rem]"></div>
+                
                 {{-- Floating Card 1 --}}
                 <div class="absolute top-10 right-10 bg-white p-4 rounded-2xl shadow-xl w-64 animate-float" style="animation-delay: 0s;">
                     <div class="flex items-center gap-4">

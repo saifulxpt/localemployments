@@ -7,17 +7,10 @@
     
     {{-- Left Side: Branding / Graphic (Hidden on Mobile) --}}
     <div class="hidden lg:flex lg:w-1/2 relative bg-primary-900 text-white overflow-hidden items-center justify-center p-12">
-        {{-- Decorative Background --}}
-        <div class="absolute inset-0 z-0 opacity-20">
-            <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                <pattern id="grid-pattern-login" width="10" height="10" patternUnits="userSpaceOnUse">
-                    <circle cx="2" cy="2" r="1.5" fill="white"/>
-                </pattern>
-                <rect width="100%" height="100%" fill="url(#grid-pattern-login)"/>
-            </svg>
-        </div>
-        <div class="absolute -top-32 -left-32 w-96 h-96 bg-primary-600 rounded-full blur-3xl opacity-50"></div>
-        <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-emerald-600 rounded-full blur-3xl opacity-50"></div>
+        {{-- Premium Background Image --}}
+        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop" alt="Community working together" class="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-overlay">
+        
+        <div class="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-900/80 to-primary-900/40"></div>
 
         <div class="relative z-10 max-w-lg text-center">
             <div class="w-20 h-20 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 flex items-center justify-center mx-auto mb-8 shadow-2xl">
