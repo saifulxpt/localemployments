@@ -192,6 +192,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/users/{user}', [Admin\UserController::class, 'show'])->name('users.show');
         Route::post('/users/{user}/suspend', [Admin\UserController::class, 'suspend'])->name('users.suspend');
         Route::post('/users/{user}/activate', [Admin\UserController::class, 'activate'])->name('users.activate');
+        Route::post('/users/{user}/verify-otp', [Admin\UserController::class, 'verifyOtp'])->name('users.verify-otp');
+        Route::post('/users/{user}/verify-profile', [Admin\UserController::class, 'verifyProfile'])->name('users.verify-profile');
 
         // Provider Verifications
         Route::get('/verifications', [Admin\ProviderVerificationController::class, 'index'])->name('verifications.index');

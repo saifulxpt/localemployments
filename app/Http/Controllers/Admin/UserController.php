@@ -8,6 +8,8 @@ use App\Models\AdminActivityLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use App\Models\SmsLog;
+
 class UserController extends Controller
 {
     public function index(Request $request)
@@ -25,7 +27,32 @@ class UserController extends Controller
     public function show(User $user)
     {
         $user->load('providerProfile', 'district', 'area', 'providerSkills.subcategory');
-        return view('admin.users.show', compact('user'));
+        
+        $activities = AdminActivityLog::where('model_type', User::class)->where('model_id', $user->id)->latest()->get();
+        $smsLogs = SmsLog::where('phone', $user->phone)->latest()->get();
+        
+        return view('admin.users.show', compact('user', 'activities', 'smsLogs'));
+    }
+
+    public function verifyOtp(User $user)
+    {
+        $user->update(['phone_verified_at' => now()]);
+        AdminActivityLog::record("Manually verified phone number for user #{$user->id} ({$user->phone})", $user);
+        return back()->with('success', 'ফোন নম্বর ম্যানুয়ালি ভেরিফাই করা হয়েছে।');
+    }
+
+    public function verifyProfile(User $user)
+    {
+        if ($user->providerProfile) {
+            $user->providerProfile->update([
+                'is_verified' => true,
+                'verification_status' => 'approved',
+                'verified_at' => now(),
+            ]);
+            AdminActivityLog::record("Manually verified provider profile for user #{$user->id}", $user);
+            return back()->with('success', 'প্রোভাইডার প্রোফাইল ম্যানুয়ালি ভেরিফাই করা হয়েছে।');
+        }
+        return back()->with('error', 'এই ইউজারের কোনো প্রোভাইডার প্রোফাইল নেই।');
     }
 
     public function suspend(User $user)
