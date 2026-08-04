@@ -20,6 +20,18 @@ use App\Http\Controllers\Admin;
 // ─────────────────────────────────────────
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/jobs', [\App\Http\Controllers\Public\PublicJobController::class, 'index'])->name('jobs.index');
+
+// ─────────────────────────────────────────
+// ADMIN SEED ROUTE (one-time, admin only)
+// ─────────────────────────────────────────
+Route::get('/admin/run-seed/demo-jobs', function () {
+    if (!auth()->check() || auth()->user()->role !== 'admin') {
+        abort(403);
+    }
+    \Artisan::call('db:seed', ['--class' => 'PublicJobBoardSeeder', '--force' => true]);
+    return redirect()->route('jobs.index')->with('success', 'Demo jobs seeded successfully!');
+})->middleware('auth');
+
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 Route::get('/services', [ServiceCategoryController::class, 'index'])->name('services.index');
 Route::get('/services/{slug}', [ServiceCategoryController::class, 'show'])->name('services.show');
