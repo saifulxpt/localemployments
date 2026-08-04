@@ -298,6 +298,11 @@ Route::get('/system-deploy-force', function () {
         \Illuminate\Support\Facades\Artisan::call('cache:clear');
         \Illuminate\Support\Facades\Artisan::call('config:clear');
         \Illuminate\Support\Facades\Artisan::call('view:clear');
+
+        // Delete compiled view files directly
+        foreach (glob(storage_path('framework/views/*.php')) as $viewFile) {
+            @unlink($viewFile);
+        }
         
         if (request()->has('redirect')) {
             return redirect(request('redirect'))->with('success', 'Deploy & Artisan Commands Executed Successfully! (Migrated, Seeded & Cleared Caches)');

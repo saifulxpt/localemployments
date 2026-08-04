@@ -7,39 +7,39 @@
 <div class="bg-gray-50/60 py-12 md:py-20">
     <div class="container mx-auto px-4 max-w-6xl">
         
-        {{-- Hero Header with Brand Teal Background --}}
-        <div class="relative overflow-hidden rounded-3xl p-8 md:p-14 mb-12 shadow-2xl text-white" style="background: linear-gradient(135deg, #0f766e 0%, #0d9488 50%, #115e59 100%) !important;">
-            <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full blur-3xl pointer-events-none" style="background: rgba(255, 255, 255, 0.12);"></div>
-            <div class="absolute -bottom-24 -left-24 w-96 h-96 rounded-full blur-3xl pointer-events-none" style="background: rgba(52, 211, 153, 0.15);"></div>
+        {{-- Hero Header with Ultra-Premium Midnight Slate Emerald Teal Gradient --}}
+        <div class="relative overflow-hidden rounded-3xl p-8 md:p-14 mb-12 shadow-2xl border border-emerald-500/20 text-white" style="background: linear-gradient(135deg, #0f172a 0%, #042f2e 50%, #064e3b 100%) !important; color: #ffffff !important;">
+            <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full blur-3xl pointer-events-none" style="background: rgba(13, 148, 136, 0.25);"></div>
+            <div class="absolute -bottom-24 -left-24 w-96 h-96 rounded-full blur-3xl pointer-events-none" style="background: rgba(16, 185, 129, 0.2);"></div>
 
             <div class="grid lg:grid-cols-2 gap-10 items-center relative z-10">
                 <div>
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold mb-6" style="background: rgba(255, 255, 255, 0.18); color: #ffffff !important; border: 1px solid rgba(255, 255, 255, 0.3);">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold mb-6" style="background: rgba(255, 255, 255, 0.12); color: #ffffff !important; border: 1px solid rgba(255, 255, 255, 0.2);">
                         <span class="w-2 h-2 rounded-full animate-pulse" style="background: #34d399;"></span>
                         আমাদের কথা ও স্বপ্ন
                     </div>
                     <h1 class="text-3xl md:text-5xl font-black leading-tight tracking-tight mb-6" style="color: #ffffff !important;">
                         স্থানীয় দক্ষতার সাথে <br>
-                        <span style="color: #a7f3d0 !important;">স্মার্ট সেতুবন্ধন</span>
+                        <span style="color: #34d399 !important;">স্মার্ট সেতুবন্ধন</span>
                     </h1>
-                    <p class="text-base md:text-lg leading-relaxed mb-8 font-semibold" style="color: #ffffff !important;">
+                    <p class="text-base md:text-lg leading-relaxed mb-8 font-medium" style="color: #e2e8f0 !important;">
                         LocalEmployments হলো বাংলাদেশের স্থানীয় কাজের সহজ ও বিশ্বস্ত প্ল্যাটফর্ম। দৈনন্দিন গৃহস্থালি কাজ থেকে শুরু করে টেকনিক্যাল সাপোর্ট—সবকিছুর জন্য সঠিক সময়ে নির্ভরযোগ্য দক্ষ কর্মী খুঁজে পাওয়ার ডিজিটাল সমাধান।
                     </p>
                     <div class="flex flex-wrap gap-4">
-                        <a href="{{ route('register') }}" class="btn px-7 py-3.5 font-bold text-sm shadow-lg" style="background: #ffffff !important; color: #0f766e !important;">আজই যুক্ত হোন</a>
-                        <a href="{{ route('jobs.index') }}" class="btn px-7 py-3.5 font-bold text-sm" style="background: rgba(255, 255, 255, 0.18) !important; color: #ffffff !important; border: 1px solid rgba(255, 255, 255, 0.3);">কাজগুলো দেখুন</a>
+                        <a href="{{ route('register') }}" class="btn px-7 py-3.5 font-bold text-sm shadow-lg hover:opacity-90 transition-all" style="background: #0d9488 !important; color: #ffffff !important;">আজই যুক্ত হোন</a>
+                        <a href="{{ route('jobs.index') }}" class="btn px-7 py-3.5 font-bold text-sm hover:bg-white/20 transition-all" style="background: rgba(255, 255, 255, 0.12) !important; color: #ffffff !important; border: 1px solid rgba(255, 255, 255, 0.25);">কাজগুলো দেখুন</a>
                     </div>
                 </div>
 
                 {{-- Hero Visual Card / Infographic Illustration (Pure White High-Contrast Box) --}}
                 <div class="relative">
-                    <div class="rounded-3xl p-6 md:p-8 shadow-2xl border border-gray-100" style="background: #ffffff !important; color: #111827 !important;">
+                    <div class="rounded-3xl p-6 md:p-8 shadow-2xl border border-gray-100" style="background: #ffffff !important; color: #0f172a !important;">
                         <div class="flex items-center justify-between pb-4 border-b border-gray-100">
                             <div class="flex items-center gap-3">
                                 <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-black text-lg">✓</div>
                                 <div>
-                                    <h4 class="font-bold text-gray-900 text-base" style="color: #111827 !important;">১০০% ভেরিফাইড কর্মী</h4>
-                                    <p class="text-xs text-gray-600 font-bold" style="color: #4b5563 !important;">জাতীয় পরিচয়পত্র (NID) যাচাইকৃত</p>
+                                    <h4 class="font-bold text-gray-900 text-base" style="color: #0f172a !important;">১০০% ভেরিফাইড কর্মী</h4>
+                                    <p class="text-xs text-gray-600 font-bold" style="color: #475569 !important;">জাতীয় পরিচয়পত্র (NID) যাচাইকৃত</p>
                                 </div>
                             </div>
                             <span class="text-xs font-black text-emerald-800 bg-emerald-100 border border-emerald-300 px-3 py-1 rounded-lg">সুরক্ষিত</span>
@@ -47,19 +47,19 @@
 
                         <div class="grid grid-cols-2 gap-4 text-center py-4">
                             <div class="bg-teal-50 rounded-2xl p-4 border border-teal-200">
-                                <div class="text-3xl font-black text-teal-800" style="color: #0f766e !important;">৬৪+</div>
-                                <div class="text-xs text-gray-800 font-bold mt-1" style="color: #1f2937 !important;">জেলায় সেবা</div>
+                                <div class="text-3xl font-black text-teal-800" style="color: #0d9488 !important;">৬৪+</div>
+                                <div class="text-xs text-gray-800 font-bold mt-1" style="color: #1e293b !important;">জেলায় সেবা</div>
                             </div>
                             <div class="bg-emerald-50 rounded-2xl p-4 border border-emerald-200">
-                                <div class="text-3xl font-black text-emerald-800" style="color: #065f46 !important;">২৪/৭</div>
-                                <div class="text-xs text-gray-800 font-bold mt-1" style="color: #1f2937 !important;">গ্রাহক সাপোর্ট</div>
+                                <div class="text-3xl font-black text-emerald-800" style="color: #059669 !important;">২৪/৭</div>
+                                <div class="text-xs text-gray-800 font-bold mt-1" style="color: #1e293b !important;">গ্রাহক সাপোর্ট</div>
                             </div>
                         </div>
 
                         <div class="p-3.5 bg-gray-100 rounded-2xl border border-gray-300 flex items-center gap-3">
-                            <div class="w-9 h-9 rounded-xl text-white flex items-center justify-center font-bold text-sm shrink-0" style="background: #0f766e !important; color: #ffffff !important;">৳</div>
-                            <div class="text-xs text-gray-800 font-semibold leading-relaxed" style="color: #1f2937 !important;">
-                                <strong class="font-black" style="color: #111827 !important;">স্বচ্ছ পারিশ্রমিক:</strong> মধ্যস্বত্বভোগী ছাড়াই সরাসরি কর্মীর সাথে চুক্তি।
+                            <div class="w-9 h-9 rounded-xl text-white flex items-center justify-center font-bold text-sm shrink-0" style="background: #0d9488 !important; color: #ffffff !important;">৳</div>
+                            <div class="text-xs text-gray-800 font-semibold leading-relaxed" style="color: #1e293b !important;">
+                                <strong class="font-black" style="color: #0f172a !important;">স্বচ্ছ পারিশ্রমিক:</strong> মধ্যস্বত্বভোগী ছাড়াই সরাসরি কর্মীর সাথে চুক্তি।
                             </div>
                         </div>
                     </div>
@@ -69,7 +69,7 @@
 
         {{-- Infographic Features Grid --}}
         <div class="text-center max-w-2xl mx-auto mb-12">
-            <span class="text-primary-800 font-black uppercase text-xs tracking-widest bg-teal-50 px-3.5 py-1.5 rounded-lg border border-teal-200" style="color: #0f766e !important;">কেন আমরা সেরা?</span>
+            <span class="text-teal-800 font-black uppercase text-xs tracking-widest bg-teal-50 px-3.5 py-1.5 rounded-lg border border-teal-200" style="color: #0d9488 !important;">কেন আমরা সেরা?</span>
             <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mt-4">আমাদের ইনফোগ্রাফিক ও মূল বৈশিষ্ট্যসমূহ</h2>
             <p class="text-gray-600 text-sm md:text-base mt-2 font-medium">আমরা নিশ্চিত করি সেবাগ্রহীতা ও সেবা প্রদানকারী উভয়ের নিরাপদ ভবিষ্যৎ</p>
         </div>
@@ -131,14 +131,14 @@
         </div>
 
         {{-- CTA Banner --}}
-        <div class="text-center rounded-3xl p-8 md:p-12 shadow-lg text-white" style="background: linear-gradient(135deg, #0f766e 0%, #0d9488 100%) !important;">
+        <div class="text-center rounded-3xl p-8 md:p-12 shadow-lg text-white" style="background: linear-gradient(135deg, #0f172a 0%, #042f2e 50%, #064e3b 100%) !important;">
             <h2 class="text-2xl md:text-3xl font-extrabold mb-4" style="color: #ffffff !important;">আজই যুক্ত হোন আমাদের সাথে</h2>
-            <p class="text-sm md:text-base max-w-xl mx-auto mb-8 font-medium" style="color: #e6fffa !important;">
+            <p class="text-sm md:text-base max-w-xl mx-auto mb-8 font-medium" style="color: #cbd5e1 !important;">
                 আপনার প্রয়োজন যাই হোক না কেন, সমাধান আমাদের কাছেই আছে।
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="{{ route('register') }}" class="btn px-8 py-3.5 font-bold text-sm shadow-md" style="background: #ffffff !important; color: #0f766e !important;">কাজ পোস্ট করুন</a>
-                <a href="{{ route('register') }}?role=provider" class="btn px-8 py-3.5 font-bold text-sm shadow-md" style="background: #042f2e !important; color: #ffffff !important; border: 1px solid rgba(255, 255, 255, 0.3);">কর্মী হিসেবে যুক্ত হোন</a>
+                <a href="{{ route('register') }}" class="btn px-8 py-3.5 font-bold text-sm shadow-md" style="background: #0d9488 !important; color: #ffffff !important;">কাজ পোস্ট করুন</a>
+                <a href="{{ route('register') }}?role=provider" class="btn px-8 py-3.5 font-bold text-sm shadow-md" style="background: rgba(255, 255, 255, 0.12) !important; color: #ffffff !important; border: 1px solid rgba(255, 255, 255, 0.25);">কর্মী হিসেবে যুক্ত হোন</a>
             </div>
         </div>
 

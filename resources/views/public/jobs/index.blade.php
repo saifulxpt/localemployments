@@ -10,20 +10,20 @@
         {{-- ─────────────────────────────────────────── --}}
         {{-- Hero Header Banner --}}
         {{-- ─────────────────────────────────────────── --}}
-        <div class="relative overflow-hidden rounded-3xl p-6 sm:p-10 mb-8 sm:mb-10 shadow-xl border border-teal-600/30 text-white" style="background: linear-gradient(135deg, #0d9488 0%, #0f766e 50%, #115e59 100%) !important; color: #ffffff !important;">
+        <div class="relative overflow-hidden rounded-3xl p-6 sm:p-10 mb-8 sm:mb-10 shadow-2xl border border-emerald-500/20 text-white" style="background: linear-gradient(135deg, #0f172a 0%, #042f2e 50%, #064e3b 100%) !important; color: #ffffff !important;">
             {{-- Glowing Background Orbs --}}
-            <div class="absolute -top-24 -right-24 w-80 h-80 rounded-full blur-3xl pointer-events-none" style="background: rgba(255, 255, 255, 0.15);"></div>
-            <div class="absolute -bottom-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none" style="background: rgba(52, 211, 153, 0.2);"></div>
+            <div class="absolute -top-24 -right-24 w-80 h-80 rounded-full blur-3xl pointer-events-none" style="background: rgba(13, 148, 136, 0.25);"></div>
+            <div class="absolute -bottom-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none" style="background: rgba(16, 185, 129, 0.2);"></div>
 
             <div class="relative z-10 max-w-3xl">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/20 text-xs font-semibold mb-4" style="background: rgba(255, 255, 255, 0.15); color: #ccfbf1;">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-4" style="background: rgba(255, 255, 255, 0.12); color: #ffffff !important; border: 1px solid rgba(255, 255, 255, 0.2);">
                     <span class="w-2 h-2 rounded-full animate-pulse" style="background: #34d399;"></span>
                     উন্মুক্ত লোকাল জব মার্কেটপ্লেস
                 </div>
                 <h1 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight mb-4 leading-tight" style="color: #ffffff !important;">
-                    আপনার আশেপাশের <span style="color: #a7f3d0 !important;">উন্মুক্ত কাজসমূহ</span>
+                    আপনার আশেপাশের <span style="color: #34d399 !important;">উন্মুক্ত কাজসমূহ</span>
                 </h1>
-                <p class="text-base sm:text-lg leading-relaxed mb-6 font-medium" style="color: #e6fffa !important;">
+                <p class="text-base sm:text-lg leading-relaxed mb-6 font-medium" style="color: #e2e8f0 !important;">
                     মানুষ তাদের প্রাত্যহিক বিভিন্ন কাজের জন্য দক্ষ প্রোভাইডার খুঁজছেন। সরাসরি বিড করুন এবং আপনার অভিজ্ঞতা দিয়ে আজই সার্ভিস দিন।
                 </p>
 
