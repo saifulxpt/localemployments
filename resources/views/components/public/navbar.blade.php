@@ -138,11 +138,30 @@
         <a href="{{ route('services.index') }}" class="block py-2 text-sm {{ active_class('services.*', 'text-primary-700 font-bold bg-primary-50 px-3 rounded-lg', 'text-gray-700 hover:text-primary-600 px-3') }}">Services</a>
         <a href="{{ route('search') }}" class="block py-2 text-sm {{ active_class('search', 'text-primary-700 font-bold bg-primary-50 px-3 rounded-lg', 'text-gray-700 hover:text-primary-600 px-3') }}">Search Workers</a>
         <a href="{{ route('about') }}" class="block py-2 text-sm {{ active_class('about', 'text-primary-700 font-bold bg-primary-50 px-3 rounded-lg', 'text-gray-700 hover:text-primary-600 px-3') }}">About Us</a>
-        @guest
+        @auth
+            <div class="pt-2 mt-2 border-t border-gray-100 space-y-1">
+                <div class="flex items-center gap-2 px-3 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                    {{ auth()->user()->name }}
+                </div>
+                @if(auth()->user()->isSeeker())
+                    <a href="{{ route('seeker.dashboard') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg">Dashboard</a>
+                    <a href="{{ route('seeker.profile.edit') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg">Profile</a>
+                @elseif(auth()->user()->isProvider())
+                    <a href="{{ route('provider.dashboard') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg">Dashboard</a>
+                    <a href="{{ route('provider.profile.edit') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg">Profile</a>
+                @elseif(auth()->user()->isAdmin())
+                    <a href="{{ route('admin.dashboard') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg">Admin Panel</a>
+                @endif
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="w-full text-left px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg">Logout</button>
+                </form>
+            </div>
+        @else
             <div class="pt-2 flex gap-2">
                 <a href="{{ route('login') }}" class="btn btn-outline flex-1 text-center text-sm">Login</a>
                 <a href="{{ route('register') }}" class="btn btn-primary flex-1 text-center text-sm">Register</a>
             </div>
-        @endguest
+        @endauth
     </div>
 </nav>

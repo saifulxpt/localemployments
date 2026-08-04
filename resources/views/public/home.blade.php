@@ -74,8 +74,8 @@
                 </div>
             </div>
 
-            {{-- Right Composition (Floating Cards) --}}
-            <div class="hidden lg:block relative h-[500px] w-full animate-fade-in">
+            {{-- Right Composition (Floating Cards & Infographics) --}}
+            <div class="hidden lg:block relative h-[520px] w-full animate-fade-in">
                 <div class="absolute inset-0 bg-gradient-to-tr from-primary-200/40 to-transparent rounded-[3rem] transform rotate-3 scale-95"></div>
                 
                 {{-- Premium Hero Image --}}
@@ -84,7 +84,47 @@
                     $isExternal = filter_var($heroImage, FILTER_VALIDATE_URL) !== false;
                 @endphp
                 <img src="{{ $isExternal ? $heroImage : asset($heroImage) }}" alt="Bangladesh Local Worker" class="absolute inset-0 w-full h-full object-cover rounded-[3rem] shadow-2xl object-center">
-                <div class="absolute inset-0 bg-gradient-to-t from-primary-900/40 to-transparent rounded-[3rem]"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-primary-950/60 via-transparent to-black/20 rounded-[3rem]"></div>
+
+                {{-- Floating Infographic Card 1: Verified Shield --}}
+                <div class="absolute top-6 left-6 bg-white/90 backdrop-blur-md p-3.5 rounded-2xl shadow-xl border border-white/50 flex items-center gap-3 transform -rotate-2 hover:rotate-0 transition-transform">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center font-bold text-lg shadow-md shadow-emerald-500/30">
+                        ✓
+                    </div>
+                    <div>
+                        <div class="text-xs font-black text-gray-900">১০০% ভেরিফাইড প্রোভাইডার</div>
+                        <div class="text-[11px] font-semibold text-emerald-600 flex items-center gap-1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
+                            NID যাচাইকৃত কর্মী
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Floating Infographic Card 2: Rating Stack --}}
+                <div class="absolute bottom-8 right-6 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-2xl border border-white/60 flex items-center gap-3 transform rotate-1 hover:rotate-0 transition-transform">
+                    <div class="flex -space-x-2 overflow-hidden">
+                        <span class="inline-block h-8 w-8 rounded-full ring-2 ring-white bg-primary-600 text-white text-xs font-bold flex items-center justify-center">R</span>
+                        <span class="inline-block h-8 w-8 rounded-full ring-2 ring-white bg-emerald-600 text-white text-xs font-bold flex items-center justify-center">S</span>
+                        <span class="inline-block h-8 w-8 rounded-full ring-2 ring-white bg-blue-600 text-white text-xs font-bold flex items-center justify-center">M</span>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-1 text-amber-500 font-bold text-sm">
+                            ★ ৪.৯ / ৫.০
+                        </div>
+                        <div class="text-[11px] font-medium text-gray-500">১,২০০+ সফল গ্রাহক মতামত</div>
+                    </div>
+                </div>
+
+                {{-- Floating Infographic Card 3: Instant Bidding --}}
+                <div class="absolute bottom-8 left-6 bg-gray-900/90 backdrop-blur-md text-white p-3.5 rounded-2xl shadow-2xl border border-white/20 flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-primary-500 text-white flex items-center justify-center">
+                        ⚡
+                    </div>
+                    <div>
+                        <div class="text-xs font-bold text-white">তাত্ক্ষণিক বিড রেসপন্স</div>
+                        <div class="text-[11px] text-gray-300">গড় সময়: ৫-১০ মিনিট</div>
+                    </div>
+                </div>
             </div>
 
         </div>

@@ -35,7 +35,7 @@
                class="fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-gray-100 transition-transform duration-300 lg:static lg:translate-x-0 flex flex-col">
             
             {{-- Logo --}}
-            <div class="h-20 flex items-center px-6 shrink-0">
+            <div class="h-20 flex items-center justify-between px-6 shrink-0 border-b border-gray-100 lg:border-none">
                 <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 font-extrabold text-2xl text-gray-900 tracking-tight">
                     @if(setting('site_logo'))
                         <img src="{{ asset(ltrim(setting('site_logo'), '/')) }}" alt="Logo" class="h-10 max-w-[180px] object-contain">
@@ -46,6 +46,9 @@
                         <span>Local<span class="text-primary-600">Admin</span></span>
                     @endif
                 </a>
+                <button @click="sidebarOpen = false" class="lg:hidden text-gray-500 hover:text-gray-700 p-1">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
             </div>
 
             @php

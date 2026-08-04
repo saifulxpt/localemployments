@@ -5,16 +5,16 @@
 @section('content')
 <div class="max-w-5xl mx-auto space-y-6">
 
-    <div class="flex items-center justify-between mb-4">
-        <a href="{{ route('seeker.job-requests.index') }}" class="text-gray-500 hover:text-primary-600 transition-colors flex items-center gap-1">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+        <a href="{{ route('seeker.job-requests.index') }}" class="text-gray-500 hover:text-primary-600 transition-colors flex items-center gap-1 text-sm font-medium">
             <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
             সব জব রিকোয়েস্ট
         </a>
-        <div class="flex gap-2">
+        <div class="flex gap-2 w-full sm:w-auto">
             @if($jobRequest->status === 'open')
-                <form action="{{ route('seeker.job-requests.cancel', $jobRequest->id) }}" method="POST" onsubmit="return confirm('আপনি কি নিশ্চিত যে এই রিকোয়েস্টটি বাতিল করতে চান?')">
+                <form action="{{ route('seeker.job-requests.cancel', $jobRequest->id) }}" method="POST" onsubmit="return confirm('আপনি কি নিশ্চিত যে এই রিকোয়েস্টটি বাতিল করতে চান?')" class="w-full sm:w-auto">
                     @csrf
-                    <button type="submit" class="btn btn-outline text-red-500 hover:bg-red-50 border-red-200 btn-sm">রিকোয়েস্ট বাতিল করুন</button>
+                    <button type="submit" class="btn btn-outline text-red-500 hover:bg-red-50 border-red-200 btn-sm w-full sm:w-auto">রিকোয়েস্ট বাতিল করুন</button>
                 </form>
             @endif
         </div>
@@ -103,12 +103,12 @@
                                 
                                 <div class="flex flex-col md:flex-row justify-between gap-4 mb-4">
                                     <div class="flex gap-4">
-                                        <a href="{{ route('public.providers.show', $bid->provider->id) }}">
+                                        <a href="{{ route('providers.show', $bid->provider->id) }}">
                                             <img src="{{ $bid->provider->avatar_url }}" class="w-12 h-12 rounded-full object-cover border border-gray-200 bg-white">
                                         </a>
                                         <div>
                                             <h3 class="font-bold text-gray-900 text-lg flex items-center gap-2">
-                                                <a href="{{ route('public.providers.show', $bid->provider->id) }}" class="hover:text-primary-600">{{ $bid->provider->name }}</a>
+                                                <a href="{{ route('providers.show', $bid->provider->id) }}" class="hover:text-primary-600">{{ $bid->provider->name }}</a>
                                                 @if($bid->provider->providerProfile?->is_verified)
                                                     <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20" title="Verified"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
                                                 @endif

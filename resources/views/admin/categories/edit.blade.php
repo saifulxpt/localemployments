@@ -31,7 +31,7 @@
                     <div class="mt-2 flex items-center gap-2">
                         <span class="text-xs text-gray-500">বর্তমান আইকন:</span>
                         <div class="w-8 h-8 rounded bg-gray-100 flex items-center justify-center text-xl">
-                            {!! $category->icon !!}
+                            {!! category_icon($category->icon, 'w-6 h-6') !!}
                         </div>
                     </div>
                     @error('icon') <span class="text-xs text-red-500 mt-1 block">{{ $message }}</span> @enderror

@@ -90,7 +90,8 @@ class SmsService
      */
     public function sendBookingConfirmation(\App\Models\Booking $booking, \App\Models\User $user): void
     {
-        $message = "LocalEmployments: আপনার বুকিং {$booking->booking_ref} নিশ্চিত হয়েছে। তারিখ: {$booking->service_date->format('d M Y')}।";
+        $serviceDate = $booking->service_date ? $booking->service_date->format('d M Y') : '';
+        $message = "LocalEmployments: আপনার বুকিং {$booking->booking_ref} নিশ্চিত হয়েছে। তারিখ: {$serviceDate}।";
         $this->send($user->phone, $message, 'booking');
     }
 

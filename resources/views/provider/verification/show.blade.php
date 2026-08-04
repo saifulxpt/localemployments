@@ -176,7 +176,7 @@
                 </div>
 
                 <div class="border-t border-gray-100 pt-6 flex justify-end">
-                    <button type="submit" class="btn btn-primary px-8">যাচাইকরণের জন্য জমা দিন</button>
+                    <button type="submit" class="btn btn-primary px-8 w-full md:w-auto">যাচাইকরণের জন্য জমা দিন</button>
                 </div>
             </form>
         </div>

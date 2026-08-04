@@ -26,7 +26,7 @@
     <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
         <div class="p-4 bg-gray-50/50 border-b border-gray-200 flex items-center gap-3">
             <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl">
-                {!! $category->icon !!}
+                {!! category_icon($category->icon, 'w-6 h-6') !!}
             </div>
             <div>
                 <h3 class="font-bold text-gray-900">{{ $category->name }}</h3>

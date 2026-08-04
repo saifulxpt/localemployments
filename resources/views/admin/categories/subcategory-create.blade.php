@@ -16,7 +16,7 @@
         <div class="mb-6 p-4 bg-gray-50 rounded-xl border border-gray-100 flex items-center gap-3">
             <div class="text-gray-500 text-sm">মূল ক্যাটাগরি:</div>
             <div class="font-bold text-gray-900 flex items-center gap-2">
-                {!! $category->icon !!} {{ $category->name }}
+                {!! category_icon($category->icon, 'w-5 h-5') !!} {{ $category->name }}
             </div>
         </div>
 

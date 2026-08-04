@@ -8,7 +8,7 @@
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
         <div>
             <div class="flex items-center gap-2 mb-1">
-                <a href="{{ route('locations.index') }}" class="text-sm text-gray-500 hover:text-blue-600 transition-colors">লোকেশন ম্যানেজমেন্ট</a>
+                <a href="{{ route('admin.locations.index') }}" class="text-sm text-gray-500 hover:text-blue-600 transition-colors">লোকেশন ম্যানেজমেন্ট</a>
                 <span class="text-gray-400">/</span>
                 <span class="text-sm font-semibold text-gray-900">{{ $district->bn_name }}</span>
             </div>

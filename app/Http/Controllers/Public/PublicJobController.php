@@ -26,6 +26,14 @@ class PublicJobController extends Controller
             $query->where('district_id', $request->district);
         }
 
+        if ($request->filled('q')) {
+            $keyword = $request->q;
+            $query->where(function ($sq) use ($keyword) {
+                $sq->where('title', 'like', "%{$keyword}%")
+                   ->orWhere('description', 'like', "%{$keyword}%");
+            });
+        }
+
         $jobs = $query->latest()->paginate(10)->withQueryString();
         
         $categories = ServiceCategory::active()->get();

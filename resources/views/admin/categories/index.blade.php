@@ -37,7 +37,7 @@
                         <tr class="hover:bg-gray-50 transition-colors">
                             <td class="px-6 py-4 text-center">
                                 <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mx-auto text-xl">
-                                    {!! $category->icon !!}
+                                    {!! category_icon($category->icon, 'w-6 h-6') !!}
                                 </div>
                             </td>
                             <td class="px-6 py-4">

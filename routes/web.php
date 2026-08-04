@@ -280,7 +280,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 Route::get('/system-deploy-force', function () {
     try {
         \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
-        $migrateOutput = \Illuminate\Support\Facades\Artisan::output();
+        \Illuminate\Support\Facades\Artisan::call('db:seed', ['--class' => 'ServiceCategorySeeder', '--force' => true]);
         
         try {
             \Illuminate\Support\Facades\Artisan::call('storage:link', ['--force' => true]);
@@ -289,19 +289,28 @@ Route::get('/system-deploy-force', function () {
         }
 
         \Illuminate\Support\Facades\Artisan::call('optimize:clear');
-        $optimizeOutput = \Illuminate\Support\Facades\Artisan::output();
+        \Illuminate\Support\Facades\Artisan::call('cache:clear');
+        \Illuminate\Support\Facades\Artisan::call('config:clear');
+        \Illuminate\Support\Facades\Artisan::call('view:clear');
         
-        return "Deployment successful!<br><br><b>Migration:</b><br>" . nl2br($migrateOutput) . "<br><br><b>Optimize:</b><br>" . nl2br($optimizeOutput) . "<br><br><a href='/'>Go to Home</a> | <a href='/admin/dashboard'>Go to Admin Dashboard</a>";
+        if (request()->has('redirect')) {
+            return redirect(request('redirect'))->with('success', 'Deploy & Artisan Commands Executed Successfully! (Migrated, Seeded & Cleared Caches)');
+        }
+
+        return redirect()->back()->with('success', 'Deploy & Artisan Commands Executed Successfully! (Migrated, Seeded & Cleared Caches)');
     } catch (\Exception $e) {
-        return "Error during deployment: " . $e->getMessage();
+        return redirect()->back()->with('error', "Deploy Error: " . $e->getMessage());
     }
 })->name('system.deploy');
 
 Route::get('/seed-dummy-data', function () {
+    if (!auth()->check() || auth()->user()->role !== 'admin') {
+        abort(403, 'Unauthorized action.');
+    }
     try {
         \Illuminate\Support\Facades\Artisan::call('db:seed', ['--class' => 'DummyDataSeeder', '--force' => true]);
         return "Dummy data seeded successfully!<br><br><a href='/search'>Go to Search Page</a>";
     } catch (\Exception $e) {
         return "Error seeding dummy data: " . $e->getMessage();
     }
-});
+})->middleware('auth');
