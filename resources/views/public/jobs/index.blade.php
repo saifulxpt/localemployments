@@ -10,20 +10,20 @@
         {{-- ─────────────────────────────────────────── --}}
         {{-- Hero Header Banner --}}
         {{-- ─────────────────────────────────────────── --}}
-        <div class="relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-primary-950 text-white rounded-3xl p-6 sm:p-10 mb-8 sm:mb-10 shadow-xl shadow-gray-900/10">
+        <div class="relative overflow-hidden bg-gradient-to-br from-primary-800 via-primary-700 to-emerald-800 text-white rounded-3xl p-6 sm:p-10 mb-8 sm:mb-10 shadow-xl shadow-primary-900/20 border border-primary-600/30">
             {{-- Glowing Background Orbs --}}
-            <div class="absolute -top-24 -right-24 w-80 h-80 bg-primary-500/20 rounded-full blur-3xl pointer-events-none"></div>
-            <div class="absolute -bottom-24 -left-24 w-80 h-80 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -top-24 -right-24 w-80 h-80 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -left-24 w-80 h-80 bg-emerald-400/20 rounded-full blur-3xl pointer-events-none"></div>
 
             <div class="relative z-10 max-w-3xl">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs font-semibold text-primary-300 mb-4">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-xs font-semibold text-emerald-200 mb-4">
+                    <span class="w-2 h-2 rounded-full bg-emerald-300 animate-pulse"></span>
                     উন্মুক্ত লোকাল জব মার্কেটপ্লেস
                 </div>
                 <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4 leading-tight">
-                    আপনার আশেপাশের <span class="bg-gradient-to-r from-primary-400 to-emerald-300 bg-clip-text text-transparent">উন্মুক্ত কাজসমূহ</span>
+                    আপনার আশেপাশের <span class="text-emerald-300">উন্মুক্ত কাজসমূহ</span>
                 </h1>
-                <p class="text-gray-300 text-base sm:text-lg leading-relaxed mb-6">
+                <p class="text-primary-100 text-base sm:text-lg leading-relaxed mb-6 font-medium">
                     মানুষ তাদের প্রাত্যহিক বিভিন্ন কাজের জন্য দক্ষ প্রোভাইডার খুঁজছেন। সরাসরি বিড করুন এবং আপনার অভিজ্ঞতা দিয়ে আজই সার্ভিস দিন।
                 </p>
 

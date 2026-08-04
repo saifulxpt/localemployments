@@ -8,7 +8,7 @@
     <div class="container mx-auto px-4 max-w-6xl">
         
         {{-- Hero Header with High-Contrast Card --}}
-        <div class="relative overflow-hidden bg-gradient-to-br from-gray-900 via-primary-950 to-gray-900 text-white rounded-3xl p-8 md:p-14 mb-12 shadow-xl shadow-gray-900/10">
+        <div class="relative overflow-hidden bg-gradient-to-br from-primary-800 via-primary-700 to-emerald-800 text-white rounded-3xl p-8 md:p-14 mb-12 shadow-xl shadow-primary-900/20 border border-primary-600/30">
             <div class="absolute -top-24 -right-24 w-96 h-96 bg-primary-500/20 rounded-full blur-3xl pointer-events-none"></div>
             <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none"></div>
 

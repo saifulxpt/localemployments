@@ -20,7 +20,7 @@
     </div>
 
     {{-- BulkSMSBD Real-Time Balance Card --}}
-    <div class="bg-gradient-to-r from-teal-800 via-teal-700 to-emerald-900 text-white rounded-3xl p-6 md:p-8 shadow-xl relative overflow-hidden">
+    <div class="bg-gradient-to-r from-primary-800 via-primary-700 to-emerald-800 text-white rounded-3xl p-6 md:p-8 shadow-xl border border-primary-600/30 relative overflow-hidden">
         <div class="absolute -top-12 -right-12 w-48 h-48 bg-white/10 rounded-full blur-2xl"></div>
 
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative z-10">
