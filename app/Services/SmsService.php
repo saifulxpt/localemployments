@@ -20,6 +20,62 @@ class SmsService
     }
 
     /**
+     * Fetch real-time BulkSMSBD balance.
+     */
+    public function getBalance(): array
+    {
+        if (empty($this->apiKey)) {
+            return [
+                'success' => false,
+                'balance' => '0.00',
+                'message' => 'API Key সেট করা হয়নি (Dev Mode)',
+            ];
+        }
+
+        try {
+            $response = Http::get('http://bulksmsbd.net/api/getBalanceApi', [
+                'api_key' => $this->apiKey,
+            ]);
+
+            $body = $response->json();
+
+            if (isset($body['balance'])) {
+                return [
+                    'success' => true,
+                    'balance' => number_format((float) $body['balance'], 2),
+                    'message' => 'সফলভাবে ব্যালেন্স পাওয়ার তথ্য এসেছে',
+                    'raw'     => $body,
+                ];
+            }
+
+            if ($response->successful()) {
+                $rawBody = trim($response->body());
+                if (is_numeric($rawBody)) {
+                    return [
+                        'success' => true,
+                        'balance' => number_format((float) $rawBody, 2),
+                        'message' => 'সফলভাবে ব্যালেন্স পাওয়া গেছে',
+                    ];
+                }
+            }
+
+            return [
+                'success' => false,
+                'balance' => '0.00',
+                'message' => $body['message'] ?? 'ব্যালেন্স আনা সম্ভব হয়নি।',
+                'raw'     => $body ?? $response->body(),
+            ];
+        } catch (\Throwable $e) {
+            Log::error("BulkSMSBD Balance check error: " . $e->getMessage());
+            return [
+                'success' => false,
+                'balance' => '0.00',
+                'message' => 'এরর: ' . $e->getMessage(),
+            ];
+        }
+    }
+
+    /**
      * Send SMS to a phone number.
      */
     public function send(string $phone, string $message, string $type = 'notification'): bool

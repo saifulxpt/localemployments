@@ -265,6 +265,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Settings
         Route::get('/settings', [Admin\SettingController::class, 'index'])->name('settings.index');
         Route::post('/settings', [Admin\SettingController::class, 'update'])->name('settings.update');
+        Route::get('/settings/api', [Admin\SettingController::class, 'apiIndex'])->name('settings.api');
+        Route::post('/settings/api', [Admin\SettingController::class, 'updateApi'])->name('settings.api.update');
+        Route::get('/settings/api/check-sms-balance', [Admin\SettingController::class, 'checkSmsBalance'])->name('settings.api.sms-balance');
 
         // Contact Messages
         Route::get('/contact-messages', [Admin\ContactMessageController::class, 'index'])->name('contact-messages.index');
