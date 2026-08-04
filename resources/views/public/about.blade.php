@@ -7,59 +7,59 @@
 <div class="bg-gray-50/60 py-12 md:py-20">
     <div class="container mx-auto px-4 max-w-6xl">
         
-        {{-- Hero Header with Graphic Overlay --}}
-        <div class="relative overflow-hidden bg-gradient-to-br from-gray-900 via-primary-950 to-emerald-950 text-white rounded-3xl p-8 md:p-16 mb-12 shadow-xl shadow-gray-900/10">
+        {{-- Hero Header with High-Contrast Card --}}
+        <div class="relative overflow-hidden bg-gradient-to-br from-gray-900 via-primary-950 to-gray-900 text-white rounded-3xl p-8 md:p-14 mb-12 shadow-xl shadow-gray-900/10">
             <div class="absolute -top-24 -right-24 w-96 h-96 bg-primary-500/20 rounded-full blur-3xl pointer-events-none"></div>
             <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
             <div class="grid lg:grid-cols-2 gap-10 items-center relative z-10">
                 <div>
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs font-semibold text-primary-300 mb-6">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-bold text-emerald-300 mb-6">
                         <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                         আমাদের কথা ও স্বপ্ন
                     </div>
                     <h1 class="text-3xl md:text-5xl font-black text-white leading-tight tracking-tight mb-6">
                         স্থানীয় দক্ষতার সাথে <br>
-                        <span class="bg-gradient-to-r from-primary-400 to-emerald-300 bg-clip-text text-transparent">স্মার্ট সেতুবন্ধন</span>
+                        <span class="text-emerald-400">স্মার্ট সেতুবন্ধন</span>
                     </h1>
-                    <p class="text-gray-300 text-base md:text-lg leading-relaxed mb-8">
+                    <p class="text-gray-200 text-base md:text-lg leading-relaxed mb-8 font-medium">
                         LocalEmployments হলো বাংলাদেশের স্থানীয় কাজের সহজ ও বিশ্বস্ত প্ল্যাটফর্ম। দৈনন্দিন গৃহস্থালি কাজ থেকে শুরু করে টেকনিক্যাল সাপোর্ট—সবকিছুর জন্য সঠিক সময়ে নির্ভরযোগ্য দক্ষ কর্মী খুঁজে পাওয়ার ডিজিটাল সমাধান।
                     </p>
                     <div class="flex flex-wrap gap-4">
-                        <a href="{{ route('register') }}" class="btn btn-primary px-6 py-3 font-bold text-sm">আজই যুক্ত হোন</a>
-                        <a href="{{ route('jobs.index') }}" class="btn bg-white/10 hover:bg-white/20 text-white border border-white/20 px-6 py-3 font-bold text-sm">কাজগুলো দেখুন</a>
+                        <a href="{{ route('register') }}" class="btn btn-primary px-7 py-3.5 font-bold text-sm shadow-lg">আজই যুক্ত হোন</a>
+                        <a href="{{ route('jobs.index') }}" class="btn bg-white/10 hover:bg-white/20 text-white border border-white/30 px-7 py-3.5 font-bold text-sm">কাজগুলো দেখুন</a>
                     </div>
                 </div>
 
-                {{-- Hero Visual Card / Infographic Illustration --}}
+                {{-- Hero Visual Card / Infographic Illustration (High Contrast White Card) --}}
                 <div class="relative">
-                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/15 shadow-2xl space-y-4">
-                        <div class="flex items-center justify-between pb-4 border-b border-white/10">
+                    <div class="bg-white rounded-3xl p-6 md:p-8 shadow-2xl text-gray-900 border border-gray-100">
+                        <div class="flex items-center justify-between pb-4 border-b border-gray-100">
                             <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-300 flex items-center justify-center font-extrabold">✓</div>
+                                <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-extrabold text-lg">✓</div>
                                 <div>
-                                    <h4 class="font-bold text-white text-sm">১০০% ভেরিফাইড কর্মী</h4>
-                                    <p class="text-xs text-gray-400">জাতীয় পরিচয়পত্র (NID) যাচাইকৃত</p>
+                                    <h4 class="font-bold text-gray-900 text-base">১০০% ভেরিফাইড কর্মী</h4>
+                                    <p class="text-xs text-gray-500 font-medium">জাতীয় পরিচয়পত্র (NID) যাচাইকৃত</p>
                                 </div>
                             </div>
-                            <span class="text-xs font-bold text-emerald-400 bg-emerald-500/20 px-2.5 py-1 rounded-md">সুরক্ষিত</span>
+                            <span class="text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-lg">সুরক্ষিত</span>
                         </div>
 
-                        <div class="grid grid-cols-2 gap-3 text-center pt-2">
-                            <div class="bg-white/5 rounded-xl p-3 border border-white/10">
-                                <div class="text-2xl font-black text-primary-400">৬৪+</div>
-                                <div class="text-xs text-gray-300 font-medium">জেলায় সেবা</div>
+                        <div class="grid grid-cols-2 gap-4 text-center py-4">
+                            <div class="bg-primary-50/60 rounded-2xl p-4 border border-primary-100">
+                                <div class="text-3xl font-black text-primary-700">৬৪+</div>
+                                <div class="text-xs text-gray-600 font-bold mt-1">জেলায় সেবা</div>
                             </div>
-                            <div class="bg-white/5 rounded-xl p-3 border border-white/10">
-                                <div class="text-2xl font-black text-emerald-400">২৪/৭</div>
-                                <div class="text-xs text-gray-300 font-medium">গ্রাহক সাপোর্ট</div>
+                            <div class="bg-emerald-50/60 rounded-2xl p-4 border border-emerald-100">
+                                <div class="text-3xl font-black text-emerald-700">২৪/৭</div>
+                                <div class="text-xs text-gray-600 font-bold mt-1">গ্রাহক সাপোর্ট</div>
                             </div>
                         </div>
 
-                        <div class="p-3 bg-white/5 rounded-xl border border-white/10 flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-full bg-accent-500/20 text-accent-300 flex items-center justify-center font-bold text-xs">৳</div>
-                            <div class="text-xs text-gray-300">
-                                <strong class="text-white">স্বচ্ছ পারিশ্রমিক:</strong> মধ্যস্বত্বভোগী ছাড়াই সরাসরি কর্মীর সাথে চুক্তি।
+                        <div class="p-3.5 bg-gray-50 rounded-2xl border border-gray-200/80 flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-sm shrink-0">৳</div>
+                            <div class="text-xs text-gray-700 font-medium leading-relaxed">
+                                <strong class="text-gray-900 font-bold">স্বচ্ছ পারিশ্রমিক:</strong> মধ্যস্বত্বভোগী ছাড়াই সরাসরি কর্মীর সাথে চুক্তি।
                             </div>
                         </div>
                     </div>
@@ -69,9 +69,9 @@
 
         {{-- Infographic Features Grid --}}
         <div class="text-center max-w-2xl mx-auto mb-12">
-            <span class="text-primary-600 font-bold uppercase text-xs tracking-widest">কেন আমরা সেরা?</span>
-            <h2 class="text-3xl font-extrabold text-gray-900 mt-2">আমাদের ইনফোগ্রাফিক ও মূল বৈশিষ্ট্যসমূহ</h2>
-            <p class="text-gray-500 text-sm mt-1">আমরা নিশ্চিত করি সেবাগ্রহীতা ও সেবা প্রদানকারী উভয়ের নিরাপদ ভবিষ্যৎ</p>
+            <span class="text-primary-700 font-extrabold uppercase text-xs tracking-widest bg-primary-50 px-3 py-1 rounded-md border border-primary-100">কেন আমরা সেরা?</span>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mt-4">আমাদের ইনফোগ্রাফিক ও মূল বৈশিষ্ট্যসমূহ</h2>
+            <p class="text-gray-600 text-sm md:text-base mt-2 font-medium">আমরা নিশ্চিত করি সেবাগ্রহীতা ও সেবা প্রদানকারী উভয়ের নিরাপদ ভবিষ্যৎ</p>
         </div>
 
         <div class="grid md:grid-cols-3 gap-8 mb-16">
@@ -99,7 +99,7 @@
 
             {{-- Feature 3 --}}
             <div class="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-md transition-all group">
-                <div class="w-14 h-14 rounded-2xl bg-accent-50 text-accent-600 flex items-center justify-center mb-6 group-hover:bg-accent-600 group-hover:text-white transition-all">
+                <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center mb-6 group-hover:bg-amber-500 group-hover:text-white transition-all">
                     <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
                 </div>
                 <h3 class="text-xl font-bold text-gray-900 mb-3">স্বচ্ছ রেটিং ও কাস্টমার রিভিউ</h3>
@@ -131,14 +131,14 @@
         </div>
 
         {{-- CTA Banner --}}
-        <div class="text-center bg-gradient-to-r from-primary-600 to-emerald-600 text-white rounded-3xl p-8 md:p-12 shadow-lg">
+        <div class="text-center bg-gradient-to-r from-primary-700 to-emerald-700 text-white rounded-3xl p-8 md:p-12 shadow-lg">
             <h2 class="text-2xl md:text-3xl font-extrabold mb-4">আজই যুক্ত হোন আমাদের সাথে</h2>
-            <p class="text-primary-100 text-sm md:text-base max-w-xl mx-auto mb-8">
+            <p class="text-primary-100 text-sm md:text-base max-w-xl mx-auto mb-8 font-medium">
                 আপনার প্রয়োজন যাই হোক না কেন, সমাধান আমাদের কাছেই আছে।
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="{{ route('register') }}" class="btn bg-white text-primary-700 hover:bg-gray-100 px-8 py-3 font-bold text-sm">কাজ পোস্ট করুন</a>
-                <a href="{{ route('register') }}?role=provider" class="btn bg-primary-800 text-white hover:bg-primary-900 border border-white/20 px-8 py-3 font-bold text-sm">কর্মী হিসেবে যুক্ত হোন</a>
+                <a href="{{ route('register') }}" class="btn bg-white text-primary-800 hover:bg-gray-100 px-8 py-3.5 font-bold text-sm shadow-md">কাজ পোস্ট করুন</a>
+                <a href="{{ route('register') }}?role=provider" class="btn bg-primary-900 text-white hover:bg-black border border-white/30 px-8 py-3.5 font-bold text-sm shadow-md">কর্মী হিসেবে যুক্ত হোন</a>
             </div>
         </div>
 
