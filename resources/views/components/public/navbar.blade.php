@@ -20,6 +20,7 @@
             {{-- Desktop Nav --}}
             <div class="hidden md:flex items-center gap-6 text-sm font-medium">
                 <a href="{{ route('home') }}" class="transition-colors {{ active_class('home', 'text-primary-700 font-bold', 'text-gray-600 hover:text-primary-600') }}">Home</a>
+                <a href="{{ route('jobs.index') }}" class="transition-colors {{ active_class('jobs.*', 'text-primary-700 font-bold', 'text-gray-600 hover:text-primary-600') }}">Browse Jobs</a>
                 <a href="{{ route('services.index') }}" class="transition-colors {{ active_class('services.*', 'text-primary-700 font-bold', 'text-gray-600 hover:text-primary-600') }}">Services</a>
                 <a href="{{ route('search') }}" class="transition-colors {{ active_class('search', 'text-primary-700 font-bold', 'text-gray-600 hover:text-primary-600') }}">Search Workers</a>
                 <a href="{{ route('about') }}" class="transition-colors {{ active_class('about', 'text-primary-700 font-bold', 'text-gray-600 hover:text-primary-600') }}">About Us</a>
@@ -133,6 +134,7 @@
     {{-- Mobile Menu --}}
     <div x-show="mobileOpen" x-cloak x-transition class="md:hidden bg-white border-t border-gray-100 px-4 py-3 space-y-1">
         <a href="{{ route('home') }}" class="block py-2 text-sm {{ active_class('home', 'text-primary-700 font-bold bg-primary-50 px-3 rounded-lg', 'text-gray-700 hover:text-primary-600 px-3') }}">Home</a>
+        <a href="{{ route('jobs.index') }}" class="block py-2 text-sm {{ active_class('jobs.*', 'text-primary-700 font-bold bg-primary-50 px-3 rounded-lg', 'text-gray-700 hover:text-primary-600 px-3') }}">Browse Jobs</a>
         <a href="{{ route('services.index') }}" class="block py-2 text-sm {{ active_class('services.*', 'text-primary-700 font-bold bg-primary-50 px-3 rounded-lg', 'text-gray-700 hover:text-primary-600 px-3') }}">Services</a>
         <a href="{{ route('search') }}" class="block py-2 text-sm {{ active_class('search', 'text-primary-700 font-bold bg-primary-50 px-3 rounded-lg', 'text-gray-700 hover:text-primary-600 px-3') }}">Search Workers</a>
         <a href="{{ route('about') }}" class="block py-2 text-sm {{ active_class('about', 'text-primary-700 font-bold bg-primary-50 px-3 rounded-lg', 'text-gray-700 hover:text-primary-600 px-3') }}">About Us</a>

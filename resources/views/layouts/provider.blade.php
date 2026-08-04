@@ -22,6 +22,13 @@
             <span class="font-bold text-lg tracking-tight">LocalEmployments</span>
         </a>
         <div class="flex items-center gap-3">
+            <a href="{{ route('provider.messages.index') }}" class="relative p-2 text-gray-300 hover:text-white transition-colors">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+                @php $unreadCount = auth()->user()->receivedMessages()->where('is_read', false)->count(); @endphp
+                @if($unreadCount > 0)
+                    <span class="absolute top-1 right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-gray-900"></span>
+                @endif
+            </a>
             <a href="{{ route('provider.profile.edit') }}">
                 <img src="{{ auth()->user()->avatar_url }}" alt="" class="w-8 h-8 rounded-full object-cover ring-2 ring-gray-700 shadow-sm">
             </a>
@@ -183,37 +190,31 @@
         </main>
     </div>
 
-    {{-- Mobile Bottom Navigation Bar --}}
+    {{-- Mobile Bottom Navigation Bar (4 items for better spacing) --}}
     <nav class="lg:hidden fixed bottom-0 w-full bg-white/90 backdrop-blur-lg border-t border-gray-100 flex items-center justify-around pb-safe pt-2 z-40 shadow-[0_-4px_20px_-10px_rgba(0,0,0,0.1)]">
         
         {{-- Home --}}
-        <a href="{{ route('provider.dashboard') }}" class="flex flex-col items-center gap-1 p-2 w-16 {{ request()->routeIs('provider.dashboard') ? 'text-primary-600' : 'text-gray-400' }}">
+        <a href="{{ route('provider.dashboard') }}" class="flex flex-col items-center gap-1 p-2 flex-1 {{ request()->routeIs('provider.dashboard') ? 'text-primary-600' : 'text-gray-400' }}">
             <svg class="w-6 h-6" fill="{{ request()->routeIs('provider.dashboard') ? 'currentColor' : 'none' }}" viewBox="0 0 24 24" stroke="currentColor" stroke-width="{{ request()->routeIs('provider.dashboard') ? '0' : '2' }}"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-            <span class="text-[10px] font-medium tracking-wide">হোম</span>
+            <span class="text-[11px] font-medium tracking-wide">হোম</span>
         </a>
 
         {{-- Find Jobs --}}
-        <a href="{{ route('provider.jobs.index') }}" class="flex flex-col items-center gap-1 p-2 w-16 {{ request()->routeIs('provider.jobs.*') ? 'text-primary-600' : 'text-gray-400' }}">
+        <a href="{{ route('provider.jobs.index') }}" class="flex flex-col items-center gap-1 p-2 flex-1 {{ request()->routeIs('provider.jobs.*') ? 'text-primary-600' : 'text-gray-400' }}">
             <svg class="w-6 h-6" fill="{{ request()->routeIs('provider.jobs.*') ? 'currentColor' : 'none' }}" viewBox="0 0 24 24" stroke="currentColor" stroke-width="{{ request()->routeIs('provider.jobs.*') ? '0' : '2' }}"><path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-            <span class="text-[10px] font-medium tracking-wide">কাজ খুঁজুন</span>
+            <span class="text-[11px] font-medium tracking-wide">কাজ খুঁজুন</span>
         </a>
 
         {{-- Bookings --}}
-        <a href="{{ route('provider.bookings.index') }}" class="flex flex-col items-center gap-1 p-2 w-16 {{ request()->routeIs('provider.bookings.*') ? 'text-primary-600' : 'text-gray-400' }}">
+        <a href="{{ route('provider.bookings.index') }}" class="flex flex-col items-center gap-1 p-2 flex-1 {{ request()->routeIs('provider.bookings.*') ? 'text-primary-600' : 'text-gray-400' }}">
             <svg class="w-6 h-6" fill="{{ request()->routeIs('provider.bookings.*') ? 'currentColor' : 'none' }}" viewBox="0 0 24 24" stroke="currentColor" stroke-width="{{ request()->routeIs('provider.bookings.*') ? '0' : '2' }}"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
-            <span class="text-[10px] font-medium tracking-wide">বুকিং</span>
-        </a>
-
-        {{-- Messages --}}
-        <a href="{{ route('provider.messages.index') }}" class="flex flex-col items-center gap-1 p-2 w-16 {{ request()->routeIs('provider.messages.*') ? 'text-primary-600' : 'text-gray-400' }}">
-            <svg class="w-6 h-6" fill="{{ request()->routeIs('provider.messages.*') ? 'currentColor' : 'none' }}" viewBox="0 0 24 24" stroke="currentColor" stroke-width="{{ request()->routeIs('provider.messages.*') ? '0' : '2' }}"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
-            <span class="text-[10px] font-medium tracking-wide">মেসেজ</span>
+            <span class="text-[11px] font-medium tracking-wide">বুকিং</span>
         </a>
 
         {{-- Menu Toggle --}}
-        <button @click="mobileMenuOpen = true" class="flex flex-col items-center gap-1 p-2 w-16 text-gray-400 hover:text-gray-600">
+        <button @click="mobileMenuOpen = true" class="flex flex-col items-center gap-1 p-2 flex-1 text-gray-400 hover:text-gray-600">
             <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
-            <span class="text-[10px] font-medium tracking-wide">মেনু</span>
+            <span class="text-[11px] font-medium tracking-wide">মেনু</span>
         </button>
     </nav>
 

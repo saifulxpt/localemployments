@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin;
 // PUBLIC ROUTES (No auth required)
 // ─────────────────────────────────────────
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/jobs', [\App\Http\Controllers\Public\PublicJobController::class, 'index'])->name('jobs.index');
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 Route::get('/services', [ServiceCategoryController::class, 'index'])->name('services.index');
 Route::get('/services/{slug}', [ServiceCategoryController::class, 'show'])->name('services.show');
