@@ -26,7 +26,7 @@
                             <select name="category" class="w-full rounded-xl border-gray-300 shadow-sm focus:border-primary-500 focus:ring focus:ring-primary-200">
                                 <option value="">সব ক্যাটাগরি</option>
                                 @foreach($categories as $cat)
-                                    <option value="{{ $cat->id }}" {{ request('category') == $cat->id ? 'selected' : '' }}>{{ $cat->bn_name }}</option>
+                                    <option value="{{ $cat->id }}" {{ request('category') == $cat->id ? 'selected' : '' }}>{{ $cat->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -62,7 +62,7 @@
                                     <div class="flex-1">
                                         <div class="flex items-center gap-2 mb-2">
                                             <span class="bg-primary-50 text-primary-700 text-xs font-bold px-2.5 py-0.5 rounded-full border border-primary-100">
-                                                {{ $job->subcategory->bn_name }}
+                                                {{ $job->subcategory->name }}
                                             </span>
                                             <span class="text-xs text-gray-500 flex items-center gap-1">
                                                 <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>

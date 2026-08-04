@@ -27,6 +27,7 @@ class PublicJobController extends Controller
         }
 
         $jobs = $query->latest()->paginate(10)->withQueryString();
+        \Log::info('Public jobs count: ' . $jobs->count() . ' | filters: ' . json_encode($request->all()));
         
         $categories = ServiceCategory::active()->get();
         $districts = District::active()->get();
