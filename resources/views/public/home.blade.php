@@ -76,10 +76,10 @@
 
             {{-- Right Composition (Hero Image & Floating Infographics) --}}
             <div class="hidden lg:block relative h-[500px] w-full animate-fade-in">
-                <div class="absolute inset-0 rounded-[3rem] transform rotate-2 scale-95 opacity-30" style="background: linear-gradient(135deg, #0d9488, #F59E0B);"></div>
+                <div class="absolute inset-0 rounded-[3rem] transform rotate-2 scale-95 opacity-20" style="background: linear-gradient(135deg, #0d9488, #F59E0B);"></div>
                 
                 {{-- Main Visual Container --}}
-                <div class="relative w-full h-full rounded-[3rem] overflow-hidden shadow-2xl border border-teal-600/30 p-8 flex flex-col justify-between text-white" style="background: linear-gradient(135deg, #0f172a 0%, #042f2e 50%, #064e3b 100%) !important;">
+                <div class="relative w-full h-full rounded-[3rem] overflow-hidden shadow-2xl border border-white/20 p-8 flex flex-col justify-between" style="background: linear-gradient(135deg, #0f172a 0%, #042f2e 50%, #064e3b 100%);">
                     
                     {{-- Hero Image --}}
                     @php
@@ -90,60 +90,62 @@
                         $heroImageUrl = filter_var($heroImage, FILTER_VALIDATE_URL) ? $heroImage : asset(ltrim($heroImage, '/'));
                     @endphp
                     <img src="{{ $heroImageUrl }}" alt="Hero Image" class="absolute inset-0 w-full h-full object-cover object-center">
-                    <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(15, 23, 42, 0.85) 0%, rgba(4, 47, 46, 0.3) 50%, rgba(0, 0, 0, 0.15) 100%);"></div>
+                    <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(15, 23, 42, 0.85) 0%, rgba(4, 47, 46, 0.35) 50%, rgba(15, 23, 42, 0.4) 100%);"></div>
 
-                    {{-- Top Floating Infographic Badge --}}
+                    {{-- Top Floating Infographic Badges (Clean White Glass Pills) --}}
                     <div class="relative z-10 flex justify-between items-start">
-                        <div class="bg-white/95 backdrop-blur-md p-3.5 rounded-2xl shadow-xl border border-white/60 flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-xl bg-primary-600 text-white flex items-center justify-center font-bold text-lg shadow-md">
+                        <div class="bg-white/90 backdrop-blur-md px-4 py-2.5 rounded-2xl shadow-xl border border-white/50 flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center font-black text-xs shadow-md shadow-emerald-500/30">
                                 ✓
                             </div>
                             <div>
-                                <div class="text-xs font-extrabold text-gray-900">১০০% ভেরিফাইড প্রোভাইডার</div>
-                                <div class="text-[11px] font-bold text-primary-700 flex items-center gap-1">
-                                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                                <div class="text-xs font-black text-gray-900 leading-tight">১০০% ভেরিফাইড প্রোভাইডার</div>
+                                <div class="text-[10px] font-bold text-emerald-600 flex items-center gap-1 mt-0.5">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
                                     NID যাচাইকৃত কর্মী
                                 </div>
                             </div>
                         </div>
 
-                        <div class="bg-primary-900/80 backdrop-blur-md text-white px-4 py-2 rounded-2xl border border-white/20 text-xs font-bold flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full bg-accent-400 animate-pulse"></span>
+                        <div class="bg-white/85 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/40 text-xs font-bold text-gray-900 flex items-center gap-2 shadow-lg">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                             লাইভ প্ল্যাটফর্ম
                         </div>
                     </div>
 
-                    {{-- Center Content Highlight --}}
+                    {{-- Center Content Highlight (Clean & Elegant Title Overlay, No Cheap Emoji Boxes) --}}
                     <div class="relative z-10 my-auto text-center px-4">
-                        <div class="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-md text-white flex items-center justify-center mx-auto mb-4 border border-white/30 text-3xl shadow-lg">
-                            🛠️
-                        </div>
-                        <h3 class="text-2xl font-black text-white tracking-tight">বাংলাদেশের ১ নম্বর লোকাল সার্ভিস মার্কেটপ্লেস</h3>
-                        <p class="text-xs text-primary-100 mt-2 max-w-xs mx-auto font-medium">প্লাম্বিং, ইলেকট্রিক, ক্লিনিং ও অ্যাপ্লায়েন্স সার্ভিস একদম হাতের কাছে</p>
+                        <h3 class="text-2xl md:text-3xl font-black text-white tracking-tight drop-shadow-lg leading-snug">
+                            বাংলাদেশের ১ নম্বর <br>
+                            <span style="color: #34d399;">লোকাল সার্ভিস মার্কেটপ্লেস</span>
+                        </h3>
+                        <p class="text-xs md:text-sm text-gray-100 mt-2 max-w-sm mx-auto font-medium drop-shadow leading-relaxed">
+                            প্লাম্বিং, ইলেকট্রিক, ক্লিনিং ও অ্যাপ্লায়েন্স সার্ভিস একদম হাতের কাছে
+                        </p>
                     </div>
 
-                    {{-- Bottom Floating Infographic Cards --}}
+                    {{-- Bottom Floating Infographic Cards (Clean White Glass Pills) --}}
                     <div class="relative z-10 grid grid-cols-2 gap-3">
-                        <div class="bg-white/95 backdrop-blur-md p-3 rounded-2xl shadow-lg border border-white/60 flex items-center gap-2.5">
+                        <div class="bg-white/90 backdrop-blur-md p-3.5 rounded-2xl shadow-xl border border-white/50 flex items-center gap-3">
                             <div class="flex -space-x-2 overflow-hidden">
-                                <span class="inline-block h-7 w-7 rounded-full ring-2 ring-white bg-primary-700 text-white text-[10px] font-bold flex items-center justify-center">R</span>
-                                <span class="inline-block h-7 w-7 rounded-full ring-2 ring-white bg-emerald-600 text-white text-[10px] font-bold flex items-center justify-center">S</span>
+                                <span class="inline-block h-8 w-8 rounded-full ring-2 ring-white bg-teal-700 text-white text-xs font-black flex items-center justify-center shadow">R</span>
+                                <span class="inline-block h-8 w-8 rounded-full ring-2 ring-white bg-emerald-600 text-white text-xs font-black flex items-center justify-center shadow">S</span>
                             </div>
                             <div>
-                                <div class="flex items-center gap-1 text-accent-500 font-bold text-xs">
+                                <div class="flex items-center gap-1 text-amber-500 font-black text-xs">
                                     ★ ৪.৯ / ৫.০
                                 </div>
-                                <div class="text-[10px] font-semibold text-gray-600">১,২০০+ কাস্টমার মতামত</div>
+                                <div class="text-[10px] font-bold text-gray-600">১,২০০+ রিভিউ</div>
                             </div>
                         </div>
 
-                        <div class="bg-gray-900/90 backdrop-blur-md text-white p-3 rounded-2xl shadow-lg border border-white/20 flex items-center gap-2.5">
-                            <div class="w-8 h-8 rounded-xl bg-accent-500 text-gray-900 flex items-center justify-center font-bold text-sm shrink-0">
+                        <div class="bg-white/90 backdrop-blur-md p-3.5 rounded-2xl shadow-xl border border-white/50 flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-xl bg-amber-500 text-white flex items-center justify-center font-black text-xs shadow-md">
                                 ⚡
                             </div>
                             <div>
-                                <div class="text-xs font-bold text-white">তাত্ক্ষণিক বিড</div>
-                                <div class="text-[10px] text-gray-300 font-medium">গড় ৫-১০ মিনিট</div>
+                                <div class="text-xs font-black text-gray-900">তাত্ক্ষণিক বিড</div>
+                                <div class="text-[10px] font-bold text-gray-500">গড় ৫-১০ মিনিট</div>
                             </div>
                         </div>
                     </div>
