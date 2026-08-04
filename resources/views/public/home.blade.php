@@ -75,11 +75,11 @@
             </div>
 
             {{-- Right Composition (Hero Image & Floating Infographics) --}}
-            <div class="hidden lg:block relative h-[500px] w-full animate-fade-in">
+            <div class="hidden lg:block relative h-[520px] w-full animate-fade-in">
                 <div class="absolute inset-0 rounded-[3rem] transform rotate-2 scale-95 opacity-20 bg-gradient-to-tr from-primary-600 to-accent-400"></div>
                 
                 {{-- Main Visual Container (Clean Natural Image Card) --}}
-                <div class="relative w-full h-full rounded-[3rem] overflow-hidden shadow-2xl border border-gray-100 p-8 flex flex-col justify-between">
+                <div class="relative w-full h-full rounded-[3rem] overflow-hidden shadow-2xl border border-gray-100 p-8 md:p-10 flex flex-col justify-between">
                     
                     {{-- Natural Hero Image --}}
                     @php
@@ -92,11 +92,11 @@
                     <img src="{{ $heroImageUrl }}" alt="Hero Image" class="absolute inset-0 w-full h-full object-cover object-center">
                     
                     {{-- Very Subtle Soft Shadow Gradient at Bottom Only --}}
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent pointer-events-none"></div>
 
-                    {{-- Top Floating Infographic Badges (Clean White Glass Pills) --}}
+                    {{-- Top Floating Infographic Badges --}}
                     <div class="relative z-10 flex justify-between items-start">
-                        <div class="bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-2xl shadow-xl border border-white/60 flex items-center gap-3">
+                        <div class="bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-2xl shadow-xl border border-white/70 flex items-center gap-3">
                             <div class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center font-black text-xs shadow-md shadow-emerald-500/30">
                                 ✓
                             </div>
@@ -109,13 +109,13 @@
                             </div>
                         </div>
 
-                        <div class="bg-white/90 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/50 text-xs font-bold text-gray-900 flex items-center gap-2 shadow-lg">
+                        <div class="bg-white/90 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/60 text-xs font-bold text-gray-900 flex items-center gap-2 shadow-lg">
                             <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                             লাইভ প্ল্যাটফর্ম
                         </div>
                     </div>
 
-                    {{-- Center Content Highlight (Clean & Elegant Title Overlay) --}}
+                    {{-- Center Content Highlight --}}
                     <div class="relative z-10 my-auto text-center px-4">
                         <h3 class="text-2xl md:text-3xl font-black text-white tracking-tight drop-shadow-md leading-snug">
                             বাংলাদেশের ১ নম্বর <br>
@@ -126,12 +126,12 @@
                         </p>
                     </div>
 
-                    {{-- Bottom Floating Infographic Cards (Clean White Glass Pills) --}}
-                    <div class="relative z-10 grid grid-cols-2 gap-3">
-                        <div class="bg-white/95 backdrop-blur-md p-3.5 rounded-2xl shadow-xl border border-white/60 flex items-center gap-3">
-                            <div class="flex -space-x-2 overflow-hidden">
-                                <span class="inline-block h-8 w-8 rounded-full ring-2 ring-white bg-teal-700 text-white text-xs font-black flex items-center justify-center shadow">R</span>
-                                <span class="inline-block h-8 w-8 rounded-full ring-2 ring-white bg-emerald-600 text-white text-xs font-black flex items-center justify-center shadow">S</span>
+                    {{-- Bottom Floating Infographic Cards (Floating with Safe Bottom Padding) --}}
+                    <div class="relative z-10 grid grid-cols-2 gap-3 mb-2">
+                        <div class="bg-white/95 backdrop-blur-md p-3.5 rounded-2xl shadow-xl border border-white/70 flex items-center gap-3">
+                            <div class="flex -space-x-2 overflow-hidden shrink-0">
+                                <span class="inline-block h-7 w-7 rounded-full ring-2 ring-white text-xs font-black flex items-center justify-center shadow" style="background: #0f766e !important; color: #ffffff !important;">R</span>
+                                <span class="inline-block h-7 w-7 rounded-full ring-2 ring-white text-xs font-black flex items-center justify-center shadow" style="background: #059669 !important; color: #ffffff !important;">S</span>
                             </div>
                             <div>
                                 <div class="flex items-center gap-1 text-amber-500 font-black text-xs">
@@ -141,8 +141,8 @@
                             </div>
                         </div>
 
-                        <div class="bg-white/95 backdrop-blur-md p-3.5 rounded-2xl shadow-xl border border-white/60 flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-xl bg-amber-500 text-white flex items-center justify-center font-black text-xs shadow-md">
+                        <div class="bg-white/95 backdrop-blur-md p-3.5 rounded-2xl shadow-xl border border-white/70 flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-xl text-white flex items-center justify-center font-black text-xs shadow-md shrink-0" style="background: #f59e0b !important; color: #ffffff !important;">
                                 ⚡
                             </div>
                             <div>
