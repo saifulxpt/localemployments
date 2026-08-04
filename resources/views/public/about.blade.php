@@ -8,21 +8,21 @@
     <div class="container mx-auto px-4 max-w-6xl">
         
         {{-- Hero Header with High-Contrast Card --}}
-        <div class="relative overflow-hidden bg-gradient-to-br from-primary-800 via-primary-700 to-emerald-800 text-white rounded-3xl p-8 md:p-14 mb-12 shadow-xl shadow-primary-900/20 border border-primary-600/30">
-            <div class="absolute -top-24 -right-24 w-96 h-96 bg-primary-500/20 rounded-full blur-3xl pointer-events-none"></div>
-            <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="relative overflow-hidden rounded-3xl p-8 md:p-14 mb-12 shadow-xl border border-teal-600/30 text-white" style="background: linear-gradient(135deg, #0d9488 0%, #0f766e 50%, #115e59 100%) !important; color: #ffffff !important;">
+            <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full blur-3xl pointer-events-none" style="background: rgba(255, 255, 255, 0.15);"></div>
+            <div class="absolute -bottom-24 -left-24 w-96 h-96 rounded-full blur-3xl pointer-events-none" style="background: rgba(52, 211, 153, 0.2);"></div>
 
             <div class="grid lg:grid-cols-2 gap-10 items-center relative z-10">
                 <div>
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-bold text-emerald-300 mb-6">
-                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/20 text-xs font-bold mb-6" style="background: rgba(255, 255, 255, 0.15); color: #ccfbf1;">
+                        <span class="w-2 h-2 rounded-full animate-pulse" style="background: #34d399;"></span>
                         আমাদের কথা ও স্বপ্ন
                     </div>
-                    <h1 class="text-3xl md:text-5xl font-black text-white leading-tight tracking-tight mb-6">
+                    <h1 class="text-3xl md:text-5xl font-black leading-tight tracking-tight mb-6" style="color: #ffffff !important;">
                         স্থানীয় দক্ষতার সাথে <br>
-                        <span class="text-emerald-400">স্মার্ট সেতুবন্ধন</span>
+                        <span style="color: #a7f3d0 !important;">স্মার্ট সেতুবন্ধন</span>
                     </h1>
-                    <p class="text-gray-200 text-base md:text-lg leading-relaxed mb-8 font-medium">
+                    <p class="text-base md:text-lg leading-relaxed mb-8 font-medium" style="color: #e6fffa !important;">
                         LocalEmployments হলো বাংলাদেশের স্থানীয় কাজের সহজ ও বিশ্বস্ত প্ল্যাটফর্ম। দৈনন্দিন গৃহস্থালি কাজ থেকে শুরু করে টেকনিক্যাল সাপোর্ট—সবকিছুর জন্য সঠিক সময়ে নির্ভরযোগ্য দক্ষ কর্মী খুঁজে পাওয়ার ডিজিটাল সমাধান।
                     </p>
                     <div class="flex flex-wrap gap-4">

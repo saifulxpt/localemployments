@@ -76,18 +76,18 @@
 
             {{-- Right Composition (Brand Themed Hero Card with Infographics) --}}
             <div class="hidden lg:block relative h-[500px] w-full animate-fade-in">
-                <div class="absolute inset-0 bg-gradient-to-tr from-primary-600/30 to-accent-400/20 rounded-[3rem] transform rotate-2 scale-95"></div>
+                <div class="absolute inset-0 rounded-[3rem] transform rotate-2 scale-95 opacity-30" style="background: linear-gradient(135deg, #0d9488, #F59E0B);"></div>
                 
                 {{-- Main Visual Container --}}
-                <div class="relative w-full h-full rounded-[3rem] overflow-hidden bg-gradient-to-br from-primary-800 via-primary-700 to-primary-900 shadow-2xl border border-primary-600/30 p-8 flex flex-col justify-between">
+                <div class="relative w-full h-full rounded-[3rem] overflow-hidden shadow-2xl border border-teal-600/30 p-8 flex flex-col justify-between text-white" style="background: linear-gradient(135deg, #0d9488 0%, #0f766e 50%, #115e59 100%) !important; color: #ffffff !important;">
                     
                     {{-- Background Image --}}
                     @php
                         $heroImage = setting('hero_image', 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=800&auto=format&fit=crop');
                         $isExternal = filter_var($heroImage, FILTER_VALIDATE_URL) !== false;
                     @endphp
-                    <img src="{{ $isExternal ? $heroImage : asset($heroImage) }}" alt="Local Workers Bangladesh" class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-50">
-                    <div class="absolute inset-0 bg-gradient-to-t from-primary-950/80 via-primary-900/40 to-transparent"></div>
+                    <img src="{{ $isExternal ? $heroImage : asset($heroImage) }}" alt="Local Workers Bangladesh" class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-40">
+                    <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(4, 47, 46, 0.85), rgba(15, 118, 110, 0.4), transparent);"></div>
 
                     {{-- Top Floating Infographic Badge --}}
                     <div class="relative z-10 flex justify-between items-start">

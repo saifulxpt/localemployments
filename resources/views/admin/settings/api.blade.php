@@ -20,34 +20,34 @@
     </div>
 
     {{-- BulkSMSBD Real-Time Balance Card --}}
-    <div class="bg-gradient-to-r from-primary-800 via-primary-700 to-emerald-800 text-white rounded-3xl p-6 md:p-8 shadow-xl border border-primary-600/30 relative overflow-hidden">
-        <div class="absolute -top-12 -right-12 w-48 h-48 bg-white/10 rounded-full blur-2xl"></div>
+    <div class="rounded-3xl p-6 md:p-8 shadow-xl border border-teal-700/30 relative overflow-hidden text-white" style="background: linear-gradient(135deg, #0d9488 0%, #0f766e 50%, #115e59 100%) !important; color: #ffffff !important;">
+        <div class="absolute -top-12 -right-12 w-48 h-48 rounded-full blur-2xl pointer-events-none" style="background: rgba(255, 255, 255, 0.15);"></div>
 
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative z-10">
             <div class="flex items-center gap-4">
-                <div class="w-14 h-14 bg-white/15 backdrop-blur-md rounded-2xl flex items-center justify-center text-3xl shadow-inner border border-white/20">
+                <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-inner border border-white/20" style="background: rgba(255, 255, 255, 0.15);">
                     💬
                 </div>
                 <div>
                     <div class="flex items-center gap-2">
-                        <span class="text-xs font-bold uppercase tracking-wider bg-white/20 px-2.5 py-0.5 rounded-md text-emerald-200">BulkSMSBD API Status</span>
-                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                        <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md" style="background: rgba(255, 255, 255, 0.2); color: #ccfbf1;">BulkSMSBD API Status</span>
+                        <span class="w-2 h-2 rounded-full animate-ping" style="background: #34d399;"></span>
                     </div>
-                    <h2 class="text-xl font-bold text-white mt-1">লাইভ বাল্ক এসএমএস বিডি অ্যাকাউন্ট ব্যালেন্স</h2>
-                    <p class="text-xs text-teal-100 mt-0.5" x-text="balanceMsg"></p>
+                    <h2 class="text-xl font-bold mt-1" style="color: #ffffff !important;">লাইভ বাল্ক এসএমএস বিডি অ্যাকাউন্ট ব্যালেন্স</h2>
+                    <p class="text-xs mt-0.5" style="color: #e6fffa !important;" x-text="balanceMsg"></p>
                 </div>
             </div>
 
-            <div class="flex items-center gap-4 bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/15 w-full md:w-auto justify-between md:justify-start">
+            <div class="flex items-center gap-4 p-4 rounded-2xl border border-white/20 w-full md:w-auto justify-between md:justify-start" style="background: rgba(255, 255, 255, 0.15);">
                 <div>
-                    <div class="text-xs text-teal-200 font-medium uppercase">বর্তমান ব্যালেন্স</div>
-                    <div class="text-3xl font-black text-white flex items-center gap-1">
+                    <div class="text-xs font-bold uppercase" style="color: #ccfbf1;">বর্তমান ব্যালেন্স</div>
+                    <div class="text-3xl font-black flex items-center gap-1" style="color: #ffffff !important;">
                         ৳ <span x-text="balance"></span>
                     </div>
                 </div>
                 <button type="button" 
                         @click="checkingBalance = true; fetch('{{ route('admin.settings.api.sms-balance') }}').then(res => res.json()).then(data => { balance = data.balance; balanceMsg = data.message; checkingBalance = false; }).catch(() => { checkingBalance = false; })"
-                        class="btn bg-white text-teal-800 hover:bg-emerald-50 px-4 py-2 text-xs font-bold shadow-md flex items-center gap-1.5 transition-all">
+                        class="btn px-4 py-2 text-xs font-bold shadow-md flex items-center gap-1.5 transition-all" style="background: #ffffff !important; color: #0f766e !important;">
                     <svg class="w-4 h-4" :class="{ 'animate-spin': checkingBalance }" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
                     <span>রিফ্রেশ</span>
                 </button>
