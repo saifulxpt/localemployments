@@ -74,56 +74,77 @@
                 </div>
             </div>
 
-            {{-- Right Composition (Floating Cards & Infographics) --}}
-            <div class="hidden lg:block relative h-[520px] w-full animate-fade-in">
-                <div class="absolute inset-0 bg-gradient-to-tr from-primary-200/40 to-transparent rounded-[3rem] transform rotate-3 scale-95"></div>
+            {{-- Right Composition (Brand Themed Hero Card with Infographics) --}}
+            <div class="hidden lg:block relative h-[500px] w-full animate-fade-in">
+                <div class="absolute inset-0 bg-gradient-to-tr from-primary-600/30 to-accent-400/20 rounded-[3rem] transform rotate-2 scale-95"></div>
                 
-                {{-- Premium Hero Image --}}
-                @php
-                    $heroImage = setting('hero_image', 'https://images.unsplash.com/photo-1600320844754-07ed9222eb61?q=80&w=800&auto=format&fit=crop');
-                    $isExternal = filter_var($heroImage, FILTER_VALIDATE_URL) !== false;
-                @endphp
-                <img src="{{ $isExternal ? $heroImage : asset($heroImage) }}" alt="Bangladesh Local Worker" class="absolute inset-0 w-full h-full object-cover rounded-[3rem] shadow-2xl object-center">
-                <div class="absolute inset-0 bg-gradient-to-t from-primary-950/60 via-transparent to-black/20 rounded-[3rem]"></div>
+                {{-- Main Visual Container --}}
+                <div class="relative w-full h-full rounded-[3rem] overflow-hidden bg-gradient-to-br from-primary-800 via-primary-700 to-primary-900 shadow-2xl border border-primary-600/30 p-8 flex flex-col justify-between">
+                    
+                    {{-- Background Image --}}
+                    @php
+                        $heroImage = setting('hero_image', 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=800&auto=format&fit=crop');
+                        $isExternal = filter_var($heroImage, FILTER_VALIDATE_URL) !== false;
+                    @endphp
+                    <img src="{{ $isExternal ? $heroImage : asset($heroImage) }}" alt="Local Workers Bangladesh" class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-50">
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary-950/80 via-primary-900/40 to-transparent"></div>
 
-                {{-- Floating Infographic Card 1: Verified Shield --}}
-                <div class="absolute top-6 left-6 bg-white/90 backdrop-blur-md p-3.5 rounded-2xl shadow-xl border border-white/50 flex items-center gap-3 transform -rotate-2 hover:rotate-0 transition-transform">
-                    <div class="w-10 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center font-bold text-lg shadow-md shadow-emerald-500/30">
-                        ✓
-                    </div>
-                    <div>
-                        <div class="text-xs font-black text-gray-900">১০০% ভেরিফাইড প্রোভাইডার</div>
-                        <div class="text-[11px] font-semibold text-emerald-600 flex items-center gap-1">
-                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
-                            NID যাচাইকৃত কর্মী
+                    {{-- Top Floating Infographic Badge --}}
+                    <div class="relative z-10 flex justify-between items-start">
+                        <div class="bg-white/95 backdrop-blur-md p-3.5 rounded-2xl shadow-xl border border-white/60 flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-primary-600 text-white flex items-center justify-center font-bold text-lg shadow-md">
+                                ✓
+                            </div>
+                            <div>
+                                <div class="text-xs font-extrabold text-gray-900">১০০% ভেরিফাইড প্রোভাইডার</div>
+                                <div class="text-[11px] font-bold text-primary-700 flex items-center gap-1">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                                    NID যাচাইকৃত কর্মী
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-primary-900/80 backdrop-blur-md text-white px-4 py-2 rounded-2xl border border-white/20 text-xs font-bold flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-accent-400 animate-pulse"></span>
+                            লাইভ প্ল্যাটফর্ম
                         </div>
                     </div>
-                </div>
 
-                {{-- Floating Infographic Card 2: Rating Stack --}}
-                <div class="absolute bottom-8 right-6 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-2xl border border-white/60 flex items-center gap-3 transform rotate-1 hover:rotate-0 transition-transform">
-                    <div class="flex -space-x-2 overflow-hidden">
-                        <span class="inline-block h-8 w-8 rounded-full ring-2 ring-white bg-primary-600 text-white text-xs font-bold flex items-center justify-center">R</span>
-                        <span class="inline-block h-8 w-8 rounded-full ring-2 ring-white bg-emerald-600 text-white text-xs font-bold flex items-center justify-center">S</span>
-                        <span class="inline-block h-8 w-8 rounded-full ring-2 ring-white bg-blue-600 text-white text-xs font-bold flex items-center justify-center">M</span>
-                    </div>
-                    <div>
-                        <div class="flex items-center gap-1 text-amber-500 font-bold text-sm">
-                            ★ ৪.৯ / ৫.০
+                    {{-- Center Content Highlight --}}
+                    <div class="relative z-10 my-auto text-center px-4">
+                        <div class="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-md text-white flex items-center justify-center mx-auto mb-4 border border-white/30 text-3xl shadow-lg">
+                            🛠️
                         </div>
-                        <div class="text-[11px] font-medium text-gray-500">১,২০০+ সফল গ্রাহক মতামত</div>
+                        <h3 class="text-2xl font-black text-white tracking-tight">বাংলাদেশের ১ নম্বর লোকাল সার্ভিস মার্কেটপ্লেস</h3>
+                        <p class="text-xs text-primary-100 mt-2 max-w-xs mx-auto font-medium">প্লাম্বিং, ইলেকট্রিক, ক্লিনিং ও অ্যাপ্লায়েন্স সার্ভিস একদম হাতের কাছে</p>
                     </div>
-                </div>
 
-                {{-- Floating Infographic Card 3: Instant Bidding --}}
-                <div class="absolute bottom-8 left-6 bg-gray-900/90 backdrop-blur-md text-white p-3.5 rounded-2xl shadow-2xl border border-white/20 flex items-center gap-3">
-                    <div class="w-9 h-9 rounded-xl bg-primary-500 text-white flex items-center justify-center">
-                        ⚡
+                    {{-- Bottom Floating Infographic Cards --}}
+                    <div class="relative z-10 grid grid-cols-2 gap-3">
+                        <div class="bg-white/95 backdrop-blur-md p-3 rounded-2xl shadow-lg border border-white/60 flex items-center gap-2.5">
+                            <div class="flex -space-x-2 overflow-hidden">
+                                <span class="inline-block h-7 w-7 rounded-full ring-2 ring-white bg-primary-700 text-white text-[10px] font-bold flex items-center justify-center">R</span>
+                                <span class="inline-block h-7 w-7 rounded-full ring-2 ring-white bg-emerald-600 text-white text-[10px] font-bold flex items-center justify-center">S</span>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-1 text-accent-500 font-bold text-xs">
+                                    ★ ৪.৯ / ৫.০
+                                </div>
+                                <div class="text-[10px] font-semibold text-gray-600">১,২০০+ কাস্টমার মতামত</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-900/90 backdrop-blur-md text-white p-3 rounded-2xl shadow-lg border border-white/20 flex items-center gap-2.5">
+                            <div class="w-8 h-8 rounded-xl bg-accent-500 text-gray-900 flex items-center justify-center font-bold text-sm shrink-0">
+                                ⚡
+                            </div>
+                            <div>
+                                <div class="text-xs font-bold text-white">তাত্ক্ষণিক বিড</div>
+                                <div class="text-[10px] text-gray-300 font-medium">গড় ৫-১০ মিনিট</div>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <div class="text-xs font-bold text-white">তাত্ক্ষণিক বিড রেসপন্স</div>
-                        <div class="text-[11px] text-gray-300">গড় সময়: ৫-১০ মিনিট</div>
-                    </div>
+
                 </div>
             </div>
 
