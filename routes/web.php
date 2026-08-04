@@ -259,6 +259,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('locations/districts', Admin\DistrictController::class)->names('districts');
         Route::resource('locations.areas', Admin\AreaController::class)->shallow();
 
+        // Fallback Route Alias (Prevents RouteNotFoundException for locations.index)
+        Route::get('/admin/locations-redirect', [Admin\LocationController::class, 'index'])->name('locations.index');
+
         // Settings
         Route::get('/settings', [Admin\SettingController::class, 'index'])->name('settings.index');
         Route::post('/settings', [Admin\SettingController::class, 'update'])->name('settings.update');
