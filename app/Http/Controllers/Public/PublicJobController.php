@@ -27,10 +27,18 @@ class PublicJobController extends Controller
         }
 
         $jobs = $query->latest()->paginate(10)->withQueryString();
-        \Log::info('Public jobs count: ' . $jobs->count() . ' | filters: ' . json_encode($request->all()));
         
         $categories = ServiceCategory::active()->get();
+        // Fallback: if active() returns nothing, get all categories
+        if ($categories->isEmpty()) {
+            $categories = ServiceCategory::orderBy('sort_order')->get();
+        }
+
         $districts = District::active()->get();
+        // Fallback: if active() returns nothing, get all districts
+        if ($districts->isEmpty()) {
+            $districts = District::orderBy('name')->get();
+        }
 
         return view('public.jobs.index', compact('jobs', 'categories', 'districts'));
     }

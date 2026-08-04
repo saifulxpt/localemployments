@@ -28,6 +28,10 @@ jobs:
         npm install
         npm run build
 
+    - name: Clear compiled views (force fresh render on production)
+      run: |
+        find storage/framework/views -name "*.php" -delete 2>/dev/null || true
+
     - name: Install LFTP
       run: sudo apt-get install -y lftp
 
