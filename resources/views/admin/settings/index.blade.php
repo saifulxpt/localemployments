@@ -7,8 +7,14 @@
 
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
         <div>
-            <h1 class="text-2xl font-bold text-gray-900">সিস্টেম সেটিংস</h1>
-            <p class="text-sm text-gray-500">প্লাটফর্মের বিভিন্ন ফি, রেট এবং সাধারণ কনফিগারেশন।</p>
+            <h1 class="text-2xl font-bold text-gray-900">সাধারণ সিস্টেম সেটিংস</h1>
+            <p class="text-sm text-gray-500">প্লাটফর্মের নাম, লোগো, ফি এবং সাধারণ কনফিগারেশন।</p>
+        </div>
+
+        <div class="flex gap-2">
+            <a href="{{ route('admin.settings.api') }}" class="btn btn-primary bg-primary-600 hover:bg-primary-700 text-sm font-bold shadow-md">
+                <span>⚡</span> API সেটিংস ম্যানেজমেন্ট
+            </a>
         </div>
     </div>
 

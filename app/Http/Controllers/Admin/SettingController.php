@@ -12,7 +12,23 @@ class SettingController extends Controller
 {
     public function index()
     {
-        $settings = Setting::orderBy('group')->orderBy('key')->get()->groupBy('group');
+        $excludeGroups = ['api', 'sms', 'sslcommerz', 'payment', 'smtp', 'mail', 'social'];
+        $excludeKeys = [
+            'bulksms_api_key', 'bulksms_sender_id', 'sms_active',
+            'sslcommerz_store_id', 'sslcommerz_store_passwd', 'sslcommerz_sandbox',
+            'bkash_app_key', 'bkash_app_secret', 'bkash_username', 'bkash_password', 'bkash_sandbox',
+            'nagad_merchant_id', 'nagad_public_key', 'nagad_private_key', 'nagad_sandbox',
+            'mail_host', 'mail_port', 'mail_username', 'mail_password', 'mail_encryption', 'mail_from_address', 'mail_from_name',
+            'google_client_id', 'google_client_secret', 'google_login_active'
+        ];
+
+        $settings = Setting::whereNotIn('group', $excludeGroups)
+            ->whereNotIn('key', $excludeKeys)
+            ->orderBy('group')
+            ->orderBy('key')
+            ->get()
+            ->groupBy('group');
+
         return view('admin.settings.index', compact('settings'));
     }
 
