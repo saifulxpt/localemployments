@@ -74,20 +74,23 @@
                 </div>
             </div>
 
-            {{-- Right Composition (Brand Themed Hero Card with Infographics) --}}
+            {{-- Right Composition (Hero Image & Floating Infographics) --}}
             <div class="hidden lg:block relative h-[500px] w-full animate-fade-in">
                 <div class="absolute inset-0 rounded-[3rem] transform rotate-2 scale-95 opacity-30" style="background: linear-gradient(135deg, #0d9488, #F59E0B);"></div>
                 
                 {{-- Main Visual Container --}}
-                <div class="relative w-full h-full rounded-[3rem] overflow-hidden shadow-2xl border border-teal-600/30 p-8 flex flex-col justify-between text-white" style="background: linear-gradient(135deg, #0d9488 0%, #0f766e 50%, #115e59 100%) !important; color: #ffffff !important;">
+                <div class="relative w-full h-full rounded-[3rem] overflow-hidden shadow-2xl border border-teal-600/30 p-8 flex flex-col justify-between text-white" style="background: linear-gradient(135deg, #0f172a 0%, #042f2e 50%, #064e3b 100%) !important;">
                     
-                    {{-- Background Image --}}
+                    {{-- Hero Image --}}
                     @php
-                        $heroImage = setting('hero_image', 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=800&auto=format&fit=crop');
-                        $isExternal = filter_var($heroImage, FILTER_VALIDATE_URL) !== false;
+                        $heroImage = setting('hero_image');
+                        if (empty($heroImage)) {
+                            $heroImage = 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=800&auto=format&fit=crop';
+                        }
+                        $heroImageUrl = filter_var($heroImage, FILTER_VALIDATE_URL) ? $heroImage : asset(ltrim($heroImage, '/'));
                     @endphp
-                    <img src="{{ $isExternal ? $heroImage : asset($heroImage) }}" alt="Local Workers Bangladesh" class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-40">
-                    <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(4, 47, 46, 0.85), rgba(15, 118, 110, 0.4), transparent);"></div>
+                    <img src="{{ $heroImageUrl }}" alt="Hero Image" class="absolute inset-0 w-full h-full object-cover object-center">
+                    <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(15, 23, 42, 0.85) 0%, rgba(4, 47, 46, 0.3) 50%, rgba(0, 0, 0, 0.15) 100%);"></div>
 
                     {{-- Top Floating Infographic Badge --}}
                     <div class="relative z-10 flex justify-between items-start">
