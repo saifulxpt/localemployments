@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+concurrency:
+  group: deploy-shared-hosting
+  cancel-in-progress: true
+
 jobs:
   web-deploy:
     name: Deploy
