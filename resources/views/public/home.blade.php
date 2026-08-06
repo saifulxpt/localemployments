@@ -79,20 +79,32 @@
                 <div class="absolute inset-0 rounded-[3rem] transform rotate-2 scale-95 opacity-20 bg-gradient-to-tr from-primary-600 to-accent-400"></div>
                 
                 {{-- Main Visual Container (Clean Natural Image Card) --}}
-                <div class="relative w-full h-full rounded-[3rem] overflow-hidden shadow-2xl border border-gray-100 p-8 md:p-10 flex flex-col justify-between">
+                <div class="relative w-full h-full rounded-[3rem] overflow-hidden shadow-2xl border border-gray-100/20 p-8 md:p-10 flex flex-col justify-between bg-gradient-to-br from-emerald-950 via-teal-900 to-slate-900">
                     
                     {{-- Natural Hero Image --}}
                     @php
                         $heroImage = setting('hero_image');
+                        $defaultHeroImage = 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=800&auto=format&fit=crop';
                         if (empty($heroImage)) {
-                            $heroImage = 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=800&auto=format&fit=crop';
+                            $heroImageUrl = $defaultHeroImage;
+                        } elseif (filter_var($heroImage, FILTER_VALIDATE_URL)) {
+                            $heroImageUrl = $heroImage;
+                        } else {
+                            $cleanPath = ltrim($heroImage, '/');
+                            if (file_exists(public_path($cleanPath))) {
+                                $heroImageUrl = asset($cleanPath);
+                            } else {
+                                $heroImageUrl = $defaultHeroImage;
+                            }
                         }
-                        $heroImageUrl = filter_var($heroImage, FILTER_VALIDATE_URL) ? $heroImage : asset(ltrim($heroImage, '/'));
                     @endphp
-                    <img src="{{ $heroImageUrl }}" alt="Hero Image" class="absolute inset-0 w-full h-full object-cover object-center">
+                    <img src="{{ $heroImageUrl }}" 
+                         alt="Hero Image" 
+                         class="absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-300"
+                         onerror="this.onerror=null; this.src='{{ $defaultHeroImage }}';">
                     
-                    {{-- Very Subtle Soft Shadow Gradient at Bottom Only --}}
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent pointer-events-none"></div>
+                    {{-- Soft Gradient Overlay for Optimal Text Contrast --}}
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/40 to-slate-950/20 pointer-events-none"></div>
 
                     {{-- Top Floating Infographic Badges --}}
                     <div class="relative z-10 flex justify-between items-start">
