@@ -83,25 +83,21 @@
                     
                     {{-- Natural Hero Image --}}
                     @php
-                        $heroImage = setting('hero_image');
-                        $defaultHeroImage = 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=800&auto=format&fit=crop';
-                        if (empty($heroImage)) {
-                            $heroImageUrl = $defaultHeroImage;
-                        } elseif (filter_var($heroImage, FILTER_VALIDATE_URL)) {
-                            $heroImageUrl = $heroImage;
+                        $localHeroAsset = asset('assets/images/hero-banner.png');
+                        $heroSetting = setting('hero_image');
+                        
+                        if (!empty($heroSetting) && filter_var($heroSetting, FILTER_VALIDATE_URL)) {
+                            $heroImageUrl = $heroSetting;
+                        } elseif (!empty($heroSetting) && file_exists(public_path(ltrim($heroSetting, '/')))) {
+                            $heroImageUrl = asset(ltrim($heroSetting, '/'));
                         } else {
-                            $cleanPath = ltrim($heroImage, '/');
-                            if (file_exists(public_path($cleanPath))) {
-                                $heroImageUrl = asset($cleanPath);
-                            } else {
-                                $heroImageUrl = $defaultHeroImage;
-                            }
+                            $heroImageUrl = $localHeroAsset;
                         }
                     @endphp
                     <img src="{{ $heroImageUrl }}" 
                          alt="Hero Image" 
                          class="absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-300"
-                         onerror="this.onerror=null; this.src='{{ $defaultHeroImage }}';">
+                         onerror="this.onerror=null; this.src='{{ $localHeroAsset }}';">
                     
                     {{-- Soft Gradient Overlay for Optimal Text Contrast --}}
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/40 to-slate-950/20 pointer-events-none"></div>
