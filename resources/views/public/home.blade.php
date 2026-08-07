@@ -79,15 +79,16 @@
                 <div class="absolute inset-0 rounded-[3rem] transform rotate-2 scale-95 opacity-20 bg-gradient-to-tr from-primary-600 to-accent-400"></div>
                 
                 {{-- Main Visual Container (Clean Natural Image Card) --}}
-                <div class="relative w-full h-full rounded-[3rem] overflow-hidden shadow-2xl border border-gray-100/20 p-8 md:p-10 flex flex-col justify-between bg-gradient-to-br from-emerald-950 via-teal-900 to-slate-900">
+                <div class="relative w-full h-full rounded-[3rem] overflow-hidden shadow-2xl border border-gray-100/20 p-8 md:p-10 flex flex-col justify-between"
+                     style="background: linear-gradient(135deg, #064e3b 0%, #047857 50%, #0f172a 100%) !important;">
                     
                     {{-- Natural Hero Image --}}
                     @php
                         $heroSetting = setting('hero_image');
-                        $fallbackImage = 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=800&auto=format&fit=crop';
+                        $defaultHeroImage = asset('assets/images/hero-banner.png');
                         
                         if (empty($heroSetting)) {
-                            $heroImageUrl = $fallbackImage;
+                            $heroImageUrl = $defaultHeroImage;
                         } elseif (filter_var($heroSetting, FILTER_VALIDATE_URL)) {
                             $heroImageUrl = $heroSetting;
                         } else {
@@ -98,10 +99,10 @@
                     <img src="{{ $heroImageUrl }}" 
                          alt="Hero Image" 
                          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; z-index: 1; display: block;"
-                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=800&auto=format&fit=crop';">
+                         onerror="this.onerror=null; this.src='{{ $defaultHeroImage }}';">
                     
                     {{-- Soft Gradient Overlay for Optimal Text Contrast --}}
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/40 to-slate-950/20 pointer-events-none" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none;"></div>
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; background: linear-gradient(to top, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.45) 50%, rgba(15, 23, 42, 0.25) 100%);"></div>
 
                     {{-- Top Floating Infographic Badges --}}
                     <div class="relative z-10 flex justify-between items-start">
