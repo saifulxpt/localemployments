@@ -30,7 +30,8 @@ module.exports = {
                 },
             },
             fontFamily: {
-                sans: ['"Hind Siliguri"', 'Kalpurush', 'sans-serif'],
+                sans: ['Kalpurush', '"Noto Sans Bengali"', '"Hind Siliguri"', '"Anek Bangla"', 'sans-serif'],
+                kalpurush: ['Kalpurush', '"Noto Sans Bengali"', 'sans-serif'],
             },
             boxShadow: {
                 'card': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
