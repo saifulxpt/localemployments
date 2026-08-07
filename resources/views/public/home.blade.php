@@ -74,15 +74,12 @@
                 </div>
             </div>
 
-            {{-- Right Composition (Hero Image & Floating Infographics) --}}
-            <div class="hidden lg:block relative h-[520px] w-full animate-fade-in">
-                <div class="absolute inset-0 rounded-[3rem] transform rotate-2 scale-95 opacity-20 bg-gradient-to-tr from-primary-600 to-accent-400"></div>
+            {{-- Right Composition (Clean Hero Image Card) --}}
+            <div class="hidden lg:block relative h-[480px] w-full animate-fade-in">
+                <div class="absolute inset-0 rounded-3xl transform rotate-1 scale-98 opacity-15 bg-gradient-to-tr from-primary-600 to-emerald-400"></div>
                 
-                {{-- Main Visual Container (Clean Natural Image Card) --}}
-                <div class="relative w-full h-full rounded-[3rem] overflow-hidden shadow-2xl border border-gray-100/20 p-8 md:p-10 flex flex-col justify-between"
-                     style="background: linear-gradient(135deg, #064e3b 0%, #047857 50%, #0f172a 100%) !important;">
-                    
-                    {{-- Natural Hero Image --}}
+                {{-- Main Visual Container (Pure Image Display) --}}
+                <div class="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl border border-gray-200/80 bg-gray-100">
                     @php
                         $heroSetting = setting('hero_image');
                         $defaultHeroImage = asset('assets/images/hero-banner.png');
@@ -98,70 +95,8 @@
 
                     <img src="{{ $heroImageUrl }}" 
                          alt="Hero Image" 
-                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; z-index: 1; display: block;"
+                         class="w-full h-full object-cover object-center rounded-3xl"
                          onerror="this.onerror=null; this.src='{{ $defaultHeroImage }}';">
-                    
-                    {{-- Soft Gradient Overlay for Optimal Text Contrast --}}
-                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; background: linear-gradient(to top, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.45) 50%, rgba(15, 23, 42, 0.25) 100%);"></div>
-
-                    {{-- Top Floating Infographic Badges --}}
-                    <div class="relative z-10 flex justify-between items-start">
-                        <div class="bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-2xl shadow-xl border border-white/70 flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center font-black text-xs shadow-md shadow-emerald-500/30">
-                                ✓
-                            </div>
-                            <div>
-                                <div class="text-xs font-black text-gray-900 leading-tight">১০০% ভেরিফাইড প্রোভাইডার</div>
-                                <div class="text-[10px] font-bold text-emerald-600 flex items-center gap-1 mt-0.5">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
-                                    NID যাচাইকৃত কর্মী
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="bg-white/90 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/60 text-xs font-bold text-gray-900 flex items-center gap-2 shadow-lg">
-                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                            লাইভ প্ল্যাটফর্ম
-                        </div>
-                    </div>
-
-                    {{-- Center Content Highlight --}}
-                    <div class="relative z-10 my-auto text-center px-4">
-                        <h3 class="text-2xl md:text-3xl font-black text-white tracking-tight drop-shadow-md leading-snug">
-                            বাংলাদেশের ১ নম্বর <br>
-                            <span class="text-emerald-300">লোকাল সার্ভিস মার্কেটপ্লেস</span>
-                        </h3>
-                        <p class="text-xs md:text-sm text-gray-100 mt-2 max-w-sm mx-auto font-medium drop-shadow leading-relaxed">
-                            প্লাম্বিং, ইলেকট্রিক, ক্লিনিং ও অ্যাপ্লায়েন্স সার্ভিস একদম হাতের কাছে
-                        </p>
-                    </div>
-
-                    {{-- Bottom Floating Infographic Cards (Floating with Safe Bottom Padding) --}}
-                    <div class="relative z-10 grid grid-cols-2 gap-3 mb-2">
-                        <div class="bg-white/95 backdrop-blur-md p-3.5 rounded-2xl shadow-xl border border-white/70 flex items-center gap-3">
-                            <div class="flex -space-x-2 overflow-hidden shrink-0">
-                                <span class="inline-block h-7 w-7 rounded-full ring-2 ring-white text-xs font-black flex items-center justify-center shadow" style="background: #0f766e !important; color: #ffffff !important;">R</span>
-                                <span class="inline-block h-7 w-7 rounded-full ring-2 ring-white text-xs font-black flex items-center justify-center shadow" style="background: #059669 !important; color: #ffffff !important;">S</span>
-                            </div>
-                            <div>
-                                <div class="flex items-center gap-1 text-amber-500 font-black text-xs">
-                                    ★ ৪.৯ / ৫.০
-                                </div>
-                                <div class="text-[10px] font-bold text-gray-600">১,২০০+ রিভিউ</div>
-                            </div>
-                        </div>
-
-                        <div class="bg-white/95 backdrop-blur-md p-3.5 rounded-2xl shadow-xl border border-white/70 flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-xl text-white flex items-center justify-center font-black text-xs shadow-md shrink-0" style="background: #f59e0b !important; color: #ffffff !important;">
-                                ⚡
-                            </div>
-                            <div>
-                                <div class="text-xs font-black text-gray-900">তাত্ক্ষণিক বিড</div>
-                                <div class="text-[10px] font-bold text-gray-500">গড় ৫-১০ মিনিট</div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
 
