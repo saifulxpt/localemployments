@@ -83,21 +83,21 @@
                     
                     {{-- Natural Hero Image --}}
                     @php
-                        $localHeroAsset = asset('assets/images/hero-banner.png');
                         $heroSetting = setting('hero_image');
+                        $fallbackImage = 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=800&auto=format&fit=crop';
                         
-                        if (!empty($heroSetting) && filter_var($heroSetting, FILTER_VALIDATE_URL)) {
+                        if (empty($heroSetting)) {
+                            $heroImageUrl = $fallbackImage;
+                        } elseif (filter_var($heroSetting, FILTER_VALIDATE_URL)) {
                             $heroImageUrl = $heroSetting;
-                        } elseif (!empty($heroSetting) && file_exists(public_path(ltrim($heroSetting, '/')))) {
-                            $heroImageUrl = asset(ltrim($heroSetting, '/'));
                         } else {
-                            $heroImageUrl = $localHeroAsset;
+                            $heroImageUrl = asset(ltrim($heroSetting, '/'));
                         }
                     @endphp
                     <img src="{{ $heroImageUrl }}" 
                          alt="Hero Image" 
                          class="absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-300"
-                         onerror="this.onerror=null; this.src='{{ $localHeroAsset }}';">
+                         onerror="this.onerror=null; this.src='{{ $fallbackImage }}';">
                     
                     {{-- Soft Gradient Overlay for Optimal Text Contrast --}}
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/40 to-slate-950/20 pointer-events-none"></div>
