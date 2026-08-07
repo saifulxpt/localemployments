@@ -94,10 +94,19 @@
                             $heroImageUrl = asset(ltrim($heroSetting, '/'));
                         }
                     @endphp
+
+                    {{-- Diagnostic Debug Overlay --}}
+                    <div class="relative z-30 bg-black/90 text-emerald-400 p-3 rounded-xl text-[11px] font-mono border border-emerald-500/50 shadow-2xl my-1 pointer-events-auto leading-relaxed">
+                        <div class="text-amber-300 font-bold mb-1">🔍 DEBUG INFO (Hero Image System)</div>
+                        <div><span class="text-gray-400">1. DB Setting Raw:</span> <span class="text-white">{{ var_export($heroSetting, true) }}</span></div>
+                        <div><span class="text-gray-400">2. Evaluated URL:</span> <span class="text-yellow-300 break-all">{{ $heroImageUrl }}</span></div>
+                        <div><span class="text-gray-400">3. Local File Exists:</span> <span class="{{ file_exists(public_path(ltrim($heroSetting, '/'))) ? 'text-green-400' : 'text-red-400' }} font-bold">{{ file_exists(public_path(ltrim($heroSetting, '/'))) ? 'YES' : 'NO' }}</span></div>
+                    </div>
+
                     <img src="{{ $heroImageUrl }}" 
                          alt="Hero Image" 
                          class="absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-300"
-                         onerror="this.onerror=null; this.src='{{ $fallbackImage }}';">
+                         onerror="this.onerror=null; this.src='{{ $fallbackImage }}'; font-bold; console.log('Image failed to load:', this.src);">
                     
                     {{-- Soft Gradient Overlay for Optimal Text Contrast --}}
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/40 to-slate-950/20 pointer-events-none"></div>
