@@ -8,6 +8,12 @@
 </IfModule>
 # php -- END cPanel-generated handler, do not edit
 
+<IfModule mod_mime.c>
+    AddType image/webp .webp
+    AddType image/png .png
+    AddType image/jpeg .jpg .jpeg
+</IfModule>
+
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
