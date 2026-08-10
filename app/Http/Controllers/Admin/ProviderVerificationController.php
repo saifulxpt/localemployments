@@ -15,8 +15,7 @@ class ProviderVerificationController extends Controller
 
     public function index()
     {
-        $pending = User::where('role', 'provider')
-            ->whereHas('providerProfile', fn($q) => $q->where('verification_status', 'pending'))
+        $pending = User::whereHas('providerProfile', fn($q) => $q->where('verification_status', 'pending'))
             ->with('providerProfile', 'verificationDoc', 'district')
             ->latest()
             ->paginate(15);
@@ -26,7 +25,6 @@ class ProviderVerificationController extends Controller
 
     public function show(User $user)
     {
-        abort_if($user->role !== 'provider', 404);
         $user->load('providerProfile', 'verificationDoc', 'district', 'area');
         return view('admin.verifications.show', compact('user'));
     }
@@ -39,11 +37,13 @@ class ProviderVerificationController extends Controller
             'verification_status'  => 'approved',
         ]);
 
-        $this->notify->send($user, 'যাচাইকরণ অনুমোদিত', 'আপনার প্রোফাইল যাচাই হয়েছে! এখন সেবা দিন।', 'system');
-        $this->sms->send($user->phone, "LocalEmployments: আপনার প্রোফাইল যাচাই অনুমোদিত হয়েছে। এখন বিড করুন।", 'verification');
-        AdminActivityLog::record("Approved verification for provider #{$user->id}", $user);
+        $user->update(['role' => 'provider']);
 
-        return back()->with('success', 'প্রোভাইডার যাচাইকরণ অনুমোদন হয়েছে।');
+        $this->notify->send($user, 'যাচাইকরণ অনুমোদিত', 'আপনার সার্ভিস প্রোভাইডার আবেদন অনুমোদিত হয়েছে! এখন আপনি সরাসরি বিড ও কাজ করতে পারবেন।', 'system');
+        $this->sms->send($user->phone, "LocalEmployments: আপনার সার্ভিস প্রোভাইডার আবেদন অনুমোদিত হয়েছে। অ্যাপে লগইন করুন।", 'verification');
+        AdminActivityLog::record("Approved provider application for user #{$user->id}", $user);
+
+        return back()->with('success', 'প্রোভাইডার যাচাইকরণ ও রোল অনুমোদন সফল হয়েছে।');
     }
 
     public function reject(Request $request, User $user)

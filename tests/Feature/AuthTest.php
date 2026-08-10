@@ -25,7 +25,6 @@ class AuthTest extends TestCase
             'phone'                 => '01712345678',
             'password'              => 'password123',
             'password_confirmation' => 'password123',
-            'role'                  => 'seeker',
         ]);
 
         $response->assertRedirect(route('otp.show'));

@@ -90,6 +90,11 @@ Route::middleware(['auth', 'is.seeker', 'phone.verified'])
         Route::get('/profile/edit', [Seeker\ProfileController::class, 'edit'])->name('profile.edit');
         Route::put('/profile', [Seeker\ProfileController::class, 'update'])->name('profile.update');
 
+        // Become a Provider Onboarding Application
+        Route::get('/become-provider', [Seeker\BecomeProviderController::class, 'show'])->name('become-provider');
+        Route::post('/become-provider', [Seeker\BecomeProviderController::class, 'store'])->name('become-provider.store');
+        Route::get('/become-provider/status', [Seeker\BecomeProviderController::class, 'status'])->name('become-provider.status');
+
         // Job Requests
         Route::resource('job-requests', Seeker\JobRequestController::class);
         Route::post('/job-requests/{jobRequest}/cancel', [Seeker\JobRequestController::class, 'cancel'])->name('job-requests.cancel');

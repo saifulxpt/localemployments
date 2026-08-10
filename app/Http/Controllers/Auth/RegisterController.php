@@ -25,7 +25,6 @@ class RegisterController extends Controller
             'name'        => ['required', 'string', 'max:150'],
             'phone'       => ['required', 'string', 'regex:/^01[3-9][0-9]{8}$/', 'unique:users,phone'],
             'password'    => ['required', 'confirmed', Password::min(8)],
-            'role'        => ['required', 'in:seeker,provider'],
             'district_id' => ['nullable', 'exists:districts,id'],
             'area_id'     => ['nullable', 'exists:areas,id'],
         ], [
@@ -37,7 +36,7 @@ class RegisterController extends Controller
             'name'        => $request->name,
             'phone'       => $request->phone,
             'password'    => Hash::make($request->password),
-            'role'        => $request->role,
+            'role'        => 'seeker',
             'district_id' => $request->district_id,
             'area_id'     => $request->area_id,
         ]);

@@ -66,45 +66,7 @@
                     </div>
                 @endif
 
-                {{-- Role Selection (Premium Toggle) --}}
-                <div class="mb-6">
-                    <label class="block text-sm font-bold text-gray-700 mb-3">আপনি কী করতে চান?</label>
-                    <div class="grid grid-cols-2 gap-4">
-                        <label class="relative flex flex-col items-center gap-2 p-4 rounded-2xl border-2 cursor-pointer transition-all duration-300"
-                               :class="role === 'seeker' ? 'border-primary-500 bg-primary-50 shadow-[0_4px_12px_-4px_rgba(15,118,110,0.2)]' : 'border-gray-200 hover:border-gray-300 bg-white'">
-                            <input type="radio" name="role" value="seeker" x-model="role" class="hidden">
-                            <div class="w-10 h-10 rounded-full flex items-center justify-center transition-colors"
-                                 :class="role === 'seeker' ? 'bg-primary-500 text-white' : 'bg-gray-100 text-gray-400'">
-                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                            </div>
-                            <div class="text-center">
-                                <p class="font-bold text-sm" :class="role === 'seeker' ? 'text-primary-700' : 'text-gray-700'">কর্মী খুঁজছি</p>
-                            </div>
-                            
-                            {{-- Checkmark --}}
-                            <div x-show="role === 'seeker'" x-transition class="absolute top-2 right-2 text-primary-500">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                            </div>
-                        </label>
 
-                        <label class="relative flex flex-col items-center gap-2 p-4 rounded-2xl border-2 cursor-pointer transition-all duration-300"
-                               :class="role === 'provider' ? 'border-primary-500 bg-primary-50 shadow-[0_4px_12px_-4px_rgba(15,118,110,0.2)]' : 'border-gray-200 hover:border-gray-300 bg-white'">
-                            <input type="radio" name="role" value="provider" x-model="role" class="hidden">
-                            <div class="w-10 h-10 rounded-full flex items-center justify-center transition-colors"
-                                 :class="role === 'provider' ? 'bg-primary-500 text-white' : 'bg-gray-100 text-gray-400'">
-                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-                            </div>
-                            <div class="text-center">
-                                <p class="font-bold text-sm" :class="role === 'provider' ? 'text-primary-700' : 'text-gray-700'">কাজ করতে চাই</p>
-                            </div>
-
-                            {{-- Checkmark --}}
-                            <div x-show="role === 'provider'" x-transition class="absolute top-2 right-2 text-primary-500">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                            </div>
-                        </label>
-                    </div>
-                </div>
 
                 {{-- Name --}}
                 <div>

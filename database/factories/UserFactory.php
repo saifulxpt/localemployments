@@ -30,6 +30,7 @@ class UserFactory extends Factory
             'email'          => fake()->unique()->safeEmail(),
             'password'       => static::$password ??= Hash::make('password'),
             'role'           => 'seeker',
+            'status'         => 'active',
             'phone_verified' => true,
             'remember_token' => Str::random(10),
         ];

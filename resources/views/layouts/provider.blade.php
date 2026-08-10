@@ -61,6 +61,13 @@
                     <svg class="w-5 h-5 {{ active_class('provider.dashboard', 'text-white', 'text-gray-500') }}" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
                     ড্যাশবোর্ড
                 </a>
+
+                <div class="pt-3 pb-1">
+                    <a href="{{ route('seeker.dashboard') }}" class="flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-teal-400 font-bold border border-gray-700 transition-all text-xs">
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+                        <span>কাজ পোস্ট করুন (Seeker Mode)</span>
+                    </a>
+                </div>
                 
                 <div class="pt-5 pb-2">
                     <p class="px-3 text-xs font-bold text-gray-500 uppercase tracking-wider">কাজের ক্ষেত্র</p>
