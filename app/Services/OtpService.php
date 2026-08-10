@@ -13,7 +13,23 @@ class OtpService
      */
     public function send(User $user): void
     {
-        $this->sms->sendOtp($user);
+        $otp = (string) random_int(100000, 999999);
+
+        $user->update([
+            'otp'            => $otp,
+            'otp_expires_at' => now()->addMinutes(5),
+        ]);
+
+        // Send via SMS if phone exists
+        if (!empty($user->phone)) {
+            $message = "LocalEmployments: আপনার OTP কোড হলো {$otp}। এটি ৫ মিনিটের মধ্যে মেয়াদ শেষ হবে। কারো সাথে শেয়ার করবেন না।";
+            $this->sms->send($user->phone, $message, 'otp');
+        }
+
+        // Send via Email if email exists
+        if (!empty($user->email)) {
+            \Illuminate\Support\Facades\Mail::to($user->email)->send(new \App\Mail\SendOtpMail($otp));
+        }
     }
 
     /**

@@ -56,6 +56,12 @@ Route::middleware('guest')->group(function () {
     Route::get('/register', [RegisterController::class, 'show'])->name('register');
     Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 
+    // Google Social Auth
+    Route::get('/auth/google', [\App\Http\Controllers\Auth\GoogleAuthController::class, 'redirect'])->name('auth.google');
+    Route::get('/auth/google/callback', [\App\Http\Controllers\Auth\GoogleAuthController::class, 'callback']);
+    Route::get('/auth/google/phone', [\App\Http\Controllers\Auth\GoogleAuthController::class, 'showPhoneForm'])->name('auth.google.phone');
+    Route::post('/auth/google/phone', [\App\Http\Controllers\Auth\GoogleAuthController::class, 'storePhone'])->name('auth.google.phone.store');
+
     Route::get('/verify-otp', [OtpController::class, 'show'])->name('otp.show');
     Route::post('/verify-otp', [OtpController::class, 'verify'])->name('otp.verify');
     Route::post('/resend-otp', [OtpController::class, 'resend'])->name('otp.resend');

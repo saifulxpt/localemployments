@@ -24,17 +24,20 @@ class RegisterController extends Controller
         $request->validate([
             'name'        => ['required', 'string', 'max:150'],
             'phone'       => ['required', 'string', 'regex:/^01[3-9][0-9]{8}$/', 'unique:users,phone'],
+            'email'       => ['nullable', 'email', 'max:191', 'unique:users,email'],
             'password'    => ['required', 'confirmed', Password::min(8)],
             'district_id' => ['nullable', 'exists:districts,id'],
             'area_id'     => ['nullable', 'exists:areas,id'],
         ], [
             'phone.regex'  => 'ফোন নম্বরটি সঠিক ফরম্যাটে দিন (01XXXXXXXXX)',
             'phone.unique' => 'এই ফোন নম্বর দিয়ে আগেই একটি একাউন্ট আছে।',
+            'email.unique' => 'এই ইমেইল দিয়ে আগেই একটি একাউন্ট আছে।',
         ]);
 
         $user = User::create([
             'name'        => $request->name,
             'phone'       => $request->phone,
+            'email'       => $request->email,
             'password'    => Hash::make($request->password),
             'role'        => 'seeker',
             'district_id' => $request->district_id,

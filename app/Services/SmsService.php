@@ -122,24 +122,7 @@ class SmsService
         return $success;
     }
 
-    /**
-     * Generate OTP, save to user, and send via SMS.
-     */
-    public function sendOtp(\App\Models\User $user): string
-    {
-        $otp = (string) random_int(100000, 999999);
 
-        $user->update([
-            'otp'            => $otp,
-            'otp_expires_at' => now()->addMinutes(5),
-        ]);
-
-        $message = "LocalEmployments: আপনার OTP কোড হলো {$otp}। এটি ৫ মিনিটের মধ্যে মেয়াদ শেষ হবে। কারো সাথে শেয়ার করবেন না।";
-
-        $this->send($user->phone, $message, 'otp');
-
-        return $otp; // Only for logging, never expose to users
-    }
 
     /**
      * Send booking confirmation SMS.
