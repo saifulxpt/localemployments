@@ -29,7 +29,8 @@ class SubcategoryController extends Controller
             'sort_order'  => ['integer', 'min:0'],
         ]);
         $data['category_id'] = $category->id;
-        $data['slug']        = Str::slug($category->name . '-' . $data['name']);
+        $slug                = Str::slug($category->name . '-' . $data['name']);
+        $data['slug']        = !empty($slug) ? $slug : 'sub-' . Str::random(6) . '-' . time();
         ServiceSubcategory::create($data);
         return redirect()->route('admin.categories.subcategories.index', $category)->with('success', 'সাব-ক্যাটাগরি যোগ হয়েছে।');
     }

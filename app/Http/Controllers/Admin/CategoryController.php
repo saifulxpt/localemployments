@@ -29,7 +29,8 @@ class CategoryController extends Controller
             'description' => ['nullable', 'string'],
             'sort_order'  => ['integer', 'min:0'],
         ]);
-        $data['slug'] = Str::slug($data['name']);
+        $slug = Str::slug($data['name']);
+        $data['slug'] = !empty($slug) ? $slug : 'category-' . Str::random(6) . '-' . time();
         ServiceCategory::create($data);
         AdminActivityLog::record("Created category: {$data['name']}");
         return redirect()->route('admin.categories.index')->with('success', 'ক্যাটাগরি যোগ হয়েছে।');

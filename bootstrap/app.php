@@ -19,6 +19,11 @@ return Application::configure(basePath: dirname(__DIR__))
             'is.verified.provider' => \App\Http\Middleware\IsVerifiedProvider::class,
             'phone.verified'       => \App\Http\Middleware\CheckPhoneVerified::class,
         ]);
+
+        $middleware->validateCsrfTokens(except: [
+            'seeker/payments/*',
+            'payments/*',
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

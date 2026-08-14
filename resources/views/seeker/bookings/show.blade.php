@@ -41,8 +41,16 @@
                 @elseif($booking->directService)
                     <div class="bg-gray-50 rounded-xl p-4 border border-gray-100 text-sm space-y-2">
                         <div class="flex gap-2">
+                            <span class="font-semibold text-gray-700 w-24">লোকেশন:</span>
+                            <span class="text-gray-900">{{ $booking->location_detail ?? 'ঠিকানা উল্লেখ নেই' }}</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <span class="font-semibold text-gray-700 w-24">তারিখ ও সময়:</span>
+                            <span class="text-gray-900">{{ $booking->service_date ? \Carbon\Carbon::parse($booking->service_date)->format('d M, Y') : 'যেকোনো দিন' }} ({{ $booking->service_time ?: 'যেকোনো সময়' }})</span>
+                        </div>
+                        <div class="flex gap-2">
                             <span class="font-semibold text-gray-700 w-24">আপনার নোট:</span>
-                            <span class="text-gray-900">{{ $booking->jobRequest->description ?? 'কোনো নোট নেই' }}</span> 
+                            <span class="text-gray-900">{{ $booking->seeker_note ?? 'কোনো নোট নেই' }}</span> 
                         </div>
                     </div>
                 @endif

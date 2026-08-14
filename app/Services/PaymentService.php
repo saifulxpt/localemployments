@@ -19,7 +19,7 @@ class PaymentService
     public function __construct()
     {
         $this->storeId       = Setting::get('sslcommerz_store_id', config('services.sslcommerz.store_id', ''));
-        $this->storePassword = Setting::get('sslcommerz_store_password', config('services.sslcommerz.store_password', ''));
+        $this->storePassword = Setting::get('sslcommerz_store_password', Setting::get('sslcommerz_store_passwd', config('services.sslcommerz.store_password', '')));
         $this->isSandbox     = (bool) Setting::get('sslcommerz_sandbox', true);
 
         $this->initiateUrl  = $this->isSandbox

@@ -7,31 +7,30 @@ $kernel->bootstrap();
 
 use Illuminate\Support\Facades\Route;
 
-echo "=== SYSTEMATIC PAGE & FEATURE AUDIT ===\n\n";
+echo "=== DYNAMIC SYSTEMATIC PAGE & FEATURE AUDIT ===\n\n";
 
 $issues = [];
+$controllers = glob_recursive(__DIR__ . '/../app/Http/Controllers', '*.php');
 
-// 1. Check Missing Views
-$missingViews = [
-    'admin.locations.districts.index' => 'app/Http/Controllers/Admin/DistrictController.php',
-    'seeker.direct-booking.create' => 'app/Http/Controllers/Seeker/DirectBookingController.php',
-    'seeker.disputes.create' => 'app/Http/Controllers/Seeker/DisputeController.php',
-    'seeker.job-requests.edit' => 'app/Http/Controllers/Seeker/JobRequestController.php',
-    'seeker.reviews.create' => 'app/Http/Controllers/Seeker/ReviewController.php',
-];
-
-foreach ($missingViews as $view => $caller) {
-    $viewPath = __DIR__ . '/../resources/views/' . str_replace('.', '/', $view) . '.blade.php';
-    if (!file_exists($viewPath)) {
-        $issues[] = [
-            'severity' => 'CRITICAL',
-            'category' => 'Missing View (500 Error on Click)',
-            'details' => "View '{$view}' does not exist, called by {$caller}",
-        ];
+// 1. Check all view() calls in all controllers dynamically
+foreach ($controllers as $file) {
+    $content = file_get_contents($file);
+    preg_match_all("/view\(\s*['\"]([^'\"]+)['\"]/", $content, $matches);
+    if (!empty($matches[1])) {
+        foreach ($matches[1] as $viewName) {
+            $viewPath = __DIR__ . '/../resources/views/' . str_replace('.', '/', $viewName) . '.blade.php';
+            if (!file_exists($viewPath)) {
+                $issues[] = [
+                    'severity' => 'CRITICAL',
+                    'category' => 'Missing View File',
+                    'details' => "View '{$viewName}' not found in " . str_replace(__DIR__ . '/../', '', $file),
+                ];
+            }
+        }
     }
 }
 
-// 2. Check SSLCommerz / Payment HTTP Methods & CSRF
+// 2. Check Payment routes
 $paymentRoutes = ['seeker.payments.success', 'seeker.payments.fail', 'seeker.payments.cancel', 'seeker.payments.ipn'];
 foreach ($paymentRoutes as $rName) {
     $route = Route::getRoutes()->getByName($rName);
@@ -39,51 +38,50 @@ foreach ($paymentRoutes as $rName) {
         if (!in_array('POST', $route->methods())) {
             $issues[] = [
                 'severity' => 'CRITICAL',
-                'category' => 'Payment Gateway Crash (405 Method Not Allowed)',
-                'details' => "Route '{$rName}' only accepts GET, but SSLCommerz callbacks and IPN submit via POST.",
+                'category' => 'Payment Gateway Error',
+                'details' => "Route '{$rName}' does not accept POST.",
             ];
         }
         if ($rName === 'seeker.payments.ipn' && in_array('auth', $route->middleware())) {
             $issues[] = [
                 'severity' => 'CRITICAL',
-                'category' => 'Payment IPN Blocked (401 Unauthorized)',
-                'details' => "Payment IPN route '{$rName}' has 'auth' middleware, blocking webhook calls from payment gateway.",
+                'category' => 'Payment IPN Middleware Error',
+                'details' => "Route '{$rName}' requires auth.",
             ];
         }
     }
 }
 
-// 3. Check Provider Booking completion / earnings logic
-$bookingService = new ReflectionClass(\App\Services\BookingService::class);
-// Check if BookingService methods exist and are called properly
-
-// 4. Check Seeker Booking show line 45 typo:
-$bookingShowBlade = file_get_contents(__DIR__ . '/../resources/views/seeker/bookings/show.blade.php');
-if (str_contains($bookingShowBlade, '$booking->jobRequest->description ?? \'কোনো নোট নেই\'')) {
-    // In directService block, it checks $booking->jobRequest->description instead of $booking->seeker_note or $booking->directService!
-    $issues[] = [
-        'severity' => 'HIGH',
-        'category' => 'UI / Null Pointer Bug',
-        'details' => "In seeker/bookings/show.blade.php (Line 45): In directService section, it attempts to read '\$booking->jobRequest->description' which is NULL for direct bookings, crashing or showing blank.",
-    ];
+// 3. Check @stack('scripts') in layouts
+$layouts = ['seeker', 'provider', 'admin', 'public'];
+foreach ($layouts as $l) {
+    $lPath = __DIR__ . "/../resources/views/layouts/{$l}.blade.php";
+    if (file_exists($lPath)) {
+        $lContent = file_get_contents($lPath);
+        if (!str_contains($lContent, "@stack('scripts')")) {
+            $issues[] = [
+                'severity' => 'HIGH',
+                'category' => 'Missing @stack(scripts)',
+                'details' => "Layout '{$l}' does not contain @stack('scripts')",
+            ];
+        }
+    }
 }
 
-// 5. Check Provider Booking show for similar direct booking issues
-$providerBookingShowBlade = file_get_contents(__DIR__ . '/../resources/views/provider/bookings/show.blade.php');
-if (str_contains($providerBookingShowBlade, '$booking->jobRequest->description ??')) {
-    $issues[] = [
-        'severity' => 'HIGH',
-        'category' => 'UI / Null Pointer Bug',
-        'details' => "In provider/bookings/show.blade.php: Direct booking description references jobRequest.",
-    ];
-}
-
-// 6. Check Admin Dashboard / Analytics
-$adminDashboard = file_get_contents(__DIR__ . '/../app/Http/Controllers/Admin/DashboardController.php');
-
-// Output all identified issues
 echo "TOTAL ISSUES DETECTED: " . count($issues) . "\n\n";
-foreach ($issues as $i => $issue) {
-    echo ($i + 1) . ". [{$issue['severity']}] {$issue['category']}\n";
-    echo "   -> {$issue['details']}\n\n";
+if (empty($issues)) {
+    echo "🎉 ALL SYSTEM AUDITS PASSED WITH ZERO ISSUES!\n";
+} else {
+    foreach ($issues as $i => $issue) {
+        echo ($i + 1) . ". [{$issue['severity']}] {$issue['category']}\n";
+        echo "   -> {$issue['details']}\n\n";
+    }
+}
+
+function glob_recursive($dir, $pattern) {
+    $files = glob($dir . '/' . $pattern);
+    foreach (glob($dir . '/*', GLOB_ONLYDIR | GLOB_NOSORT) as $subdir) {
+        $files = array_merge($files, glob_recursive($subdir, $pattern));
+    }
+    return $files;
 }

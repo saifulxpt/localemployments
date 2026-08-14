@@ -12,7 +12,7 @@ class DistrictController extends Controller
     public function index()
     {
         $districts = District::withCount('areas')->orderBy('name')->paginate(30);
-        return view('admin.locations.districts.index', compact('districts'));
+        return view('admin.locations.index', compact('districts'));
     }
 
     public function create()

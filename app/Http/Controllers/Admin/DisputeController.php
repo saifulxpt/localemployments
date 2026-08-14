@@ -39,8 +39,12 @@ class DisputeController extends Controller
         ]);
 
         // Notify both parties
-        $this->notify->send($dispute->raisedBy, 'বিরোধ সমাধান হয়েছে', $request->resolution, 'system');
-        $this->notify->send($dispute->against, 'বিরোধ সমাধান হয়েছে', $request->resolution, 'system');
+        if ($dispute->raisedBy) {
+            $this->notify->send($dispute->raisedBy, 'বিরোধ সমাধান হয়েছে', $request->resolution, 'system');
+        }
+        if ($dispute->againstUser) {
+            $this->notify->send($dispute->againstUser, 'বিরোধ সমাধান হয়েছে', $request->resolution, 'system');
+        }
 
         AdminActivityLog::record("Resolved dispute #{$dispute->id}", $dispute);
 

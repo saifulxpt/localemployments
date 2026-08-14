@@ -94,36 +94,48 @@ class NotificationService
 
     public function bookingConfirmed(User $user, \App\Models\Booking $booking): void
     {
+        $url = $user->isProvider()
+            ? route('provider.bookings.show', $booking->id)
+            : route('seeker.bookings.show', $booking->id);
+
         $this->send(
             $user,
             'বুকিং নিশ্চিত',
             "বুকিং {$booking->booking_ref} নিশ্চিত হয়েছে।",
             'booking',
-            null,
+            $url,
             ['booking_id' => $booking->id]
         );
     }
 
     public function bookingCompleted(User $user, \App\Models\Booking $booking): void
     {
+        $url = $user->isProvider()
+            ? route('provider.bookings.show', $booking->id)
+            : route('seeker.bookings.show', $booking->id);
+
         $this->send(
             $user,
             'সেবা সম্পন্ন',
             "বুকিং {$booking->booking_ref} সম্পন্ন হয়েছে। রেটিং দিতে ভুলবেন না।",
             'booking',
-            null,
+            $url,
             ['booking_id' => $booking->id]
         );
     }
 
     public function newMessage(User $receiver, \App\Models\Message $message): void
     {
+        $url = $receiver->isProvider()
+            ? route('provider.messages.show', $message->booking_id)
+            : route('seeker.messages.show', $message->booking_id);
+
         $this->send(
             $receiver,
             'নতুন বার্তা',
             "{$message->sender->name} আপনাকে একটি বার্তা পাঠিয়েছেন।",
             'booking',
-            null,
+            $url,
             ['booking_id' => $message->booking_id]
         );
     }

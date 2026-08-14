@@ -31,6 +31,11 @@ class Dispute extends Model
         return $this->belongsTo(User::class, 'against');
     }
 
+    public function againstUser()
+    {
+        return $this->belongsTo(User::class, 'against');
+    }
+
     public function resolvedBy()
     {
         return $this->belongsTo(User::class, 'resolved_by');

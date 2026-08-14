@@ -134,10 +134,9 @@ Route::middleware(['auth', 'is.seeker', 'phone.verified'])
 
         // Payments
         Route::post('/payments/{booking}/initiate', [Seeker\PaymentController::class, 'initiate'])->name('payments.initiate');
-        Route::get('/payments/success', [Seeker\PaymentController::class, 'success'])->name('payments.success');
-        Route::get('/payments/fail', [Seeker\PaymentController::class, 'fail'])->name('payments.fail');
-        Route::get('/payments/cancel', [Seeker\PaymentController::class, 'cancel'])->name('payments.cancel');
-        Route::post('/payments/ipn', [Seeker\PaymentController::class, 'ipn'])->name('payments.ipn')->withoutMiddleware(['auth', 'is.seeker', 'phone.verified']);
+        Route::match(['get', 'post'], '/payments/success', [Seeker\PaymentController::class, 'success'])->name('payments.success');
+        Route::match(['get', 'post'], '/payments/fail', [Seeker\PaymentController::class, 'fail'])->name('payments.fail');
+        Route::match(['get', 'post'], '/payments/cancel', [Seeker\PaymentController::class, 'cancel'])->name('payments.cancel');
 
         // Messages
         Route::get('/messages', [Seeker\MessageController::class, 'index'])->name('messages.index');
@@ -304,6 +303,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/reports/export', [Admin\ReportController::class, 'export'])->name('reports.export');
     });
 });
+
+// ─────────────────────────────────────────
+// Payment Gateway Webhooks / IPN (Unauthenticated)
+// ─────────────────────────────────────────
+Route::post('/seeker/payments/ipn', [App\Http\Controllers\Seeker\PaymentController::class, 'ipn'])->name('seeker.payments.ipn');
+Route::post('/payments/ipn', [App\Http\Controllers\Seeker\PaymentController::class, 'ipn'])->name('payments.ipn');
 
 // ─────────────────────────────────────────
 // SYSTEM DEPLOY (Admin button - runs all post-deploy artisan commands)
