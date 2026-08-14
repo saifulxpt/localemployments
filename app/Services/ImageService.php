@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\Encoders\JpegEncoder;
 
 class ImageService
 {
@@ -26,10 +27,10 @@ class ImageService
         $this->deleteOld($oldPath);
 
         $filename = 'avatars/' . Str::uuid() . '.jpg';
-        $image    = $this->manager->read($file->getRealPath());
+        $image    = $this->manager->decodePath($file->getRealPath());
         $image->cover(400, 400);
 
-        Storage::disk('public')->put($filename, $image->toJpeg(80)->toString());
+        Storage::disk('public')->put($filename, $image->encode(new JpegEncoder(80))->toString());
         return $filename;
     }
 
@@ -40,10 +41,10 @@ class ImageService
     public function storePhoto(UploadedFile $file, string $folder = 'photos'): string
     {
         $filename = $folder . '/' . Str::uuid() . '.jpg';
-        $image    = $this->manager->read($file->getRealPath());
+        $image    = $this->manager->decodePath($file->getRealPath());
         $image->scaleDown(width: 1200, height: 900);
 
-        Storage::disk('public')->put($filename, $image->toJpeg(80)->toString());
+        Storage::disk('public')->put($filename, $image->encode(new JpegEncoder(80))->toString());
         return $filename;
     }
 
