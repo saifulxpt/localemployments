@@ -43,11 +43,11 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class="flex items-center gap-2">
-                                        <a href="{{ route('public.providers.show', $booking->provider->id) }}">
-                                            <img src="{{ $booking->provider->avatar_url }}" alt="" class="w-8 h-8 rounded-full object-cover">
+                                        <a href="{{ route('providers.show', $booking->provider->id) }}">
+                                            <img src="{{ $booking->provider->avatar_url }}" class="w-8 h-8 rounded-full object-cover border border-gray-200">
                                         </a>
                                         <div>
-                                            <a href="{{ route('public.providers.show', $booking->provider->id) }}" class="font-medium text-gray-900 hover:text-primary-600">{{ $booking->provider->name }}</a>
+                                            <a href="{{ route('providers.show', $booking->provider->id) }}" class="font-medium text-gray-900 hover:text-primary-600">{{ $booking->provider->name }}</a>
                                             <div class="text-xs text-gray-500 flex items-center gap-1">
                                                 <span class="text-yellow-500">★</span> {{ number_format($booking->provider->providerProfile?->rating_avg ?? 0, 1) }}
                                             </div>
@@ -84,7 +84,7 @@
                 </div>
                 <h3 class="text-xl font-bold text-gray-900 mb-2">কোনো বুকিং নেই</h3>
                 <p class="text-gray-500 mb-6 max-w-md mx-auto">আপনার কোনো বুকিং পাওয়া যায়নি। আপনার প্রয়োজনীয় সার্ভিস খুঁজে বের করে বুকিং করুন।</p>
-                <a href="{{ route('public.search') }}" class="btn btn-primary">সার্ভিস খুঁজুন</a>
+                <a href="{{ route('search') }}" class="btn btn-primary">সার্ভিস খুঁজুন</a>
             </div>
         @endif
     </div>

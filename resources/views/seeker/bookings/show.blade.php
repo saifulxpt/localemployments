@@ -143,11 +143,11 @@
             <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
                 <h3 class="font-bold text-gray-900 mb-4 border-b border-gray-100 pb-2">প্রোভাইডার তথ্য</h3>
                 <div class="flex items-start gap-4 mb-4">
-                    <a href="{{ route('public.providers.show', $booking->provider->id) }}">
-                        <img src="{{ $booking->provider->avatar_url }}" alt="" class="w-14 h-14 rounded-full object-cover">
+                    <a href="{{ route('providers.show', $booking->provider->id) }}">
+                        <img src="{{ $booking->provider->avatar_url }}" alt="" class="w-12 h-12 rounded-full object-cover">
                     </a>
                     <div>
-                        <h4 class="font-bold text-gray-900"><a href="{{ route('public.providers.show', $booking->provider->id) }}" class="hover:text-primary-600">{{ $booking->provider->name }}</a></h4>
+                        <h4 class="font-bold text-gray-900"><a href="{{ route('providers.show', $booking->provider->id) }}" class="hover:text-primary-600">{{ $booking->provider->name }}</a></h4>
                         <div class="flex items-center gap-2 text-xs text-gray-500 mt-1">
                             <span class="flex items-center gap-1"><span class="text-yellow-500">★</span> {{ number_format($booking->provider->providerProfile?->rating_avg ?? 0, 1) }}</span>
                             <span>•</span>
