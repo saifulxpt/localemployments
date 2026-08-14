@@ -93,9 +93,12 @@ class SmsService
                 $success = true;
                 $gatewayResponse = ['dev_mode' => true, 'message' => $message];
             } else {
+                // Auto-detect: use 'unicode' for Bengali/non-ASCII, 'text' for pure ASCII
+                $smsType = mb_detect_encoding($message, 'ASCII', true) ? 'text' : 'unicode';
+
                 $response = Http::post($this->apiUrl, [
                     'api_key'  => $this->apiKey,
-                    'type'     => 'text',
+                    'type'     => $smsType,
                     'number'   => $phone,
                     'senderid' => $this->senderId,
                     'message'  => $message,
@@ -103,7 +106,13 @@ class SmsService
 
                 $body = $response->json();
                 $gatewayResponse = $body ?? [];
-                $success = isset($body['response_code']) && $body['response_code'] == 202;
+
+                // BulkSMSBD returns response_code 202 on success
+                // Also accept string '202' and HTTP 200 with no error
+                $success = isset($body['response_code']) &&
+                    (string) $body['response_code'] === '202';
+
+                Log::info("BulkSMSBD SMS Response to {$phone}: " . json_encode($body));
             }
         } catch (\Throwable $e) {
             Log::error("SMS failed to {$phone}: " . $e->getMessage());
