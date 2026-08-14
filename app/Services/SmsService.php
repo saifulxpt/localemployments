@@ -96,19 +96,25 @@ class SmsService
                 // Auto-detect: use 'unicode' for Bengali/non-ASCII, 'text' for pure ASCII
                 $smsType = mb_detect_encoding($message, 'ASCII', true) ? 'text' : 'unicode';
 
-                $response = Http::post($this->apiUrl, [
-                    'api_key'  => $this->apiKey,
-                    'type'     => $smsType,
-                    'number'   => $phone,
-                    'senderid' => $this->senderId,
-                    'message'  => $message,
-                ]);
+                // Build request params
+                $params = [
+                    'api_key' => $this->apiKey,
+                    'type'    => $smsType,
+                    'number'  => $phone,
+                    'message' => $message,
+                ];
+
+                // Only include senderid if it is set and non-empty
+                if (!empty($this->senderId)) {
+                    $params['senderid'] = $this->senderId;
+                }
+
+                $response = Http::post($this->apiUrl, $params);
 
                 $body = $response->json();
                 $gatewayResponse = $body ?? [];
 
                 // BulkSMSBD returns response_code 202 on success
-                // Also accept string '202' and HTTP 200 with no error
                 $success = isset($body['response_code']) &&
                     (string) $body['response_code'] === '202';
 

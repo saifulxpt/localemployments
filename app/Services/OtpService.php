@@ -22,8 +22,8 @@ class OtpService
 
         // Send via SMS if phone exists
         if (!empty($user->phone)) {
-            // Message must be fully Bengali for BulkSMSBD Masking Sender ID (error 1012 fix)
-            $message = "লোকাল এমপ্লয়মেন্টস: আপনার ওটিপি কোড হলো {$otp}। এটি ৫ মিনিটের মধ্যে মেয়াদ শেষ হবে। কারো সাথে শেয়ার করবেন না।";
+            // BulkSMSBD recommended OTP format: "Your {Brand} OTP is XXXX"
+            $message = "Your LocalEmployments OTP is {$otp}. Valid for 5 minutes. Do not share.";
             $this->sms->send($user->phone, $message, 'otp');
         }
 
