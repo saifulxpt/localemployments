@@ -24,7 +24,8 @@ class LoginController extends Controller
             'password' => ['required', 'string'],
         ]);
 
-        $user = User::where('phone', $request->phone)->first();
+        $phone = normalize_bd_phone($request->phone);
+        $user = User::where('phone', $phone)->first();
 
         if (!$user || !\Illuminate\Support\Facades\Hash::check($request->password, $user->password)) {
             return back()->withErrors(['phone' => 'ফোন নম্বর বা পাসওয়ার্ড সঠিক নয়।'])->withInput();

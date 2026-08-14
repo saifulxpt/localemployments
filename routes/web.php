@@ -56,16 +56,24 @@ Route::middleware('guest')->group(function () {
     Route::get('/register', [RegisterController::class, 'show'])->name('register');
     Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 
-    // Google Social Auth
+    // Google Social Auth Init & Callback
     Route::get('/auth/google', [\App\Http\Controllers\Auth\GoogleAuthController::class, 'redirect'])->name('auth.google');
     Route::get('/auth/google/callback', [\App\Http\Controllers\Auth\GoogleAuthController::class, 'callback']);
-    Route::get('/auth/google/phone', [\App\Http\Controllers\Auth\GoogleAuthController::class, 'showPhoneForm'])->name('auth.google.phone');
-    Route::post('/auth/google/phone', [\App\Http\Controllers\Auth\GoogleAuthController::class, 'storePhone'])->name('auth.google.phone.store');
-
-    Route::get('/verify-otp', [OtpController::class, 'show'])->name('otp.show');
-    Route::post('/verify-otp', [OtpController::class, 'verify'])->name('otp.verify');
-    Route::post('/resend-otp', [OtpController::class, 'resend'])->name('otp.resend');
 });
+
+// Google Phone Completion (Accessible by guests with session or authenticated users missing phone)
+Route::get('/auth/google/phone', [\App\Http\Controllers\Auth\GoogleAuthController::class, 'showPhoneForm'])->name('auth.google.phone');
+Route::post('/auth/google/phone', [\App\Http\Controllers\Auth\GoogleAuthController::class, 'storePhone'])->name('auth.google.phone.store');
+
+// ─────────────────────────────────────────
+// OTP & PHONE VERIFICATION ROUTES (Guests & Unverified Users)
+// ─────────────────────────────────────────
+Route::get('/verify-otp', [OtpController::class, 'show'])->name('otp.show');
+Route::post('/verify-otp', [OtpController::class, 'verify'])->name('otp.verify');
+Route::post('/resend-otp', [OtpController::class, 'resend'])->name('otp.resend');
+Route::get('/verify-otp/change-phone', [OtpController::class, 'showChangePhone'])->name('otp.change-phone');
+Route::post('/verify-otp/change-phone', [OtpController::class, 'updatePhone'])->name('otp.change-phone.store');
+Route::post('/verify-otp/cancel', [OtpController::class, 'cancel'])->name('otp.cancel');
 
 // ─────────────────────────────────────────
 // SHARED AUTH ROUTES

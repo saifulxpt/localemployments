@@ -27,6 +27,38 @@ if (!function_exists('format_bd_phone')) {
     }
 }
 
+if (!function_exists('normalize_bd_phone')) {
+    /**
+     * Normalize Bangladeshi phone number into standard 11-digit format (01XXXXXXXXX)
+     */
+    function normalize_bd_phone(?string $phone): string
+    {
+        if (empty($phone)) return '';
+
+        // Convert Bengali numerals to English numerals
+        $bn = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+        $en = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+        $phone = str_replace($bn, $en, $phone);
+
+        // Strip non-digits
+        $phone = preg_replace('/[^0-9]/', '', $phone);
+
+        // Strip leading 880 or 88
+        if (str_starts_with($phone, '880')) {
+            $phone = substr($phone, 2);
+        } elseif (str_starts_with($phone, '88')) {
+            $phone = substr($phone, 2);
+        }
+
+        // If 10 digits starting with '1', prepend '0'
+        if (strlen($phone) === 10 && str_starts_with($phone, '1')) {
+            $phone = '0' . $phone;
+        }
+
+        return $phone;
+    }
+}
+
 if (!function_exists('time_ago_bn')) {
     /**
      * Returns time ago in Bengali

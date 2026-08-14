@@ -64,4 +64,40 @@ class GoogleAuthTest extends TestCase
         // Assert user_id is in session
         $this->assertTrue(session()->has('otp_user_id'));
     }
+
+    public function test_unverified_user_can_access_otp_page_and_change_phone()
+    {
+        $user = \App\Models\User::create([
+            'name'           => 'Google User',
+            'email'          => 'googleuser@gmail.com',
+            'phone'          => '01711223344',
+            'google_id'      => 'google-12345',
+            'role'           => 'seeker',
+            'phone_verified' => false,
+            'otp'            => '123456',
+            'otp_expires_at' => now()->addMinutes(5),
+        ]);
+
+        $this->actingAs($user);
+
+        // Access OTP page without redirect loop
+        $response = $this->get(route('otp.show'));
+        $response->assertStatus(200);
+        $response->assertSee('ফোন নম্বর যাচাই');
+
+        // Access Change Phone page
+        $response = $this->get(route('otp.change-phone'));
+        $response->assertStatus(200);
+        $response->assertSee('ফোন নম্বর পরিবর্তন');
+
+        // Submit new phone
+        $response = $this->post(route('otp.change-phone.store'), [
+            'phone' => '01899887766',
+        ]);
+
+        $response->assertRedirect(route('otp.show'));
+        $user->refresh();
+        $this->assertEquals('01899887766', $user->phone);
+        $this->assertFalse($user->phone_verified);
+    }
 }

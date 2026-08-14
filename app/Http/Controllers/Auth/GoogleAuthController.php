@@ -47,16 +47,44 @@ class GoogleAuthController extends Controller
         }
 
         if ($user) {
-            // User exists, log them in
-            Auth::login($user);
+            // If user has no phone number, prompt to add phone
+            if (empty($user->phone)) {
+                session([
+                    'google_signup_data' => [
+                        'user_id'   => $user->id,
+                        'google_id' => $googleUser->getId(),
+                        'name'      => $user->name ?? $googleUser->getName(),
+                        'email'     => $user->email ?? $googleUser->getEmail(),
+                        'avatar'    => $user->avatar ?? $googleUser->getAvatar(),
+                    ]
+                ]);
+                return redirect()->route('auth.google.phone');
+            }
+
+            // If user's phone is not verified yet, ensure OTP is active and redirect to verify-otp
+            if (!$user->phone_verified) {
+                Auth::login($user, true);
+                session(['otp_user_id' => $user->id]);
+
+                $otpService = app(\App\Services\OtpService::class);
+                if (!$user->otp || ($user->otp_expires_at && now()->isAfter($user->otp_expires_at))) {
+                    $otpService->send($user);
+                }
+
+                return redirect()->route('otp.show')
+                    ->with('info', 'আপনার ফোন নম্বরটি যাচাই করতে কোডটি দিন।');
+            }
+
+            // User is verified, log them in
+            Auth::login($user, true);
+            $user->update(['last_login_at' => now()]);
             
             // Redirect based on role
-            if ($user->role === 'admin') {
-                return redirect()->route('admin.dashboard');
-            } elseif ($user->role === 'provider') {
-                return redirect()->route('provider.dashboard');
-            }
-            return redirect()->route('seeker.dashboard');
+            return match ($user->role) {
+                'admin'    => redirect()->route('admin.dashboard'),
+                'provider' => redirect()->route('provider.dashboard'),
+                default    => redirect()->route('seeker.dashboard'),
+            };
         }
 
         // User does not exist, redirect to "Complete Registration" page
@@ -77,12 +105,13 @@ class GoogleAuthController extends Controller
      */
     public function showPhoneForm()
     {
-        if (!session()->has('google_signup_data')) {
+        $user = auth()->user();
+        if (!$user && !session()->has('google_signup_data')) {
             return redirect()->route('register');
         }
 
         $districts = \App\Models\District::active()->get();
-        return view('auth.google-phone', compact('districts'));
+        return view('auth.google-phone', compact('districts', 'user'));
     }
 
     /**
@@ -90,12 +119,21 @@ class GoogleAuthController extends Controller
      */
     public function storePhone(Request $request, \App\Services\OtpService $otpService)
     {
-        if (!session()->has('google_signup_data')) {
+        $authUser = auth()->user();
+        $googleData = session('google_signup_data');
+
+        if (!$authUser && !$googleData) {
             return redirect()->route('register');
         }
 
+        $rawPhone = $request->phone;
+        $normalizedPhone = normalize_bd_phone($rawPhone);
+        $request->merge(['phone' => $normalizedPhone]);
+
+        $userId = $authUser ? $authUser->id : ($googleData['user_id'] ?? null);
+
         $request->validate([
-            'phone'       => ['required', 'string', 'regex:/^01[3-9][0-9]{8}$/', 'unique:users,phone'],
+            'phone'       => ['required', 'string', 'regex:/^01[3-9][0-9]{8}$/', 'unique:users,phone' . ($userId ? ",{$userId}" : '')],
             'district_id' => ['nullable', 'exists:districts,id'],
             'area_id'     => ['nullable', 'exists:areas,id'],
         ], [
@@ -103,19 +141,38 @@ class GoogleAuthController extends Controller
             'phone.unique' => 'এই ফোন নম্বর দিয়ে আগেই একটি একাউন্ট আছে।',
         ]);
 
-        $googleData = session('google_signup_data');
-
-        $user = User::create([
-            'name'        => $googleData['name'],
-            'email'       => $googleData['email'],
-            'phone'       => $request->phone,
-            'password'    => null, // Nullable as per migration
-            'role'        => 'seeker',
-            'google_id'   => $googleData['google_id'],
-            'district_id' => $request->district_id,
-            'area_id'     => $request->area_id,
-            'status'      => 'active',
-        ]);
+        if ($authUser) {
+            $authUser->update([
+                'phone'          => $normalizedPhone,
+                'district_id'    => $request->district_id ?? $authUser->district_id,
+                'area_id'        => $request->area_id ?? $authUser->area_id,
+                'phone_verified' => false,
+            ]);
+            $user = $authUser;
+        } elseif (!empty($googleData['user_id'])) {
+            $user = User::findOrFail($googleData['user_id']);
+            $user->update([
+                'phone'          => $normalizedPhone,
+                'district_id'    => $request->district_id ?? $user->district_id,
+                'area_id'        => $request->area_id ?? $user->area_id,
+                'phone_verified' => false,
+            ]);
+            Auth::login($user, true);
+        } else {
+            $user = User::create([
+                'name'           => $googleData['name'],
+                'email'          => $googleData['email'],
+                'phone'          => $normalizedPhone,
+                'password'       => null,
+                'role'           => 'seeker',
+                'google_id'      => $googleData['google_id'],
+                'district_id'    => $request->district_id,
+                'area_id'        => $request->area_id,
+                'status'         => 'active',
+                'phone_verified' => false,
+            ]);
+            Auth::login($user, true);
+        }
 
         // Send OTP
         $otpService->send($user);
@@ -127,6 +184,6 @@ class GoogleAuthController extends Controller
         session()->forget('google_signup_data');
 
         return redirect()->route('otp.show')
-            ->with('success', 'অ্যাকাউন্ট তৈরি হয়েছে! আপনার ফোনে OTP পাঠানো হয়েছে।');
+            ->with('success', 'আপনার ফোনে (' . $normalizedPhone . ') OTP পাঠানো হয়েছে।');
     }
 }

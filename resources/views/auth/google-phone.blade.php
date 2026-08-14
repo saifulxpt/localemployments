@@ -60,8 +60,9 @@
                         </div>
                         <input id="phone" type="tel" name="phone" value="{{ old('phone') }}"
                                class="w-full pl-[5.5rem] pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all font-medium text-gray-900 @error('phone') border-red-400 bg-red-50 @enderror"
-                               placeholder="1XXXXXXXXX" required autofocus>
+                               placeholder="017XXXXXXXX" required autofocus>
                     </div>
+                    <p class="text-xs text-gray-500 mt-1">সঠিক ফরম্যাটে দিন (যেমন: 01712345678)</p>
                     @error('phone')<p class="text-red-500 text-xs mt-1.5 font-medium">{{ $message }}</p>@enderror
                 </div>
 

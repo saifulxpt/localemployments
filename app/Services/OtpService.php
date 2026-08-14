@@ -29,7 +29,17 @@ class OtpService
 
         // Send via Email if email exists
         if (!empty($user->email)) {
-            \Illuminate\Support\Facades\Mail::to($user->email)->send(new \App\Mail\SendOtpMail($otp));
+            try {
+                \Illuminate\Support\Facades\Mail::to($user->email)->send(new \App\Mail\SendOtpMail($otp));
+            } catch (\Throwable $e) {
+                \Illuminate\Support\Facades\Log::warning("OTP Email send failed: " . $e->getMessage());
+            }
+        }
+
+        \Illuminate\Support\Facades\Log::info("OTP generated for User #{$user->id} ({$user->phone}): {$otp}");
+
+        if (config('app.debug')) {
+            session()->flash('dev_otp', $otp);
         }
     }
 

@@ -21,6 +21,10 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
+        $rawPhone = $request->phone;
+        $normalizedPhone = normalize_bd_phone($rawPhone);
+        $request->merge(['phone' => $normalizedPhone]);
+
         $request->validate([
             'name'        => ['required', 'string', 'max:150'],
             'phone'       => ['required', 'string', 'regex:/^01[3-9][0-9]{8}$/', 'unique:users,phone'],
@@ -36,7 +40,7 @@ class RegisterController extends Controller
 
         $user = User::create([
             'name'        => $request->name,
-            'phone'       => $request->phone,
+            'phone'       => $normalizedPhone,
             'email'       => $request->email,
             'password'    => Hash::make($request->password),
             'role'        => 'seeker',
