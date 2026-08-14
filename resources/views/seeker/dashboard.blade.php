@@ -12,7 +12,7 @@
     </div>
     <div class="flex flex-col sm:flex-row gap-3">
         <a href="{{ route('search') }}" class="btn bg-primary-800 text-white hover:bg-primary-700 border-none shadow-sm px-6">Search Services</a>
-        <a href="{{ route('seeker.jobs.create') }}" class="btn bg-white text-primary-900 hover:bg-gray-50 border-none shadow-sm px-6">Post New Job</a>
+        <a href="{{ route('seeker.job-requests.create') }}" class="btn bg-white text-primary-900 hover:bg-gray-50 border-none shadow-sm px-6">Post New Job</a>
     </div>
 </div>
 
@@ -21,7 +21,7 @@
     <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col">
         <div class="text-gray-500 text-sm font-medium mb-1">Active Job Requests</div>
         <div class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2">{{ $stats['active_requests'] }}</div>
-        <a href="{{ route('seeker.jobs.index') }}" class="text-xs text-primary-600 font-semibold mt-auto hover:underline">View All Jobs →</a>
+        <a href="{{ route('seeker.job-requests.index') }}" class="text-xs text-primary-600 font-semibold mt-auto hover:underline">View All Jobs →</a>
     </div>
     
     <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col">
@@ -91,7 +91,7 @@
     <div class="space-y-4">
         <div class="flex items-center justify-between mb-2">
             <h2 class="text-lg font-bold text-gray-900">Your Job Requests</h2>
-            <a href="{{ route('seeker.jobs.index') }}" class="text-sm font-semibold text-primary-600 hover:underline">View All</a>
+            <a href="{{ route('seeker.job-requests.index') }}" class="text-sm font-semibold text-primary-600 hover:underline">View All</a>
         </div>
 
         @forelse($recentRequests as $job)
@@ -106,7 +106,7 @@
                 </div>
                 
                 <h3 class="font-bold text-gray-900 mb-1 line-clamp-1">
-                    <a href="{{ route('seeker.jobs.show', $job->id) }}" class="hover:text-primary-600">{{ $job->title }}</a>
+                    <a href="{{ route('seeker.job-requests.show', $job->id) }}" class="hover:text-primary-600">{{ $job->title }}</a>
                 </h3>
                 
                 <div class="text-sm text-gray-500 flex justify-between items-center mt-auto pt-3 border-t border-gray-50">
@@ -120,7 +120,7 @@
                     <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
                 </div>
                 <p class="text-gray-500 text-sm">আপনি এখনও কোনো কাজ পোস্ট করেননি।</p>
-                <a href="{{ route('seeker.jobs.create') }}" class="btn btn-outline btn-sm mt-3">কাজ পোস্ট করুন</a>
+                <a href="{{ route('seeker.job-requests.create') }}" class="btn btn-outline btn-sm mt-3">কাজ পোস্ট করুন</a>
             </div>
         @endforelse
     </div>

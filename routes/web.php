@@ -105,6 +105,11 @@ Route::middleware(['auth', 'is.seeker', 'phone.verified'])
         Route::resource('job-requests', Seeker\JobRequestController::class);
         Route::post('/job-requests/{jobRequest}/cancel', [Seeker\JobRequestController::class, 'cancel'])->name('job-requests.cancel');
 
+        // Route Aliases for backwards compatibility (prevents RouteNotFoundException for seeker.jobs.*)
+        Route::get('/jobs-redirect', [Seeker\JobRequestController::class, 'index'])->name('jobs.index');
+        Route::get('/jobs-redirect/create', [Seeker\JobRequestController::class, 'create'])->name('jobs.create');
+        Route::get('/jobs-redirect/{jobRequest}', [Seeker\JobRequestController::class, 'show'])->name('jobs.show');
+
         // Bid Management
         Route::post('/bids/{bid}/accept', [Seeker\BidManageController::class, 'accept'])->name('bids.accept');
         Route::post('/bids/{bid}/reject', [Seeker\BidManageController::class, 'reject'])->name('bids.reject');
