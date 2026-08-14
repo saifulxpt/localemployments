@@ -56,7 +56,7 @@
                     <label for="phone" class="block text-sm font-bold text-gray-700 mb-2">ফোন নম্বর</label>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <span class="text-gray-500 font-medium border-r border-gray-200 pr-3">+880</span>
+                            <span class="text-gray-500 font-medium border-r border-gray-200 pr-3">+88</span>
                         </div>
                         <input id="phone" type="tel" name="phone" value="{{ old('phone') }}"
                                class="w-full pl-[5.5rem] pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all font-medium text-gray-900 @error('phone') border-red-400 bg-red-50 @enderror"
