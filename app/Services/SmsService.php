@@ -139,7 +139,7 @@ class SmsService
     public function sendBookingConfirmation(\App\Models\Booking $booking, \App\Models\User $user): void
     {
         $serviceDate = $booking->service_date ? $booking->service_date->format('d M Y') : '';
-        $message = "LocalEmployments: আপনার বুকিং {$booking->booking_ref} নিশ্চিত হয়েছে। তারিখ: {$serviceDate}।";
+        $message = "লোকাল এমপ্লয়মেন্টস: আপনার বুকিং {$booking->booking_ref} নিশ্চিত হয়েছে। তারিখ: {$serviceDate}।";
         $this->send($user->phone, $message, 'booking');
     }
 
@@ -148,7 +148,7 @@ class SmsService
      */
     public function sendBidAccepted(\App\Models\User $provider, \App\Models\JobRequest $jobRequest): void
     {
-        $message = "LocalEmployments: আপনার বিড গ্রহণ করা হয়েছে। কাজ: {$jobRequest->title}। অ্যাপে লগইন করুন।";
+        $message = "লোকাল এমপ্লয়মেন্টস: আপনার বিড গ্রহণ করা হয়েছে। কাজ: {$jobRequest->title}। অ্যাপে লগইন করুন।";
         $this->send($provider->phone, $message, 'bid');
     }
 
@@ -157,7 +157,7 @@ class SmsService
      */
     public function sendWithdrawalProcessed(\App\Models\WithdrawalRequest $withdrawal): void
     {
-        $message = "LocalEmployments: আপনার ৳" . number_format($withdrawal->amount) . " উত্তোলন অনুরোধ অনুমোদিত হয়েছে।";
+        $message = "লোকাল এমপ্লয়মেন্টস: আপনার ৳" . number_format($withdrawal->amount) . " উত্তোলন অনুরোধ অনুমোদিত হয়েছে।";
         $this->send($withdrawal->provider->phone, $message, 'withdrawal');
     }
 
