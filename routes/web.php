@@ -293,36 +293,73 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 // ─────────────────────────────────────────
-// SYSTEM DEPLOY (Temporary/Public for fixing DB on shared hosting)
+// SYSTEM DEPLOY (Admin button - runs all post-deploy artisan commands)
 // ─────────────────────────────────────────
 Route::get('/system-deploy-force', function () {
+    $log = [];
+
     try {
+        // 1. Run DB Migrations
         \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
-        \Illuminate\Support\Facades\Artisan::call('db:seed', ['--class' => 'ServiceCategorySeeder', '--force' => true]);
-        
+        $log[] = '✅ Migrations চালানো হয়েছে';
+
+        // 2. Seed default service categories if missing
         try {
-            \Illuminate\Support\Facades\Artisan::call('storage:link', ['--force' => true]);
-        } catch (\Exception $se) {
-            // storage link error fallback
+            \Illuminate\Support\Facades\Artisan::call('db:seed', ['--class' => 'ServiceCategorySeeder', '--force' => true]);
+            $log[] = '✅ Service categories seed হয়েছে';
+        } catch (\Exception $e) {
+            $log[] = '⚠️ Seed skipped: ' . $e->getMessage();
         }
 
+        // 3. Storage symlink
+        try {
+            \Illuminate\Support\Facades\Artisan::call('storage:link', ['--force' => true]);
+            $log[] = '✅ Storage link তৈরি হয়েছে';
+        } catch (\Exception $se) {
+            $log[] = '⚠️ Storage link skipped (already exists)';
+        }
+
+        // 4. Clear all caches
         \Illuminate\Support\Facades\Artisan::call('optimize:clear');
         \Illuminate\Support\Facades\Artisan::call('cache:clear');
         \Illuminate\Support\Facades\Artisan::call('config:clear');
         \Illuminate\Support\Facades\Artisan::call('view:clear');
+        \Illuminate\Support\Facades\Artisan::call('route:clear');
+        $log[] = '✅ সব Cache ও Compiled files মুছে দেওয়া হয়েছে';
 
-        // Delete compiled view files directly
+        // 5. Delete compiled view files directly
         foreach (glob(storage_path('framework/views/*.php')) as $viewFile) {
             @unlink($viewFile);
         }
-        
-        if (request()->has('redirect')) {
-            return redirect(request('redirect'))->with('success', 'Deploy & Artisan Commands Executed Successfully! (Migrated, Seeded & Cleared Caches)');
+
+        // 6. Delete Vite "hot" file (prevents dev-server asset loading on production)
+        $hotPaths = [
+            public_path('hot'),
+            base_path('public/hot'),
+        ];
+        foreach ($hotPaths as $hotFile) {
+            if (file_exists($hotFile)) {
+                @unlink($hotFile);
+                $log[] = '✅ Vite hot ফাইল মুছে দেওয়া হয়েছে';
+            }
         }
 
-        return redirect()->back()->with('success', 'Deploy & Artisan Commands Executed Successfully! (Migrated, Seeded & Cleared Caches)');
+        // 7. Fix storage permissions
+        @chmod(storage_path(), 0755);
+        @chmod(storage_path('logs'), 0755);
+        @chmod(storage_path('framework'), 0755);
+        $log[] = '✅ Storage permissions ঠিক করা হয়েছে';
+
+        $message = implode(' | ', $log);
+
+        if (request()->has('redirect')) {
+            return redirect(request('redirect'))->with('success', $message);
+        }
+
+        return redirect()->back()->with('success', $message);
+
     } catch (\Exception $e) {
-        return redirect()->back()->with('error', "Deploy Error: " . $e->getMessage());
+        return redirect()->back()->with('error', 'Deploy Error: ' . $e->getMessage());
     }
 })->name('system.deploy');
 
