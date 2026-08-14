@@ -137,10 +137,11 @@
                     </div>
                 @endif
 
-                <form action="{{ route('admin.settings.api.test-sms') }}" method="POST" class="flex gap-3 items-start flex-wrap">
-                    @csrf
+                <div class="flex gap-3 items-start flex-wrap">
                     <div class="flex-1 min-w-[200px]">
                         <input type="text"
+                               id="test_phone_input"
+                               form="test_sms_form"
                                name="test_phone"
                                value="{{ old('test_phone') }}"
                                placeholder="01XXXXXXXXX (বাংলাদেশি নম্বর)"
@@ -150,11 +151,12 @@
                         @enderror
                     </div>
                     <button type="submit"
+                            form="test_sms_form"
                             class="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold transition-all flex items-center gap-2 shadow">
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
                         টেস্ট SMS পাঠান
                     </button>
-                </form>
+                </div>
             </div>
         </div>
 
@@ -291,5 +293,11 @@
 
     </form>
 
+    {{-- Standalone Form for Test SMS (Outside main form to prevent nested form issues) --}}
+    <form id="test_sms_form" action="{{ route('admin.settings.api.test-sms') }}" method="POST" class="hidden">
+        @csrf
+    </form>
+
 </div>
 @endsection
+
