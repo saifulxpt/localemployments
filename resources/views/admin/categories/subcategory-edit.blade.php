@@ -20,7 +20,7 @@
             </div>
         </div>
 
-        <form action="{{ route('admin.categories.subcategories.update', [$category, $subcategory]) }}" method="POST">
+        <form action="{{ route('admin.subcategories.update', $subcategory) }}" method="POST">
             @csrf
             @method('PUT')
 
