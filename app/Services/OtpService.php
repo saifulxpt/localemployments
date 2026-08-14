@@ -37,10 +37,6 @@ class OtpService
         }
 
         \Illuminate\Support\Facades\Log::info("OTP generated for User #{$user->id} ({$user->phone}): {$otp}");
-
-        if (config('app.debug')) {
-            session()->flash('dev_otp', $otp);
-        }
     }
 
     /**
