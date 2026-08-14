@@ -115,6 +115,47 @@
                     </select>
                 </div>
             </div>
+
+            {{-- Test SMS Card --}}
+            <div class="mt-6 rounded-2xl border-2 border-dashed border-blue-200 bg-blue-50 p-5">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white text-xl">🧪</div>
+                    <div>
+                        <h4 class="text-sm font-bold text-blue-900">টেস্ট SMS পাঠান</h4>
+                        <p class="text-xs text-blue-600">API সংযোগ ও OTP ডেলিভারি যাচাই করতে যেকোনো নম্বরে টেস্ট SMS পাঠান।</p>
+                    </div>
+                </div>
+
+                @if(session('sms_test_success'))
+                    <div class="mb-3 p-3 rounded-xl bg-green-100 border border-green-300 text-green-800 text-sm font-semibold">
+                        {{ session('sms_test_success') }}
+                    </div>
+                @endif
+                @if(session('sms_test_error'))
+                    <div class="mb-3 p-3 rounded-xl bg-red-100 border border-red-300 text-red-800 text-sm font-semibold">
+                        {{ session('sms_test_error') }}
+                    </div>
+                @endif
+
+                <form action="{{ route('admin.settings.api.test-sms') }}" method="POST" class="flex gap-3 items-start flex-wrap">
+                    @csrf
+                    <div class="flex-1 min-w-[200px]">
+                        <input type="text"
+                               name="test_phone"
+                               value="{{ old('test_phone') }}"
+                               placeholder="01XXXXXXXXX (বাংলাদেশি নম্বর)"
+                               class="input w-full @error('test_phone') border-red-400 @enderror">
+                        @error('test_phone')
+                            <p class="text-xs text-red-600 mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <button type="submit"
+                            class="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold transition-all flex items-center gap-2 shadow">
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+                        টেস্ট SMS পাঠান
+                    </button>
+                </form>
+            </div>
         </div>
 
         {{-- TAB 2: Payment Gateways --}}

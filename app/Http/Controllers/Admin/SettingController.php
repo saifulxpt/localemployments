@@ -131,4 +131,27 @@ class SettingController extends Controller
         $balanceData = $smsService->getBalance();
         return response()->json($balanceData);
     }
+
+    /**
+     * Send a test SMS to verify BulkSMSBD configuration.
+     */
+    public function testSms(Request $request, SmsService $smsService)
+    {
+        $request->validate([
+            'test_phone' => ['required', 'string', 'regex:/^01[3-9][0-9]{8}$/'],
+        ], [
+            'test_phone.required' => 'ফোন নম্বর দিন।',
+            'test_phone.regex'    => 'সঠিক ফোন নম্বর দিন (01XXXXXXXXX)।',
+        ]);
+
+        $otp     = rand(100000, 999999);
+        $message = "LocalEmployments: টেস্ট OTP - {$otp}। এটি একটি পরীক্ষামূলক বার্তা।";
+        $success = $smsService->send($request->test_phone, $message, 'test');
+
+        if ($success) {
+            return back()->with('sms_test_success', "✅ টেস্ট SMS সফলভাবে {$request->test_phone} নম্বরে পাঠানো হয়েছে! OTP: {$otp}");
+        }
+
+        return back()->with('sms_test_error', '❌ SMS পাঠানো ব্যর্থ হয়েছে। SMS Logs চেক করুন।');
+    }
 }
