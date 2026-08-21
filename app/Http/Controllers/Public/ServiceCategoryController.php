@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
 use App\Models\ServiceCategory;
+use App\Models\JobRequest;
 
 class ServiceCategoryController extends Controller
 {
@@ -18,12 +19,17 @@ class ServiceCategoryController extends Controller
         $category = ServiceCategory::where('slug', $slug)->where('is_active', true)->firstOrFail();
         $subcategories = $category->activeSubcategories()->get();
 
-        // Providers with skills in this category
-        $providers = \App\Models\User::where('role', 'provider')
-            ->whereHas('providerSkills.subcategory', fn($q) => $q->where('category_id', $category->id))
-            ->with('providerProfile', 'district')
+        // Open job requests in this category
+        $jobs = JobRequest::whereHas('subcategory', fn($q) => $q->where('category_id', $category->id))
+            ->where('status', 'open')
+            ->where(function ($q) {
+                $q->whereNull('expires_at')->orWhere('expires_at', '>', now());
+            })
+            ->with(['subcategory', 'district', 'area', 'seeker'])
+            ->latest()
             ->paginate(12);
 
-        return view('public.category-show', compact('category', 'subcategories', 'providers'));
+        return view('public.category-show', compact('category', 'subcategories', 'jobs'));
     }
 }
+

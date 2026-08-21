@@ -201,10 +201,24 @@
                                     
                                     {{-- Bid CTA Button Column --}}
                                     <div class="flex flex-col justify-center shrink-0 w-full md:w-auto pt-4 md:pt-0 border-t md:border-t-0 border-gray-100">
-                                        <a href="{{ route('provider.jobs.index') }}" onclick="alert('কাজে বিড করার জন্য প্রোভাইডার হিসেবে লগইন করুন!');" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gray-900 hover:bg-primary-600 text-white rounded-2xl font-bold shadow-md hover:shadow-lg hover:shadow-primary-600/25 active:scale-95 transition-all">
-                                            <span>বিড করুন</span>
-                                            <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                                        </a>
+                                        @auth
+                                            @if(auth()->user()->isProvider())
+                                                <a href="{{ route('provider.jobs.show', $job->id) }}" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-primary-600 to-emerald-600 hover:from-primary-700 hover:to-emerald-700 text-white rounded-2xl font-bold shadow-md hover:shadow-lg hover:shadow-primary-600/25 active:scale-95 transition-all">
+                                                    <span>বিড করুন</span>
+                                                    <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                                                </a>
+                                            @else
+                                                <a href="{{ route('provider.jobs.index') }}" onclick="alert('কাজে বিড করার জন্য প্রোভাইডার একাউন্ট প্রয়োজন।');" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gray-900 hover:bg-primary-600 text-white rounded-2xl font-bold shadow-md hover:shadow-lg active:scale-95 transition-all">
+                                                    <span>বিড করুন</span>
+                                                    <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                                                </a>
+                                            @endif
+                                        @else
+                                            <a href="{{ route('login') }}" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gray-900 hover:bg-primary-600 text-white rounded-2xl font-bold shadow-md hover:shadow-lg active:scale-95 transition-all">
+                                                <span>বিড করতে লগইন করুন</span>
+                                                <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                                            </a>
+                                        @endauth
                                         <div class="text-center mt-2.5">
                                             <span class="text-xs font-bold text-gray-500 bg-gray-100/80 border border-gray-200/50 px-2.5 py-1 rounded-lg">মোট বিড: {{ $job->total_bids }}</span>
                                         </div>

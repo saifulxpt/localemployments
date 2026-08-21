@@ -11,8 +11,8 @@
         <p class="text-primary-100">Here is your daily activity summary.</p>
     </div>
     <div class="flex flex-col sm:flex-row gap-3">
-        <a href="{{ route('search') }}" class="btn bg-primary-800 text-white hover:bg-primary-700 border-none shadow-sm px-6">Search Services</a>
-        <a href="{{ route('seeker.job-requests.create') }}" class="btn bg-white text-primary-900 hover:bg-gray-50 border-none shadow-sm px-6">Post New Job</a>
+        <a href="{{ route('jobs.index') }}" class="btn bg-primary-800 text-white hover:bg-primary-700 border-none shadow-sm px-6">উন্মুক্ত কাজসমূহ</a>
+        <a href="{{ route('seeker.job-requests.create') }}" class="btn bg-white text-primary-900 hover:bg-gray-50 border-none shadow-sm px-6">কাজ পোস্ট করুন</a>
     </div>
 </div>
 
@@ -82,7 +82,7 @@
                     <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
                 </div>
                 <p class="text-gray-500 text-sm">আপনার কোনো বুকিং নেই।</p>
-                <a href="{{ route('search') }}" class="btn btn-outline btn-sm mt-3">সার্ভিস খুঁজুন</a>
+                <a href="{{ route('seeker.job-requests.create') }}" class="btn btn-outline btn-sm mt-3">কাজ পোস্ট করুন</a>
             </div>
         @endforelse
     </div>

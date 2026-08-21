@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ServiceCategory;
 use App\Models\User;
 use App\Models\Booking;
+use App\Models\JobRequest;
 
 class HomeController extends Controller
 {
@@ -13,10 +14,13 @@ class HomeController extends Controller
     {
         $categories = ServiceCategory::active()->take(20)->get();
 
-        $featuredProviders = User::where('role', 'provider')
-            ->whereHas('providerProfile', fn($q) => $q->where('is_featured', true)->where('featured_until', '>', now()))
-            ->with('providerProfile', 'district', 'providerSkills.subcategory')
-            ->take(8)
+        $latestJobs = JobRequest::with(['subcategory.category', 'district', 'area', 'seeker'])
+            ->where('status', 'open')
+            ->where(function ($q) {
+                $q->whereNull('expires_at')->orWhere('expires_at', '>', now());
+            })
+            ->latest()
+            ->take(6)
             ->get();
 
         $stats = [
@@ -29,6 +33,7 @@ class HomeController extends Controller
             ),
         ];
 
-        return view('public.home', compact('categories', 'featuredProviders', 'stats'));
+        return view('public.home', compact('categories', 'latestJobs', 'stats'));
     }
 }
+

@@ -17,7 +17,7 @@
                     @endif
                 </div>
                 <p class="text-sm text-gray-400 leading-relaxed">
-                    বাংলাদেশের সেরা লোকাল সার্ভিস মার্কেটপ্লেস। আপনার এলাকায় দক্ষ কর্মী খুঁজুন বা কাজ পান।
+                    বাংলাদেশের সেরা লোকাল সার্ভিস মার্কেটপ্লেস। আপনার এলাকায় উন্মুক্ত কাজ খুঁজুন বা নতুন কাজ পোস্ট করুন।
                 </p>
                 <div class="flex gap-3 mt-5">
                     <a href="{{ setting('social_facebook', '#') }}" target="_blank" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary-600 transition-colors" aria-label="Facebook">
@@ -33,33 +33,33 @@
             <div class="grid grid-cols-2 gap-8 md:col-span-2">
                 {{-- Services --}}
                 <div>
-                    <h4 class="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Services</h4>
+                    <h4 class="font-semibold text-white mb-4 text-sm uppercase tracking-wider">কাজ ও সেবা</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="{{ route('services.index') }}" class="text-gray-400 hover:text-primary-400 transition-colors">All Services</a></li>
-                        <li><a href="{{ route('search') }}" class="text-gray-400 hover:text-primary-400 transition-colors">Find Workers</a></li>
-                        <li><a href="{{ route('register') }}" class="text-gray-400 hover:text-primary-400 transition-colors">Find Jobs</a></li>
-                        <li><a href="{{ route('register') }}?role=provider" class="text-gray-400 hover:text-primary-400 transition-colors">Become a Provider</a></li>
+                        <li><a href="{{ route('jobs.index') }}" class="text-gray-400 hover:text-primary-400 transition-colors">উন্মুক্ত কাজসমূহ</a></li>
+                        <li><a href="{{ route('services.index') }}" class="text-gray-400 hover:text-primary-400 transition-colors">সকল সেবাসমূহ</a></li>
+                        <li><a href="{{ route('register') }}" class="text-gray-400 hover:text-primary-400 transition-colors">কাজ পোস্ট করুন</a></li>
+                        <li><a href="{{ route('register') }}?role=provider" class="text-gray-400 hover:text-primary-400 transition-colors">প্রোভাইডার হিসেবে যুক্ত হোন</a></li>
                     </ul>
                 </div>
 
                 {{-- Company --}}
                 <div>
-                    <h4 class="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Company</h4>
+                    <h4 class="font-semibold text-white mb-4 text-sm uppercase tracking-wider">কোম্পানি</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="{{ route('about') }}" class="text-gray-400 hover:text-primary-400 transition-colors">About Us</a></li>
-                        <li><a href="{{ route('contact') }}" class="text-gray-400 hover:text-primary-400 transition-colors">Contact Us</a></li>
-                        <li><a href="{{ route('privacy') }}" class="text-gray-400 hover:text-primary-400 transition-colors">Privacy Policy</a></li>
-                        <li><a href="{{ route('terms') }}" class="text-gray-400 hover:text-primary-400 transition-colors">Terms & Conditions</a></li>
+                        <li><a href="{{ route('about') }}" class="text-gray-400 hover:text-primary-400 transition-colors">আমাদের সম্পর্কে</a></li>
+                        <li><a href="{{ route('contact') }}" class="text-gray-400 hover:text-primary-400 transition-colors">যোগাযোগ করুন</a></li>
+                        <li><a href="{{ route('privacy') }}" class="text-gray-400 hover:text-primary-400 transition-colors">প্রাইভেসি পলিসি</a></li>
+                        <li><a href="{{ route('terms') }}" class="text-gray-400 hover:text-primary-400 transition-colors">শর্তাবলী</a></li>
                     </ul>
                 </div>
 
                 {{-- Helpful Links --}}
                 <div>
-                    <h4 class="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Quick Links</h4>
+                    <h4 class="font-semibold text-white mb-4 text-sm uppercase tracking-wider">গুরুত্বপূর্ণ লিঙ্ক</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="{{ route('faq') }}" class="text-gray-400 hover:text-primary-400 transition-colors">FAQ</a></li>
-                        <li><a href="{{ route('search') }}" class="text-gray-400 hover:text-primary-400 transition-colors">Search Services</a></li>
-                        <li><a href="{{ route('services.index') }}" class="text-gray-400 hover:text-primary-400 transition-colors">All Categories</a></li>
+                        <li><a href="{{ route('faq') }}" class="text-gray-400 hover:text-primary-400 transition-colors">সাধারণ প্রশ্ন (FAQ)</a></li>
+                        <li><a href="{{ route('jobs.index') }}" class="text-gray-400 hover:text-primary-400 transition-colors">কাজের তালিকা</a></li>
+                        <li><a href="{{ route('services.index') }}" class="text-gray-400 hover:text-primary-400 transition-colors">সকল ক্যাটাগরি</a></li>
                     </ul>
                 </div>
             </div>

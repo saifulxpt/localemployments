@@ -65,35 +65,70 @@
     </div>
 </div>
 
-{{-- Providers Section --}}
+{{-- Open Jobs Section --}}
 <div class="bg-gray-50 py-16">
     <div class="container mx-auto px-4">
         
         <div class="flex items-center justify-between mb-8">
             <div>
-                <h2 class="text-3xl font-bold text-gray-900">এই ক্যাটাগরির কর্মী</h2>
-                <p class="text-gray-500 mt-2">যাঁরা এই কাজগুলো করতে দক্ষ</p>
+                <h2 class="text-3xl font-bold text-gray-900">এই ক্যাটাগরির উন্মুক্ত কাজসমূহ</h2>
+                <p class="text-gray-500 mt-2">আপনার দক্ষতা অনুযায়ী কাজ খুঁজে নিয়ে বিড করুন</p>
             </div>
-            <a href="{{ route('search', ['category' => $category->id]) }}" class="text-primary-600 font-semibold hover:underline hidden sm:block">
-                সবাইকে দেখুন →
+            <a href="{{ route('jobs.index', ['category' => $category->id]) }}" class="text-primary-600 font-semibold hover:underline hidden sm:block">
+                সব উন্মুক্ত কাজ দেখুন →
             </a>
         </div>
 
-        @if($providers->count() > 0)
-            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                @foreach($providers as $provider)
-                    @include('components.public.provider-card', ['provider' => $provider])
+        @if($jobs->count() > 0)
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                @foreach($jobs as $job)
+                    <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-3">
+                                <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-primary-50 text-primary-700">
+                                    {{ $job->subcategory?->name }}
+                                </span>
+                                <span class="text-xs text-gray-400">
+                                    {{ $job->created_at->diffForHumans() }}
+                                </span>
+                            </div>
+
+                            <h3 class="font-bold text-lg text-gray-900 group-hover:text-primary-600 transition-colors mb-2 line-clamp-1">
+                                {{ $job->title }}
+                            </h3>
+
+                            <p class="text-sm text-gray-600 line-clamp-2 mb-4">
+                                {{ $job->description }}
+                            </p>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center justify-between text-xs text-gray-500 pt-3 border-t border-gray-100 mb-4">
+                                <span class="flex items-center gap-1 font-medium">
+                                    <svg class="w-3.5 h-3.5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                    {{ $job->district?->bn_name }}
+                                </span>
+                                <span class="font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
+                                    ৳{{ number_format($job->budget_min) }} - ৳{{ number_format($job->budget_max) }}
+                                </span>
+                            </div>
+
+                            <a href="{{ route('jobs.index', ['category' => $category->id]) }}" class="block text-center py-2 bg-gray-900 group-hover:bg-primary-600 text-white text-xs font-bold rounded-xl transition-colors">
+                                বিস্তারিত ও বিড দেখুন
+                            </a>
+                        </div>
+                    </div>
                 @endforeach
             </div>
             <div class="mt-8">
-                {{ $providers->links() }}
+                {{ $jobs->links() }}
             </div>
         @else
             <div class="bg-white rounded-3xl border border-gray-100 p-12 text-center max-w-3xl mx-auto">
-                <div class="text-6xl mb-4">🔍</div>
-                <h3 class="text-xl font-bold text-gray-900 mb-2">এই ক্যাটাগরিতে কোনো কর্মী নেই</h3>
-                <p class="text-gray-500 mb-6">দুঃখিত, বর্তমানে এই সেবার জন্য কোনো কর্মী নিবন্ধিত নেই। আপনি চাইলে প্রথম কর্মী হিসেবে যুক্ত হতে পারেন!</p>
-                <a href="{{ route('register') }}?role=provider" class="btn btn-primary">প্রোভাইডার হিসেবে যোগ দিন</a>
+                <div class="text-6xl mb-4">📋</div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">এই ক্যাটাগরিতে বর্তমানে কোনো উন্মুক্ত কাজ নেই</h3>
+                <p class="text-gray-500 mb-6">আপনি কি এই সেবার জন্য কাউকে খুঁজছেন? সহজেই আপনার কাজের চাহিদা জানিয়ে একটি রিকোয়েস্ট পোস্ট করুন!</p>
+                <a href="{{ route('register') }}" class="btn btn-primary">কাজ পোস্ট করুন</a>
             </div>
         @endif
         

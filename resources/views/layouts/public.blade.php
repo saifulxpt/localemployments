@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title', setting('site_name', 'LocalEmployments')) — {{ setting('site_tagline', 'আপনার এলাকায়, আপনার মানুষ') }}</title>
-    <meta name="description" content="@yield('meta_description', 'LocalEmployments — বাংলাদেশের সেরা লোকাল সার্ভিস মার্কেটপ্লেস। দক্ষ কর্মী খুঁজুন বা কাজ পান।')">
+    <meta name="description" content="@yield('meta_description', 'LocalEmployments — বাংলাদেশের সেরা লোকাল সার্ভিস মার্কেটপ্লেস। উন্মুক্ত কাজ খুঁজুন বা কাজ পোস্ট করুন।')">
 
     <!-- Google & Bangla Fonts: Kalpurush, Noto Sans Bengali, Hind Siliguri, Anek Bangla -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -69,9 +69,9 @@
             <svg class="w-5 h-5 mb-0.5" fill="{{ request()->routeIs('jobs.*') ? 'currentColor' : 'none' }}" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
             <span class="text-[10px]">কাজের তালিকা</span>
         </a>
-        <a href="{{ route('search') }}" class="flex flex-col items-center justify-center w-full h-full {{ request()->routeIs('search') ? 'text-primary-600 font-bold' : 'text-gray-500' }}">
-            <svg class="w-5 h-5 mb-0.5" fill="{{ request()->routeIs('search') ? 'currentColor' : 'none' }}" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-            <span class="text-[10px]">কর্মী খুঁজুন</span>
+        <a href="{{ route('services.index') }}" class="flex flex-col items-center justify-center w-full h-full {{ request()->routeIs('services.*') ? 'text-primary-600 font-bold' : 'text-gray-500' }}">
+            <svg class="w-5 h-5 mb-0.5" fill="{{ request()->routeIs('services.*') ? 'currentColor' : 'none' }}" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+            <span class="text-[10px]">সেবাসমূহ</span>
         </a>
         @auth
             @php
