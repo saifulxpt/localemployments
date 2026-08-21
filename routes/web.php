@@ -20,6 +20,8 @@ use App\Http\Controllers\Admin;
 // ─────────────────────────────────────────
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/jobs', [\App\Http\Controllers\Public\PublicJobController::class, 'index'])->name('jobs.index');
+Route::get('/my-jobs', [HomeController::class, 'myJobs'])->name('my-jobs');
+Route::get('/post-job', [HomeController::class, 'postJob'])->name('jobs.post');
 
 // ─────────────────────────────────────────
 // ADMIN SEED ROUTE (one-time, admin only)

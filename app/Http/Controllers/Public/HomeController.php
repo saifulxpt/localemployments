@@ -35,5 +35,56 @@ class HomeController extends Controller
 
         return view('public.home', compact('categories', 'latestJobs', 'stats'));
     }
+
+    /**
+     * Smart redirect for 'My Jobs' navigation tab based on auth and role
+     */
+    public function myJobs()
+    {
+        if (!auth()->check()) {
+            session()->flash('info', 'আপনার পোস্ট করা কাজ বা বিড দেখতে অনুগ্রহ করে লগইন করুন।');
+            return redirect()->guest(route('login'));
+        }
+
+        $user = auth()->user();
+
+        if ($user->isSeeker()) {
+            return redirect()->route('seeker.job-requests.index');
+        }
+
+        if ($user->isProvider()) {
+            return redirect()->route('provider.bids.index');
+        }
+
+        if ($user->isAdmin()) {
+            return redirect()->route('admin.job-requests.index');
+        }
+
+        return redirect()->route('home');
+    }
+
+    /**
+     * Smart redirect for 'Post Job' (+) button
+     */
+    public function postJob()
+    {
+        if (!auth()->check()) {
+            session()->flash('info', 'নতুন কাজ পোস্ট করতে অনুগ্রহ করে লগইন করুন।');
+            return redirect()->guest(route('login'));
+        }
+
+        $user = auth()->user();
+
+        if ($user->isSeeker()) {
+            return redirect()->route('seeker.job-requests.create');
+        }
+
+        if ($user->isProvider()) {
+            session()->flash('info', 'প্রোভাইডার হিসেবে আপনি উন্মুক্ত কাজসমূহে বিড করতে পারেন।');
+            return redirect()->route('jobs.index');
+        }
+
+        return redirect()->route('seeker.job-requests.create');
+    }
 }
 
