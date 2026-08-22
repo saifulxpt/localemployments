@@ -8,7 +8,7 @@
 {{-- ─────────────────────────────────────────── --}}
 {{-- HERO SECTION --}}
 {{-- ─────────────────────────────────────────── --}}
-<section class="relative overflow-hidden bg-gradient-to-br from-primary-50 via-white to-primary-100 pt-20 pb-32 md:pt-28 md:pb-40">
+<section class="relative overflow-hidden bg-gradient-to-br from-primary-50 via-white to-primary-100 pt-16 pb-20 md:pt-24 md:pb-28">
     {{-- Decorative Background Elements --}}
     <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-primary-300/30 rounded-full blur-3xl animate-blob"></div>
     <div class="absolute bottom-0 left-10 w-72 h-72 bg-accent-400/20 rounded-full blur-3xl animate-blob" style="animation-delay: 2s;"></div>
@@ -18,11 +18,6 @@
             
             {{-- Left Content --}}
             <div class="max-w-2xl mx-auto lg:mx-0 text-center lg:text-left animate-slide-in-left">
-                <div class="inline-flex items-center gap-2 bg-white/60 backdrop-blur-sm border border-primary-100 rounded-full px-4 py-1.5 text-sm mb-6 text-primary-800 font-semibold shadow-sm">
-                    <span class="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"></span>
-                    উন্মুক্ত লোকাল জব মার্কেটপ্লেস
-                </div>
-
                 <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-[1.15] text-gray-900 tracking-tight">
                     আপনার এলাকায় <br class="hidden md:block">
                     কী কী কাজ আছে দেখুন, <br class="hidden md:block">
@@ -105,38 +100,13 @@
 </section>
 
 {{-- ─────────────────────────────────────────── --}}
-{{-- STATS SECTION (Overlapping) --}}
-{{-- ─────────────────────────────────────────── --}}
-<section class="relative z-20 -mt-16 md:-mt-20">
-    <div class="container mx-auto px-4">
-        <div class="glass rounded-3xl p-6 md:p-8 shadow-2xl bg-white/90">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-x divide-gray-100">
-                @foreach([
-                    ['value' => $stats['providers'] ?? 0, 'suffix' => '+', 'label' => 'যাচাইকৃত কর্মী', 'color' => 'text-primary-600'],
-                    ['value' => $stats['districts'] ?? 0, 'suffix' => '', 'label' => 'জেলায় সেবা', 'color' => 'text-emerald-600'],
-                    ['value' => $stats['jobs'] ?? 0, 'suffix' => '+', 'label' => 'কাজ সম্পন্ন', 'color' => 'text-blue-600'],
-                    ['value' => $stats['rating'] ?? '0.0', 'suffix' => '/5', 'label' => 'গড় রেটিং', 'color' => 'text-accent-500'],
-                ] as $stat)
-                    <div class="px-2">
-                        <div class="text-3xl md:text-4xl font-extrabold {{ $stat['color'] }} tracking-tight animate-counter-up">
-                            {{ $stat['value'] }}<span class="text-lg md:text-xl">{{ $stat['suffix'] }}</span>
-                        </div>
-                        <div class="text-sm font-semibold text-gray-500 mt-2 uppercase tracking-wide">{{ $stat['label'] }}</div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
-</section>
-
-{{-- ─────────────────────────────────────────── --}}
 {{-- CATEGORIES SECTION --}}
 {{-- ─────────────────────────────────────────── --}}
-<section class="py-24 bg-gray-50/50">
+<section class="py-16 md:py-24 bg-gray-50/50">
     <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
             <div>
-                <h2 class="section-title text-4xl">জনপ্রিয় সেবাসমূহ</h2>
+                <h2 class="section-title text-3xl md:text-4xl">জনপ্রিয় সেবাসমূহ</h2>
                 <p class="section-subtitle">আপনার দৈনন্দিন জীবনের যেকোনো প্রয়োজনে আমরা আছি</p>
             </div>
             <a href="{{ route('services.index') }}" class="btn btn-outline whitespace-nowrap">সব সেবা দেখুন →</a>
@@ -154,49 +124,6 @@
                     </div>
                     <span class="font-bold text-gray-800 group-hover:text-primary-700 transition-colors">{{ $cat->name }}</span>
                 </a>
-            @endforeach
-        </div>
-    </div>
-</section>
-
-{{-- ─────────────────────────────────────────── --}}
-{{-- HOW IT WORKS --}}
-{{-- ─────────────────────────────────────────── --}}
-<section class="py-24 bg-white relative overflow-hidden">
-    {{-- Background blobs --}}
-    <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-30 pointer-events-none">
-        <div class="absolute -top-40 -right-40 w-96 h-96 bg-primary-100 rounded-full blur-3xl"></div>
-        <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-emerald-100 rounded-full blur-3xl"></div>
-    </div>
-
-    <div class="container mx-auto px-4 relative z-10">
-        <div class="text-center mb-16">
-            <span class="text-primary-600 font-bold uppercase tracking-wider text-sm">প্রসেস</span>
-            <h2 class="section-title text-4xl mt-2">কীভাবে কাজ করে?</h2>
-            <p class="section-subtitle">মাত্র ৩টি সহজ ধাপে আপনার কাঙ্ক্ষিত সেবাটি বুঝে নিন</p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-12 relative">
-            {{-- Connecting Line for Desktop --}}
-            <div class="hidden md:block absolute top-12 left-[15%] right-[15%] border-t-2 border-dashed border-primary-200"></div>
-
-            @foreach([
-                ['step' => '০১', 'title' => 'কাজ পোস্ট করুন', 'desc' => 'খুব সহজেই আপনার প্রয়োজনীয় কাজের বিবরণ এবং বাজেট উল্লেখ করে একটি রিকোয়েস্ট পোস্ট করুন।', 'color' => 'bg-primary-600 text-white', 'icon' => 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'],
-                ['step' => '০২', 'title' => 'বিড পান ও যাচাই করুন', 'desc' => 'কাছাকাছি থাকা দক্ষ কর্মীরা বিড করবেন। তাদের প্রোফাইল ও আগের রেটিং দেখে সেরা জনকে বেছে নিন।', 'color' => 'bg-emerald-500 text-white', 'icon' => 'M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z'],
-                ['step' => '০৩', 'title' => 'সেবা নিন ও পেমেন্ট করুন', 'desc' => 'নির্ধারিত সময়ে কর্মী এসে কাজ সম্পন্ন করবেন। কাজ শেষে পেমেন্ট করুন এবং রেটিং দিন।', 'color' => 'bg-accent-500 text-white', 'icon' => 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'],
-            ] as $i => $step)
-                <div class="relative text-center group">
-                    <div class="w-24 h-24 mx-auto rounded-3xl {{ $step['color'] }} shadow-xl flex items-center justify-center transform group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 relative z-10 mb-6">
-                        <svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $step['icon'] }}"/>
-                        </svg>
-                        <div class="absolute -top-3 -right-3 w-8 h-8 bg-white text-gray-900 font-bold rounded-full shadow-md flex items-center justify-center text-sm">
-                            {{ $step['step'] }}
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">{{ $step['title'] }}</h3>
-                    <p class="text-gray-500 leading-relaxed">{{ $step['desc'] }}</p>
-                </div>
             @endforeach
         </div>
     </div>
