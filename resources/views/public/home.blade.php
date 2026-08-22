@@ -4,46 +4,41 @@
 @section('meta_description', 'বাংলাদেশের সেরা লোকাল সার্ভিস মার্কেটপ্লেস। আপনার এলাকার উন্মুক্ত কাজগুলো দেখুন, বিড করুন অথবা যেকোনো কাজের জন্য পোস্ট করুন।')
 
 @section('content')
-<div class="space-y-10 md:space-y-16 pb-20">
+<div class="space-y-8 md:space-y-12 pb-16">
 
     {{-- ─────────────────────────────────────────── --}}
-    {{-- 1. HERO & SMART SEARCH SECTION (SPACIOUS & ELEGANT) --}}
+    {{-- 1. SHEBA-STYLE LIGHT HERO & SEARCH HEADER --}}
     {{-- ─────────────────────────────────────────── --}}
-    <section class="bg-gradient-to-b from-primary-900 via-[#0f766e] to-[#115e59] text-white pt-12 pb-16 md:pt-20 md:pb-24 px-4 rounded-b-[2.5rem] shadow-xl relative overflow-hidden">
-        {{-- Subtle background decoration --}}
-        <div class="absolute -top-24 -right-24 w-96 h-96 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-emerald-400/10 rounded-full blur-3xl pointer-events-none"></div>
-
-        <div class="container mx-auto max-w-5xl relative z-10">
+    <section class="bg-gradient-to-b from-teal-50/80 via-emerald-50/40 to-transparent pt-8 pb-10 md:pt-14 md:pb-16 px-4">
+        <div class="container mx-auto max-w-4xl text-center">
             
-            {{-- Tagline & Heading --}}
-            <div class="text-center mb-8 md:mb-10 max-w-3xl mx-auto">
-                <span class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1.5 rounded-full text-xs md:text-sm font-semibold text-primary-100 mb-4 shadow-sm">
-                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    বাংলাদেশের বিশ্বস্ত লোকাল সার্ভিস ও ওপেন জব মার্কেটপ্লেস
-                </span>
-                
-                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.15] mb-4">
-                    আপনার এলাকায় <br class="hidden sm:inline">
-                    কী সেবা বা কর্মী প্রয়োজন?
-                </h1>
-                
-                <p class="text-sm sm:text-base md:text-lg text-teal-100 max-w-2xl mx-auto leading-relaxed">
-                    সহজেই আপনার কাজের রিকোয়েস্ট পোস্ট করুন অথবা উন্মুক্ত কাজসমূহ খুঁজে সরাসরি বিড করুন।
-                </p>
-            </div>
+            {{-- Top Badge --}}
+            <span class="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 border border-emerald-200 px-3.5 py-1 rounded-full text-xs md:text-sm font-bold mb-3 shadow-xs">
+                <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+                বাংলাদেশের সেরা লোকাল সার্ভিস ও জব মার্কেটপ্লেস
+            </span>
+
+            {{-- Main Title --}}
+            <h1 class="text-2xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight mb-3">
+                আপনার এলাকায় <span class="text-[#0f766e]">কী সেবা বা কর্মী</span> প্রয়োজন?
+            </h1>
+
+            {{-- Subtitle --}}
+            <p class="text-xs sm:text-sm md:text-base text-gray-600 max-w-xl mx-auto mb-6 leading-relaxed">
+                হাজারো যাচাইকৃত দক্ষ কর্মী প্রস্তুত আছেন আপনার প্রয়োজনে। কাজ পোস্ট করুন অথবা সরাসরি সেবা বেছে নিন।
+            </p>
 
             {{-- Smart Unified Search Bar --}}
-            <form action="{{ route('jobs.index') }}" method="GET" class="bg-white p-3 md:p-3.5 rounded-2xl md:rounded-3xl shadow-2xl flex flex-col md:flex-row gap-3 border border-white/30 max-w-4xl mx-auto">
+            <form action="{{ route('jobs.index') }}" method="GET" class="bg-white p-2.5 md:p-3 rounded-2xl md:rounded-3xl shadow-lg border border-gray-200 flex flex-col md:flex-row gap-2 max-w-3xl mx-auto">
                 
-                {{-- District / Location Dropdown --}}
-                <div class="flex-1 md:max-w-[240px] relative border-b md:border-b-0 md:border-r border-gray-200">
-                    <div class="absolute inset-y-0 left-3.5 flex items-center pointer-events-none text-teal-700">
-                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                {{-- District Dropdown --}}
+                <div class="flex-1 md:max-w-[220px] relative border-b md:border-b-0 md:border-r border-gray-200">
+                    <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none text-[#0f766e]">
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                         </svg>
                     </div>
-                    <select name="district" class="w-full pl-11 pr-4 py-3 md:py-3.5 text-gray-800 bg-transparent text-sm md:text-base font-medium border-0 focus:ring-0 cursor-pointer">
+                    <select name="district" class="w-full pl-9 pr-4 py-2.5 md:py-3 text-gray-800 bg-transparent text-xs sm:text-sm font-medium border-0 focus:ring-0 cursor-pointer">
                         <option value="">সকল জেলা</option>
                         @foreach(\App\Models\District::active()->get() as $d)
                             <option value="{{ $d->id }}" {{ request('district') == $d->id ? 'selected' : '' }}>{{ $d->bn_name }}</option>
@@ -51,19 +46,19 @@
                     </select>
                 </div>
 
-                {{-- Keyword Search Input --}}
+                {{-- Keyword Input --}}
                 <div class="flex-1 relative">
-                    <div class="absolute inset-y-0 left-3.5 flex items-center pointer-events-none text-gray-400">
-                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none text-gray-400">
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                         </svg>
                     </div>
-                    <input type="text" name="q" value="{{ request('q') }}" placeholder="সার্ভিস বা কাজের নাম লিখুন (যেমন: এসি, প্লাম্বার, ক্লিনিং, শিফটিং...)" class="w-full pl-11 pr-4 py-3 md:py-3.5 text-gray-900 text-sm md:text-base placeholder-gray-400 border-0 focus:ring-0 outline-none">
+                    <input type="text" name="q" value="{{ request('q') }}" placeholder="কাজের নাম লিখুন (যেমন: এসি, প্লাম্বার, ক্লিনিং, শিফটিং...)" class="w-full pl-9 pr-4 py-2.5 md:py-3 text-gray-900 text-xs sm:text-sm placeholder-gray-400 border-0 focus:ring-0 outline-none">
                 </div>
 
                 {{-- Search Button --}}
-                <button type="submit" class="bg-primary-600 hover:bg-primary-700 text-white font-bold px-8 py-3.5 rounded-xl md:rounded-2xl text-sm md:text-base transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 cursor-pointer">
-                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <button type="submit" class="bg-[#0f766e] hover:bg-[#115e59] text-white font-bold px-7 py-2.5 md:py-3 rounded-xl md:rounded-2xl text-xs sm:text-sm transition-all shadow-md flex items-center justify-center gap-1.5 cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                     </svg>
                     <span>সার্চ করুন</span>
@@ -71,10 +66,10 @@
             </form>
 
             {{-- Quick Filter Pills --}}
-            <div class="flex flex-wrap items-center justify-center gap-2 mt-5 text-xs md:text-sm text-teal-100">
-                <span class="text-teal-200 font-semibold">জনপ্রিয় কাজ:</span>
+            <div class="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mt-4 text-xs">
+                <span class="text-gray-500 font-semibold">জনপ্রিয় কাজ:</span>
                 @foreach(['এসি সার্ভিসিং', 'হাউস ক্লিনিং', 'ইলেকট্রিশিয়ান', 'প্লাম্বার', 'শিফটিং', 'রং মিস্ত্রি'] as $tag)
-                    <a href="{{ route('jobs.index') }}?q={{ urlencode($tag) }}" class="bg-white/10 hover:bg-white/20 text-white px-3.5 py-1.5 rounded-full border border-white/15 backdrop-blur-sm transition-colors">
+                    <a href="{{ route('jobs.index') }}?q={{ urlencode($tag) }}" class="bg-white hover:bg-teal-50 text-gray-700 hover:text-teal-800 px-3 py-1 rounded-full border border-gray-200 shadow-xs transition-colors font-medium">
                         {{ $tag }}
                     </a>
                 @endforeach
@@ -86,27 +81,27 @@
     {{-- ─────────────────────────────────────────── --}}
     {{-- 2. QUICK ACTION BANNER (POST JOB CTA) --}}
     {{-- ─────────────────────────────────────────── --}}
-    <section class="container mx-auto px-4 max-w-6xl">
-        <div class="bg-gradient-to-r from-[#0f766e] via-[#0d9488] to-emerald-600 rounded-3xl p-6 sm:p-8 md:p-10 text-white shadow-lg flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="flex items-center gap-5 text-center md:text-left">
-                <div class="w-14 h-14 md:w-16 md:h-16 bg-white/15 rounded-2xl flex items-center justify-center shrink-0 border border-white/20 shadow-inner">
-                    <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <section class="container mx-auto px-4 max-w-5xl">
+        <div class="rounded-2xl md:rounded-3xl p-5 sm:p-7 text-white shadow-md flex flex-col md:flex-row items-center justify-between gap-4" style="background: linear-gradient(135deg, #0f766e 0%, #115e59 100%);">
+            <div class="flex items-center gap-4 text-center md:text-left">
+                <div class="w-12 h-12 md:w-14 md:h-14 bg-white/20 rounded-2xl flex items-center justify-center shrink-0 border border-white/20">
+                    <svg class="w-6 h-6 md:w-7 md:h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/>
                     </svg>
                 </div>
                 <div>
-                    <h2 class="text-xl sm:text-2xl font-bold text-white mb-1.5">জরুরি কোনো সার্ভিস বা কর্মী প্রয়োজন?</h2>
-                    <p class="text-xs sm:text-sm md:text-base text-teal-100 leading-relaxed">
-                        বিনামূল্যে আপনার কাজের বিস্তারিত উল্লেখ করে পোস্ট করুন এবং দক্ষ কর্মীদের থেকে সরাসরি সেরা অফার গ্রহণ করুন।
+                    <h2 class="text-base sm:text-lg md:text-xl font-bold text-white mb-1">জরুরি কোনো সার্ভিস বা কর্মী প্রয়োজন?</h2>
+                    <p class="text-xs sm:text-sm text-teal-100 leading-relaxed">
+                        বিনামূল্যে কাজ পোস্ট করে স্থানীয় দক্ষ কর্মীদের থেকে সরাসরি সেরা অফার গ্রহণ করুন।
                     </p>
                 </div>
             </div>
             
-            <div class="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto shrink-0">
-                <a href="{{ route('jobs.post') }}" class="w-full sm:w-auto text-center bg-white text-teal-900 hover:bg-gray-50 px-8 py-3.5 rounded-2xl font-extrabold text-sm md:text-base shadow-md hover:shadow-lg transition-transform active:scale-95 whitespace-nowrap">
+            <div class="flex items-center gap-3 w-full md:w-auto shrink-0">
+                <a href="{{ route('jobs.post') }}" class="flex-1 md:flex-initial text-center bg-white text-[#0f766e] hover:bg-gray-100 px-6 py-3 rounded-xl font-extrabold text-xs sm:text-sm shadow-md transition-transform active:scale-95 whitespace-nowrap" style="color: #0f766e; background-color: #ffffff;">
                     + কাজ পোস্ট করুন
                 </a>
-                <a href="{{ route('jobs.index') }}" class="w-full sm:w-auto text-center bg-teal-950/40 hover:bg-teal-950/60 text-white px-6 py-3.5 rounded-2xl font-semibold text-sm md:text-base border border-white/25 transition-colors whitespace-nowrap">
+                <a href="{{ route('jobs.index') }}" class="flex-1 md:flex-initial text-center bg-black/20 hover:bg-black/30 text-white px-5 py-3 rounded-xl font-semibold text-xs sm:text-sm border border-white/25 transition-colors whitespace-nowrap">
                     উন্মুক্ত কাজ দেখুন
                 </a>
             </div>
@@ -114,35 +109,32 @@
     </section>
 
     {{-- ─────────────────────────────────────────── --}}
-    {{-- 3. SHEBA-STYLE CATEGORIES GRID (SPACIOUS & CLEAN) --}}
+    {{-- 3. SHEBA-STYLE CATEGORIES GRID (APP ICONS) --}}
     {{-- ─────────────────────────────────────────── --}}
-    <section class="container mx-auto px-4 max-w-6xl">
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 md:mb-8">
+    <section class="container mx-auto px-4 max-w-5xl">
+        <div class="flex items-center justify-between mb-4">
             <div>
-                <span class="text-xs font-bold uppercase tracking-wider text-primary-700">ক্যাটাগরি সমূহ</span>
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 mt-1">জনপ্রিয় সেবাসমূহ</h2>
-                <p class="text-xs sm:text-sm text-gray-500 mt-1">আপনার প্রয়োজনীয় ক্যাটাগরিটি বেছে নিয়ে সরাসরি বিস্তারিত জানুন</p>
+                <h2 class="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">সেবার ক্যাটাগরি</h2>
+                <p class="text-xs text-gray-500 mt-0.5">আপনার প্রয়োজনীয় সেবাটি এক ট্যাপে বেছে নিন</p>
             </div>
-            <a href="{{ route('services.index') }}" class="inline-flex items-center gap-1.5 text-sm font-bold text-primary-700 hover:text-primary-900 group">
-                সকল ক্যাটাগরি দেখুন
-                <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                </svg>
+            <a href="{{ route('services.index') }}" class="text-xs sm:text-sm font-bold text-[#0f766e] hover:text-[#115e59] flex items-center gap-1">
+                সব ক্যাটাগরি
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </a>
         </div>
 
-        {{-- Categories Responsive Grid --}}
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-5">
+        {{-- Categories App Grid --}}
+        <div class="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2.5 sm:gap-3.5">
             @php
                 $palette = [
-                    ['bg' => 'bg-teal-50', 'text' => 'text-teal-700', 'border' => 'border-teal-100', 'hover' => 'hover:border-teal-300'],
-                    ['bg' => 'bg-blue-50', 'text' => 'text-blue-700', 'border' => 'border-blue-100', 'hover' => 'hover:border-blue-300'],
-                    ['bg' => 'bg-amber-50', 'text' => 'text-amber-700', 'border' => 'border-amber-100', 'hover' => 'hover:border-amber-300'],
-                    ['bg' => 'bg-rose-50', 'text' => 'text-rose-700', 'border' => 'border-rose-100', 'hover' => 'hover:border-rose-300'],
-                    ['bg' => 'bg-indigo-50', 'text' => 'text-indigo-700', 'border' => 'border-indigo-100', 'hover' => 'hover:border-indigo-300'],
-                    ['bg' => 'bg-emerald-50', 'text' => 'text-emerald-700', 'border' => 'border-emerald-100', 'hover' => 'hover:border-emerald-300'],
-                    ['bg' => 'bg-orange-50', 'text' => 'text-orange-700', 'border' => 'border-orange-100', 'hover' => 'hover:border-orange-300'],
-                    ['bg' => 'bg-purple-50', 'text' => 'text-purple-700', 'border' => 'border-purple-100', 'hover' => 'hover:border-purple-300'],
+                    ['bg' => '#f0fdfa', 'text' => '#0f766e', 'border' => '#ccfbf1'],
+                    ['bg' => '#eff6ff', 'text' => '#1d4ed8', 'border' => '#dbeafe'],
+                    ['bg' => '#fffbeb', 'text' => '#b45309', 'border' => '#fef3c7'],
+                    ['bg' => '#fff1f2', 'text' => '#be123c', 'border' => '#ffe4e6'],
+                    ['bg' => '#eef2ff', 'text' => '#4338ca', 'border' => '#e0e7ff'],
+                    ['bg' => '#ecfdf5', 'text' => '#047857', 'border' => '#d1fae5'],
+                    ['bg' => '#fff7ed', 'text' => '#c2410c', 'border' => '#ffedd5'],
+                    ['bg' => '#faf5ff', 'text' => '#7e22ce', 'border' => '#f3e8ff'],
                 ];
             @endphp
 
@@ -150,17 +142,15 @@
                 @php
                     $color = $palette[$idx % count($palette)];
                 @endphp
-                <a href="{{ route('jobs.index') }}?category={{ $cat->id }}" class="bg-white rounded-2xl md:rounded-3xl p-5 md:p-6 border {{ $color['border'] }} {{ $color['hover'] }} shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center text-center group">
-                    <div class="w-14 h-14 md:w-16 md:h-16 {{ $color['bg'] }} {{ $color['text'] }} rounded-2xl flex items-center justify-center mb-3.5 transform group-hover:scale-110 transition-transform duration-300 shadow-xs">
+                <a href="{{ route('jobs.index') }}?category={{ $cat->id }}" class="group flex flex-col items-center text-center p-2.5 sm:p-3 bg-white rounded-2xl border shadow-xs hover:shadow-md transition-all active:scale-95" style="border-color: {{ $color['border'] }};">
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center mb-1.5 transition-transform group-hover:scale-105 shadow-xs" style="background-color: {{ $color['bg'] }}; color: {{ $color['text'] }};">
                         @if($cat->icon)
-                            {!! category_icon($cat->icon, 'w-7 h-7 md:w-8 md:h-8') !!}
+                            {!! category_icon($cat->icon, 'w-6 h-6') !!}
                         @else
-                            <svg class="w-7 h-7 md:w-8 md:h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                            </svg>
+                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                         @endif
                     </div>
-                    <span class="text-sm md:text-base font-bold text-gray-800 group-hover:text-primary-700 transition-colors leading-snug">
+                    <span class="text-[11px] sm:text-xs font-bold text-gray-800 line-clamp-1 group-hover:text-[#0f766e]">
                         {{ $cat->name }}
                     </span>
                 </a>
@@ -171,64 +161,63 @@
     {{-- ─────────────────────────────────────────── --}}
     {{-- 4. LIVE OPEN JOBS BOARD (REAL-TIME ON-DEMAND FEED) --}}
     {{-- ─────────────────────────────────────────── --}}
-    <section class="container mx-auto px-4 max-w-6xl">
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 md:mb-8">
-            <div class="flex items-center gap-3">
-                <div class="w-3.5 h-3.5 rounded-full bg-emerald-500 animate-ping"></div>
+    <section class="container mx-auto px-4 max-w-5xl">
+        <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-2.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
                 <div>
-                    <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">লাইভ ওপেন জবস</span>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 mt-0.5">চলমান উন্মুক্ত কাজসমূহ</h2>
-                    <p class="text-xs sm:text-sm text-gray-500 mt-1">আপনার এলাকায় সরাসরি গ্রাহকদের পোস্ট করা কাজ দেখুন ও বিড করুন</p>
+                    <h2 class="text-lg sm:text-xl font-bold text-gray-900">চলমান উন্মুক্ত কাজসমূহ</h2>
+                    <p class="text-xs text-gray-500">আপনার এলাকায় সরাসরি গ্রাহকদের পোস্ট করা কাজ দেখুন ও বিড করুন</p>
                 </div>
             </div>
-            <a href="{{ route('jobs.index') }}" class="inline-flex items-center gap-1.5 text-sm font-bold text-primary-700 hover:text-primary-900 group">
-                সকল উন্মুক্ত কাজ দেখুন →
+            <a href="{{ route('jobs.index') }}" class="text-xs sm:text-sm font-bold text-[#0f766e] hover:text-[#115e59] flex items-center gap-1">
+                সকল কাজ →
             </a>
         </div>
 
         @if(isset($latestJobs) && $latestJobs->count() > 0)
             {{-- Job Cards Grid --}}
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4">
                 @foreach($latestJobs as $job)
-                    <div class="bg-white rounded-2xl md:rounded-3xl p-5 md:p-6 border border-gray-100/90 shadow-sm hover:shadow-xl hover:border-primary-200 transition-all duration-300 flex flex-col justify-between group">
+                    <div class="bg-white rounded-2xl p-4 border border-gray-200/90 shadow-xs hover:shadow-md hover:border-[#0f766e] transition-all flex flex-col justify-between group">
                         <div>
                             {{-- Top tags --}}
-                            <div class="flex items-center justify-between gap-2 mb-3">
-                                <span class="bg-teal-50 text-teal-800 text-xs font-bold px-3 py-1 rounded-full border border-teal-100">
+                            <div class="flex items-center justify-between gap-2 mb-2">
+                                <span class="bg-teal-50 text-teal-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-teal-100">
                                     {{ $job->subcategory?->name ?? 'জেনারেল সার্ভিস' }}
                                 </span>
-                                <span class="text-xs text-gray-400 font-medium">
+                                <span class="text-[10px] text-gray-400 font-medium">
                                     {{ $job->created_at->diffForHumans() }}
                                 </span>
                             </div>
 
                             {{-- Title --}}
-                            <h3 class="font-bold text-base md:text-lg text-gray-900 group-hover:text-primary-700 transition-colors line-clamp-1 mb-2">
+                            <h3 class="font-bold text-sm sm:text-base text-gray-900 group-hover:text-[#0f766e] transition-colors line-clamp-1 mb-1">
                                 {{ $job->title }}
                             </h3>
 
-                            {{-- Description --}}
-                            <p class="text-xs sm:text-sm text-gray-600 line-clamp-2 mb-4 leading-relaxed">
+                            {{-- Short Description --}}
+                            <p class="text-xs text-gray-500 line-clamp-2 mb-3 leading-relaxed">
                                 {{ $job->description }}
                             </p>
                         </div>
 
                         <div>
                             {{-- Location & Budget --}}
-                            <div class="flex items-center justify-between text-xs sm:text-sm pt-3 border-t border-gray-100 mb-4 font-medium">
-                                <span class="flex items-center gap-1.5 text-gray-600">
-                                    <svg class="w-4 h-4 text-primary-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <div class="flex items-center justify-between text-xs pt-2.5 border-t border-gray-100 mb-3 font-medium">
+                                <span class="flex items-center gap-1 text-gray-600">
+                                    <svg class="w-3.5 h-3.5 text-[#0f766e] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                                     </svg>
                                     {{ $job->district?->bn_name ?? 'ঢাকা' }}
                                 </span>
-                                <span class="font-bold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-lg border border-emerald-100 text-xs sm:text-sm">
+                                <span class="font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md text-xs border border-emerald-100">
                                     ৳{{ number_format($job->budget_min) }} - ৳{{ number_format($job->budget_max) }}
                                 </span>
                             </div>
 
                             {{-- Action Button --}}
-                            <a href="{{ route('jobs.index') }}" class="block text-center py-2.5 md:py-3 bg-gray-900 group-hover:bg-primary-700 text-white text-xs sm:text-sm font-bold rounded-xl transition-colors shadow-sm">
+                            <a href="{{ route('jobs.index') }}" class="block text-center py-2 bg-gray-900 group-hover:bg-[#0f766e] text-white text-xs font-bold rounded-xl transition-colors shadow-xs">
                                 বিস্তারিত দেখুন ও বিড করুন
                             </a>
                         </div>
@@ -236,69 +225,59 @@
                 @endforeach
             </div>
         @else
-            {{-- Empty State Card (When no jobs are open) --}}
-            <div class="bg-white rounded-3xl p-8 md:p-12 border border-gray-100 shadow-sm text-center max-w-2xl mx-auto">
-                <div class="w-16 h-16 bg-teal-50 text-teal-700 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            {{-- Empty State Card --}}
+            <div class="bg-white rounded-2xl p-6 sm:p-8 border border-gray-200 text-center max-w-xl mx-auto shadow-xs">
+                <div class="w-12 h-12 bg-teal-50 text-[#0f766e] rounded-xl flex items-center justify-center mx-auto mb-3">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                     </svg>
                 </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-2">বর্তমানে নতুন কোনো উন্মুক্ত কাজ নেই</h3>
-                <p class="text-sm text-gray-500 mb-6 leading-relaxed">
-                    আপনার এলাকায় কোনো সেবার প্রয়োজন হলে এখনই নতুন কাজ পোস্ট করুন। প্রোভাইডারেরা সাথে সাথে বিড করবেন।
+                <h3 class="text-base font-bold text-gray-900 mb-1">বর্তমানে কোনো উন্মুক্ত কাজ নেই</h3>
+                <p class="text-xs text-gray-500 mb-4">
+                    আপনার এলাকায় কোনো সেবার প্রয়োজন হলে এখনই কাজ পোস্ট করুন।
                 </p>
-                <div class="flex flex-wrap justify-center gap-3">
-                    <a href="{{ route('jobs.post') }}" class="btn btn-primary text-sm px-6 py-2.5">
-                        + প্রথম কাজ পোস্ট করুন
-                    </a>
-                    <a href="{{ route('services.index') }}" class="btn btn-outline text-sm px-6 py-2.5">
-                        সেবাসমূহ দেখুন
-                    </a>
-                </div>
+                <a href="{{ route('jobs.post') }}" class="inline-block bg-[#0f766e] hover:bg-[#115e59] text-white font-bold px-6 py-2.5 rounded-xl text-xs shadow-sm">
+                    + প্রথম কাজ পোস্ট করুন
+                </a>
             </div>
         @endif
     </section>
 
     {{-- ─────────────────────────────────────────── --}}
-    {{-- 5. COMPACT TRUST & QUALITY HIGHLIGHTS --}}
+    {{-- 5. COMPACT TRUST BADGES --}}
     {{-- ─────────────────────────────────────────── --}}
-    <section class="container mx-auto px-4 max-w-6xl">
-        <div class="bg-gray-50 border border-gray-200/80 rounded-3xl p-6 md:p-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 divide-y md:divide-y-0 md:divide-x divide-gray-200">
-                
-                {{-- Point 1 --}}
-                <div class="flex items-start gap-4 p-2 md:pr-4">
-                    <div class="w-12 h-12 bg-teal-100 text-teal-800 rounded-2xl flex items-center justify-center shrink-0 font-extrabold text-lg">
+    <section class="container mx-auto px-4 max-w-5xl">
+        <div class="bg-white border border-gray-200 rounded-2xl p-4 shadow-xs">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center sm:text-left divide-y sm:divide-y-0 sm:divide-x divide-gray-100">
+                <div class="flex items-center gap-3 p-2">
+                    <div class="w-9 h-9 bg-teal-50 text-[#0f766e] rounded-xl flex items-center justify-center shrink-0 font-extrabold text-sm border border-teal-100">
                         ✓
                     </div>
                     <div>
-                        <h4 class="text-base font-bold text-gray-900 mb-1">যাচাইকৃত দক্ষ কর্মী</h4>
-                        <p class="text-xs sm:text-sm text-gray-500 leading-relaxed">এনআইডি, মোবাইল নম্বর ও ব্যাকগ্রাউন্ড যাচাইকৃত প্রোভাইডার।</p>
+                        <h4 class="text-xs font-bold text-gray-900">যাচাইকৃত দক্ষ কর্মী</h4>
+                        <p class="text-[11px] text-gray-500">এনআইডি ও ব্যাকগ্রাউন্ড ভেরিফাইড</p>
                     </div>
                 </div>
 
-                {{-- Point 2 --}}
-                <div class="flex items-start gap-4 p-2 md:px-6 pt-4 md:pt-2">
-                    <div class="w-12 h-12 bg-emerald-100 text-emerald-800 rounded-2xl flex items-center justify-center shrink-0 font-extrabold text-lg">
+                <div class="flex items-center gap-3 p-2 sm:pl-4">
+                    <div class="w-9 h-9 bg-emerald-50 text-emerald-700 rounded-xl flex items-center justify-center shrink-0 font-extrabold text-sm border border-emerald-100">
                         ⚡
                     </div>
                     <div>
-                        <h4 class="text-base font-bold text-gray-900 mb-1">দ্রুত রেসপন্স ও অফার</h4>
-                        <p class="text-xs sm:text-sm text-gray-500 leading-relaxed">কয়েক মিনিটের মধ্যেই একাধিক প্রোভাইডারের বিড পেয়ে সেরা রেট বেছে নিন।</p>
+                        <h4 class="text-xs font-bold text-gray-900">দ্রুত রেসপন্স ও অফার</h4>
+                        <p class="text-[11px] text-gray-500">কয়েক মিনিটেই একাধিক বিড পান</p>
                     </div>
                 </div>
 
-                {{-- Point 3 --}}
-                <div class="flex items-start gap-4 p-2 md:pl-6 pt-4 md:pt-2">
-                    <div class="w-12 h-12 bg-blue-100 text-blue-800 rounded-2xl flex items-center justify-center shrink-0 font-extrabold text-lg">
+                <div class="flex items-center gap-3 p-2 sm:pl-4">
+                    <div class="w-9 h-9 bg-blue-50 text-blue-700 rounded-xl flex items-center justify-center shrink-0 font-extrabold text-sm border border-blue-100">
                         🔒
                     </div>
                     <div>
-                        <h4 class="text-base font-bold text-gray-900 mb-1">নিরাপদ সেবা ও লেনদেন</h4>
-                        <p class="text-xs sm:text-sm text-gray-500 leading-relaxed">কাজ সম্পন্ন হওয়ার পর সন্তুষ্টি অনুযায়ী ক্যাশ অথবা অনলাইন পেমেন্ট করুন।</p>
+                        <h4 class="text-xs font-bold text-gray-900">নিরাপদ সেবা ও লেনদেন</h4>
+                        <p class="text-[11px] text-gray-500">কাজ শেষে সন্তুষ্টি অনুযায়ী পেমেন্ট</p>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
