@@ -54,13 +54,13 @@
         @yield('content')
     </main>
 
-    <!-- ───────────────────────── FOOTER ───────────────────────── -->
-    <div class="pb-16 md:pb-0">
+    <!-- ───────────────────────── FOOTER (Desktop Only for pure App-like Mobile Feel) ───────────────────────── -->
+    <div class="hidden md:block">
         @include('components.public.footer')
     </div>
 
     <!-- ───────────────────────── MOBILE BOTTOM NAV (App-like 5-Tab Bar) ───────────────────────── -->
-    <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200/80 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] z-50 flex justify-around items-center h-16 px-1">
+    <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-[0_-4px_25px_rgba(0,0,0,0.08)] z-50 flex justify-around items-center h-16 px-1 pb-[env(safe-area-inset-bottom)]">
         
         {{-- 1. Home --}}
         <a href="{{ route('home') }}" class="flex flex-col items-center justify-center flex-1 h-full py-1 {{ request()->routeIs('home') ? 'text-primary-600 font-bold' : 'text-gray-500 hover:text-primary-600' }} transition-colors">
@@ -80,12 +80,12 @@
 
         {{-- 3. Center Elevated Post Job (+) Button --}}
         <div class="relative -top-4 flex flex-col items-center justify-center flex-1">
-            <a href="{{ route('jobs.post') }}" class="w-12 h-12 bg-gradient-to-tr from-primary-700 to-primary-500 text-white rounded-full flex items-center justify-center shadow-lg shadow-primary-600/30 border-2 border-white transform active:scale-95 hover:scale-105 transition-all">
-                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <a href="{{ route('jobs.post') }}" class="w-12 h-12 bg-primary-700 hover:bg-primary-800 text-white rounded-full flex items-center justify-center shadow-lg shadow-primary-900/30 border-2 border-white ring-2 ring-primary-100 transform active:scale-95 hover:scale-105 transition-all">
+                <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
                 </svg>
             </a>
-            <span class="text-[10px] font-semibold text-primary-700 mt-0.5">পোস্ট</span>
+            <span class="text-[10px] font-bold text-primary-800 mt-0.5">পোস্ট</span>
         </div>
 
         {{-- 4. My Jobs (Smart Tab for Seeker / Provider / Guest) --}}
