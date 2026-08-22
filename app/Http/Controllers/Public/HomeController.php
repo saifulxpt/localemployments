@@ -86,5 +86,27 @@ class HomeController extends Controller
 
         return redirect()->route('seeker.job-requests.create');
     }
+
+    /**
+     * Mobile & Web App 'More / Menu' Hub screen
+     */
+    public function menu()
+    {
+        if (!auth()->check()) {
+            return redirect()->route('login');
+        }
+
+        $user = auth()->user();
+
+        $counts = [
+            'jobRequests' => $user->isSeeker() ? \App\Models\JobRequest::where('seeker_id', $user->id)->count() : 0,
+            'bookings'    => $user->isSeeker() 
+                                ? \App\Models\Booking::where('seeker_id', $user->id)->count() 
+                                : ($user->isProvider() ? \App\Models\Booking::where('provider_id', $user->id)->count() : 0),
+            'bids'        => $user->isProvider() ? \App\Models\Bid::where('provider_id', $user->id)->count() : 0,
+        ];
+
+        return view('public.menu', compact('user', 'counts'));
+    }
 }
 

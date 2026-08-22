@@ -96,21 +96,13 @@
             <span class="text-[10px] tracking-tight">আমার কাজ</span>
         </a>
 
-        {{-- 5. Account / Dashboard / Login --}}
+        {{-- 5. More / Menu (When Logged in) vs Login (When Guest) --}}
         @auth
-            @php
-                $dashRoute = auth()->user()->isSeeker() ? route('seeker.dashboard') : (auth()->user()->isProvider() ? route('provider.dashboard') : route('admin.dashboard'));
-                $isDashActive = request()->routeIs('seeker.dashboard') || request()->routeIs('provider.dashboard') || request()->routeIs('admin.dashboard');
-            @endphp
-            <a href="{{ $dashRoute }}" class="flex flex-col items-center justify-center flex-1 h-full py-1 {{ $isDashActive ? 'text-primary-600 font-bold' : 'text-gray-500 hover:text-primary-600' }} transition-colors">
-                @if(auth()->user()->avatar_url)
-                    <img src="{{ auth()->user()->avatar_url }}" alt="{{ auth()->user()->name }}" class="w-5 h-5 rounded-full object-cover mb-1 ring-1 ring-primary-500">
-                @else
-                    <svg class="w-5 h-5 mb-1" fill="{{ $isDashActive ? 'currentColor' : 'none' }}" viewBox="0 0 24 24" stroke="currentColor" stroke-width="{{ $isDashActive ? '0' : '2' }}">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-                    </svg>
-                @endif
-                <span class="text-[10px] tracking-tight">অ্যাকাউন্ট</span>
+            <a href="{{ route('menu') }}" class="flex flex-col items-center justify-center flex-1 h-full py-1 {{ request()->routeIs('menu') ? 'text-primary-600 font-bold' : 'text-gray-500 hover:text-primary-600' }} transition-colors">
+                <svg class="w-5 h-5 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="{{ request()->routeIs('menu') ? '2.5' : '2' }}">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+                <span class="text-[10px] tracking-tight">মেনু</span>
             </a>
         @else
             <a href="{{ route('login') }}" class="flex flex-col items-center justify-center flex-1 h-full py-1 {{ request()->routeIs('login') ? 'text-primary-600 font-bold' : 'text-gray-500 hover:text-primary-600' }} transition-colors">
