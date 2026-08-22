@@ -103,7 +103,7 @@ class HomeController extends Controller
             'bookings'    => $user->isSeeker() 
                                 ? \App\Models\Booking::where('seeker_id', $user->id)->count() 
                                 : ($user->isProvider() ? \App\Models\Booking::where('provider_id', $user->id)->count() : 0),
-            'bids'        => $user->isProvider() ? \App\Models\Bid::where('provider_id', $user->id)->count() : 0,
+            'bids'        => $user->isProvider() ? \App\Models\JobBid::where('provider_id', $user->id)->count() : 0,
         ];
 
         return view('public.menu', compact('user', 'counts'));
